@@ -1,0 +1,8 @@
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+testes/_tmp/
+teste-real/
+exemplo-teste.mp4
+*_edicao/

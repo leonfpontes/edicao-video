@@ -1,0 +1,164 @@
+{
+ "fonte": "<pasta>/fonte_cfr.mov",
+ "formato": "vertical",
+ "segmentos": [
+  {
+   "id": 2,
+   "ini": 12.1,
+   "fim": 15.64,
+   "zoom": 1.2,
+   "transicao": null,
+   "texto": "O problema quase nunca é a tecnologia.",
+   "gancho": true
+  },
+  {
+   "id": 1,
+   "ini": 3.74,
+   "fim": 10.56,
+   "zoom": 1.12,
+   "transicao": "flash",
+   "texto": "Hoje eu vou te mostrar porque a maioria dos produtos trava antes mesmo de começar."
+  },
+  {
+   "id": 2,
+   "ini": 12.1,
+   "fim": 15.64,
+   "zoom": 1.0,
+   "transicao": "whip",
+   "texto": "O problema quase nunca é a tecnologia."
+  },
+  {
+   "id": 3,
+   "ini": 16.84,
+   "fim": 20.78,
+   "zoom": 1.12,
+   "transicao": null,
+   "texto": "É a falta de um diagnóstico claro no Gate 1,"
+  },
+  {
+   "id": 4,
+   "ini": 21.16,
+   "fim": 21.88,
+   "zoom": 1.0,
+   "transicao": null,
+   "texto": "o intake."
+  },
+  {
+   "id": 5,
+   "ini": 23.8,
+   "fim": 26.44,
+   "zoom": 1.12,
+   "transicao": "whip",
+   "texto": "na mentoria de produto,"
+  },
+  {
+   "id": 6,
+   "ini": 27.2,
+   "fim": 32.54,
+   "zoom": 1.0,
+   "transicao": null,
+   "texto": "a gente usa o ciclo PDCA para destravar isso em 4 gates."
+  },
+  {
+   "id": 7,
+   "ini": 33.72,
+   "fim": 38.74,
+   "zoom": 1.12,
+   "transicao": "zoom",
+   "texto": "Se você quer entender onde o seu produto está travado,"
+  },
+  {
+   "id": 8,
+   "ini": 39.1,
+   "fim": 40.8,
+   "zoom": 1.0,
+   "transicao": null,
+   "texto": "comenta aqui embaixo."
+  }
+ ],
+ "zooms": [
+  {
+   "ini": 13.6,
+   "fim": 15.6,
+   "fator": 1.3,
+   "modo": "punch"
+  },
+  {
+   "ini": 27.2,
+   "fim": 32.5,
+   "fator": 1.2,
+   "modo": "suave"
+  }
+ ],
+ "fundo": {
+  "tipo": "marca",
+  "imagem": null,
+  "parallax": true,
+  "sombra": true
+ },
+ "cor": {
+  "contraste": 1.05,
+  "saturacao": 1.06,
+  "calor": 0.03,
+  "nitidez": 0.25
+ },
+ "audio": {
+  "denoise": true,
+  "presenca_db": 2.0,
+  "loudness": -14,
+  "sfx_transicoes": true
+ },
+ "legendas": {
+  "ativo": true,
+  "palavras_por_bloco": 3,
+  "posicao_y": 0.68,
+  "maiusculas": false,
+  "enfase": [
+   "tecnologia",
+   "diagnóstico",
+   "PDCA"
+  ],
+  "correcoes": {
+   "porque": "por que"
+  }
+ },
+ "elementos": [
+  {
+   "tipo": "titulo",
+   "texto": "Por que seu produto trava antes de começar",
+   "saida": [
+    0.2,
+    3.4
+   ]
+  },
+  {
+   "tipo": "destaque",
+   "texto": "Gate 1 · Intake",
+   "ini": 17.5,
+   "fim": 22.0
+  },
+  {
+   "tipo": "leo",
+   "pose": "pensando",
+   "ini": 12.2,
+   "fim": 15.6,
+   "lado": "direita"
+  },
+  {
+   "tipo": "destaque",
+   "texto": "PDCA em 4 gates",
+   "ini": 27.5,
+   "fim": 32.5,
+   "y": 0.2
+  }
+ ],
+ "marca_dagua": true,
+ "barra_progresso": true,
+ "cta": {
+  "ativo": true,
+  "duracao": 3.5,
+  "chamada": "Quer destravar seu produto?",
+  "url": "leopontes.com.br/mentoria-produto",
+  "pose_leo": "apontando"
+ }
+}

@@ -1,0 +1,17 @@
+{
+  "id": "modelo",
+  "nome": "Marca-modelo (copie este arquivo para criar uma marca nova)",
+  "cores": {"marinho": "#1B1B1F", "marinho_2": "#2A2A30", "champanhe": "#7FD1C7", "bronze": "#4C9A92",
+            "papel": "#F4F4F2", "papel_2": "#FFFFFF", "nevoa": "#A7A9B0"},
+  "fontes": {"titulo": {"Black": "Roboto-Black.ttf", "Bold": "Roboto-Bold.ttf", "Regular": "Roboto-Regular.ttf"},
+             "texto": {"Black": "Roboto-Black.ttf", "Bold": "Roboto-Bold.ttf", "Regular": "Roboto-Regular.ttf"}},
+  "logo": "modelo/logo.png",
+  "marca_dagua_alt": 72,
+  "marca_dagua_y": 0.13,
+  "cta_logo_alt": 0.14,
+  "intro": {"tipo": "logo", "nome": "Nome da Marca", "sub": "SUBTÍTULO  ·  DA MARCA", "logo_alt": 0.26},
+  "fundo_motivo": "anel",
+  "leo": false,
+  "cta": {"chamada": "Chamada final do vídeo", "url": "seusite.com.br", "apoio": "link na bio"},
+  "vocabulario": "nomes próprios, termos técnicos e marcas que o Whisper deve reconhecer"
+}

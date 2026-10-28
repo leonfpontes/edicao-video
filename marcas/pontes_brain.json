@@ -1,0 +1,17 @@
+{
+  "id": "pontes_brain",
+  "nome": "@pontes_brain · Leonardo Pontes",
+  "cores": {"marinho": "#14213D", "marinho_2": "#22305A", "champanhe": "#D4B98C", "bronze": "#94733D",
+            "papel": "#F2EEE6", "papel_2": "#FFFDF8", "nevoa": "#A9B2C4"},
+  "fontes": {"titulo": {"Black": "Roboto-Black.ttf", "Bold": "Roboto-Bold.ttf", "Regular": "Roboto-Regular.ttf"},
+             "texto": {"Black": "Roboto-Black.ttf", "Bold": "Roboto-Bold.ttf", "Regular": "Roboto-Regular.ttf"}},
+  "logo": "lp-simbolo-claro.png",
+  "marca_dagua_alt": 80,
+  "marca_dagua_y": 0.115,
+  "cta_logo_alt": 0.16,
+  "intro": {"tipo": "pdca_lp", "nome": "Leonardo Pontes", "sub": "MENTORIA DE PRODUTO  ·  DIAGNÓSTICO"},
+  "fundo_motivo": "pdca",
+  "leo": true,
+  "cta": {"chamada": "Quer destravar seu produto?", "url": "leopontes.com.br/mentoria-produto", "pose_leo": "apontando"},
+  "vocabulario": "Leonardo Pontes, pontes_brain, mentoria de produto, PDCA, Plan, Do, Check, Act, gate, Gate 1, intake, business case, delivery, benefits, discovery, roadmap, OKR, product manager, stakeholder, backlog, MVP, leopontes.com.br"
+}
