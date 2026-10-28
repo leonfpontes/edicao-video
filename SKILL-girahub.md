@@ -35,6 +35,8 @@ Tudo roda na pasta do editor, com `.venv/bin/python editor.py`.
 
 Leia `previa.jpg` (é uma imagem) e extraia quadros para conferir: `ffmpeg -ss <seg> -i <saida>.mp4 -frames:v 1 q.jpg`. Se precisar de algo que o `editor.py` não faz, estenda o código mantendo o estilo do arquivo, sem quebrar a marca `pontes_brain`, e explique a mudança no resumo.
 
+**Manutenção do editor (vale para toda mudança no `editor.py`)**: a pasta é um repositório Git compartilhado com outras marcas. Antes de começar, rode `git pull` se houver remoto. Depois de mudar o código, rode `.venv/bin/python editor.py testar`, que testa todas as marcas e precisa terminar em `TUDO OK`. Só use `testar --marca <marca> --atualizar` quando a mudança visual for intencional e só na marca que você mudou. Termine com um commit explicando a mudança.
+
 ## 3. O EDL (`edl.json`)
 
 Tempos na linha do tempo do vídeo **original** (os da `transcricao.txt`).

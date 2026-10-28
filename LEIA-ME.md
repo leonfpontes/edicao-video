@@ -41,3 +41,9 @@ O mesmo `editor.py` edita vídeos das duas marcas. A identidade de cada uma fica
 - `--marca girahub`: paleta terra, Fraunces + Inter, ticket em ouro, vinheta do ticket (`assets/vinheta-girahub.mp4`), sem Leo. Skill `editor-video-girahub` (`SKILL-girahub.md`).
 
 Exemplo: `.venv/bin/python editor.py analisar ~/Movies/gira.mov --marca girahub`
+
+## Marca nova e testes
+
+- **Marca nova**: copie `marcas/modelo.json` para `marcas/<id>.json` e troque as cores, as fontes, o logo (PNG transparente em `assets/<id>/`), o nome, o CTA e o vocabulário. Com `"intro": {"tipo": "logo"}` e `"fundo_motivo": "anel"` (ou `"nenhum"`), a vinheta e o fundo saem prontos, sem programar nada. Uma vinheta sob medida, como as do PDCA e do ticket, é opcional.
+- **Teste**: `.venv/bin/python editor.py testar` compara a folha visual de cada marca com `testes/referencia/` e roda um render completo de 4 s, medindo o áudio (−17 a −15 LUFS, pico < −1,5 dBFS). Rode sempre depois de mudar o `editor.py`.
+- **Velocidade**: no Mac, o recorte usa o CoreML (Neural Engine/GPU) quando disponível e volta para a CPU sozinho se der erro. O progresso mostra quadros por segundo e o tempo restante.

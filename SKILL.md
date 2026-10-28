@@ -27,6 +27,8 @@ Você pode e deve **ler `previa.jpg`** (é uma imagem) e extrair quadros especí
 
 Se precisar de algo que o `editor.py` ainda não faz, **estenda o código** (ele é seu), mantendo o estilo do arquivo, e explique a mudança no resumo final.
 
+**Manutenção do editor (vale para toda mudança no `editor.py`)**: a pasta é um repositório Git compartilhado com outras marcas. Antes de começar, rode `git pull` se houver remoto. Depois de mudar o código, rode `.venv/bin/python editor.py testar`, que testa todas as marcas e precisa terminar em `TUDO OK`. Só use `testar --marca <marca> --atualizar` quando a mudança visual for intencional e só na marca que você mudou. Termine com um commit explicando a mudança.
+
 ## 2. O EDL (`edl.json`): onde você toma as decisões
 
 Todos os tempos estão na linha do tempo do vídeo **original** (os mesmos da `transcricao.txt`). O renderizador recalcula tudo depois dos cortes.
