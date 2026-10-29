@@ -1,5 +1,29 @@
 # Changelog
 
+## 2.1.0 (2026-10-29)
+
+Assets em alta para Reels (pesquisa de tendências de outubro de 2026), pensados para o @pontes_brain e servindo a todas as marcas.
+
+### Novo
+
+- **Biblioteca de sons** (`biblioteca/sons/`): 38 efeitos sonoros (whooshes, risers, impactos, interface, papel, lápis,
+  teclado, notificação, moedas), gravações CC0 do OpenGameArt e efeitos próprios desenhados em `ferramentas/montar_sons.py`,
+  nivelados e com o instante do pico (`ataque`) para alinhar ao corte ou à palavra. `editor.py biblioteca listar sons`.
+- **Sons no EDL**: `"som"` em segmentos e elementos (id ou `false`) e o elemento `{"tipo": "som"}`. Marcas com
+  `"sons": {"modo": "biblioteca"}` tocam um som por tipo de transição, de elemento e de efeito, alternando variações.
+- **4 transições**: `giro` (giro 3D), `rasgo` (papel rasgado), `vidro` (vidro líquido) e `luz` (queima de luz).
+- **8 efeitos**: `cartao_vidro`, `notificacao`, `carregando`, `checklist`, `tipografia` (cinética), `marca_texto`,
+  `reacoes`, `reflexo` e o painel de vidro líquido reutilizável (`painel_vidro`).
+- **48 objetos 3D** (Fluent Emoji, MIT) para gestão de produto: semáforo, zumbi, caracol, tesoura, extintor, boia,
+  balança, porta, ciclo, correntes, régua, telescópio, microscópio, cadeado aberto, coroa, "você"…
+- **3D do @pontes_brain**: placas `g1` a `g4` dos gates e o ciclo `pdca` (`ferramentas/gerar_3d_pontes_brain.py`).
+
+### Mudou
+
+- O @pontes_brain passa a usar a biblioteca de sons (vinheta, transições, elementos e CTA). GiraHub e @leopontesrp não mudam.
+- Efeitos ganham `som` no catálogo; `biblioteca verificar` confere os sons.
+
+
 ## 2.0.0 (2026-10-29)
 
 Repositório profissionalizado, com bibliotecas compartilhadas e isolamento entre marcas.

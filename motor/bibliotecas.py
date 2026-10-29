@@ -1,4 +1,4 @@
-"""Bibliotecas compartilhadas por todas as marcas: objetos 3D, músicas e efeitos.
+"""Bibliotecas compartilhadas por todas as marcas: objetos 3D, músicas, efeitos e sons.
 
 Cada biblioteca tem um `catalogo.json` em `biblioteca/<nome>/`. Um item pode ter `"marcas": [...]` para
 ficar restrito a algumas marcas; sem isso, serve a todas. Itens que são identidade de uma marca (o
@@ -95,6 +95,21 @@ def objeto_3d(nome):
     p = BIBLIOTECA / "3d" / it["arquivo"]
     if not p.exists():
         raise ErroDeMarca(f"arquivo do objeto 3D {nome} não encontrado: {p}")
+    return registrar(p), it
+
+
+# ───────────────────────────── sons (efeitos sonoros) ─────────────────────────────
+
+def som(nome):
+    """(caminho, item) de um efeito sonoro da biblioteca (biblioteca/sons/)."""
+    it = item("sons", nome)
+    if it is None:
+        raise ErroDeMarca(f"som desconhecido: {nome} (veja `editor.py biblioteca listar sons`)")
+    if ATIVA["id"] and not permitido(it):
+        raise ErroDeMarca(f"o som {nome} não serve à marca {ATIVA['id']}")
+    p = BIBLIOTECA / "sons" / it["arquivo"]
+    if not p.exists():
+        raise ErroDeMarca(f"arquivo do som {nome} não encontrado: {p}")
     return registrar(p), it
 
 

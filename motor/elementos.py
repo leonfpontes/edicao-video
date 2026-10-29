@@ -6,6 +6,7 @@ import cv2
 import numpy as np
 from PIL import Image
 
+from .audio import som_padrao
 from .bibliotecas import objeto_3d
 from .efeitos import criar_efeito
 from .graficos import Cartao, alpha_over, blend, cobrir, girar3d, pil2np, sombra, transformar
@@ -146,7 +147,7 @@ class Sprite3D:
 
 
 class Elementos:
-    """titulo | destaque | leo | objeto3d | efeito | imagem | broll — tempos na linha do tempo original."""
+    """titulo | destaque | leo | objeto3d | efeito | imagem | broll | som — tempos na linha do tempo original."""
 
     def __init__(self, lst, W, H, map_out, palavras=()):
         self.W, self.H, self.items = W, H, []
@@ -170,10 +171,12 @@ class Elementos:
             # de outra fala ("ate": "superlegal"), em vez de tempos digitados à mão
             if "na" in e:
                 a, b = achar(e["na"], e.get("ocorrencia", 1))
-                e["ini"] = a - e.get("antecipa", 0.12)
+                e["ini"] = a - e.get("antecipa", 0.0 if e["tipo"] == "som" else 0.12)
                 e.setdefault("fim", b + e.get("segura", 1.2))
                 if "ate" in e:
                     e["fim"] = achar(e["ate"], 1, a)[1] + e.get("segura", 0.25)
+            if e["tipo"] == "som":  # só áudio: o ápice do som cai no início do elemento (ex.: riser chegando na palavra)
+                e.setdefault("fim", e["ini"] + 0.5)
             if "saida" in e:  # tempos já na linha do tempo final (ex.: título sobre o gancho)
                 e["o_ini"], e["o_fim"] = e["saida"]
             else:
@@ -205,10 +208,28 @@ class Elementos:
                     e["still"] = cv2.imread(str(p))
             self.items.append(e)
 
-    def eventos(self):
-        """Instantes de entrada (para o som de 'pop')."""
-        return [e["o_ini"] for e in self.items if e["tipo"] in ("titulo", "destaque", "leo", "imagem", "objeto3d")
-                or (e["tipo"] == "efeito" and e["obj"].pop)]
+    def eventos(self, modo="gerado"):
+        """Sons de entrada: [(instante na saída, id do som ou "pop", ajuste em dB)].
+        "som": "<id>" no elemento escolhe o som; "som": false silencia. Sem escolha, o modo da marca decide:
+        "biblioteca" usa o som padrão do tipo (ou do efeito) e "gerado" usa o pop sintético de sempre."""
+        out = []
+        for e in self.items:
+            tp, pedido, g = e["tipo"], e.get("som"), e.get("volume_db", 0)
+            if tp == "som":
+                out.append((e["o_ini"], e["nome"], g))
+            elif pedido is False or pedido == "":
+                continue
+            elif isinstance(pedido, str):
+                out.append((e["o_ini"], pedido, g))
+            elif modo == "biblioteca":
+                sid = e["obj"].som if tp == "efeito" else som_padrao("elementos", tp)
+                if sid:
+                    out.append((e["o_ini"], sid, g))
+                    batidas = getattr(e["obj"], "batidas", None) if tp == "efeito" else None
+                    out += [(e["o_ini"] + b, sid, g) for b in (batidas() if batidas else []) if e["o_ini"] + b < e["o_fim"]]
+            elif tp in ("titulo", "destaque", "leo", "imagem", "objeto3d") or (tp == "efeito" and e["obj"].pop):
+                out.append((e["o_ini"], "pop", g))
+        return out
 
     def ativo(self, t, tipo):
         return any(e["tipo"] == tipo and e["o_ini"] <= t < e["o_fim"] for e in self.items)
@@ -231,7 +252,7 @@ class Elementos:
         """fase "elementos": tudo que fica sob a legenda; fase "pos": efeitos de quadro inteiro (grão, vinheta,
         glitch…), aplicados por último, por cima de tudo."""
         for e in self.items:
-            if e["tipo"] == "broll" or not (e["o_ini"] <= t < e["o_fim"]):
+            if e["tipo"] in ("broll", "som") or not (e["o_ini"] <= t < e["o_fim"]):
                 continue
             dt, rest = t - e["o_ini"], e["o_fim"] - t
             if e["tipo"] == "efeito":

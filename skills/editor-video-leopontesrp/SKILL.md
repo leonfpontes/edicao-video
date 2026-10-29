@@ -26,7 +26,7 @@ Tudo roda nesta pasta, com `.venv/bin/python editor.py`.
 | `editor.py renderizar <pasta>/edl.json` | Render final de qualidade. |
 | `editor.py renderizar <pasta>/edl.json --so-audio` | Refaz só o áudio (música, volume) sobre o vídeo já renderizado, em segundos. |
 | `editor.py biblioteca listar musicas [termo] --clima <clima>` | Biblioteca de 35 faixas reais (CC BY 4.0) com clima, energia, BPM, gênero e crédito. `--json` para filtrar. |
-| `editor.py biblioteca listar 3d\|efeitos [termo] --marca leopontesrp` | Objetos 3D e layers de efeito, se o vídeo pedir (raramente nesta conta). |
+| `editor.py biblioteca listar 3d\|efeitos\|sons [termo] --marca leopontesrp` | Objetos 3D, layers de efeito e efeitos sonoros, se o vídeo pedir (raramente nesta conta). |
 | `editor.py conferir <pasta>/final.mp4 --marca leopontesrp` | Lê o selo de marca gravado no vídeo. Só entregue se disser "confere". |
 | `editor.py testar` | Teste de regressão de todas as marcas. Rode depois de qualquer mudança no código; precisa terminar em `TUDO OK`. |
 
@@ -48,7 +48,7 @@ Todos os tempos estão na linha do tempo do vídeo **original** (os mesmos da `t
   "formato": "vertical",
   "segmentos": [                       // trechos que FICAM, em ordem. Apague os que saem.
     {"id": 0, "ini": 0.0, "fim": 3.4, "zoom": 1.0,
-     "transicao": null}                // null (corte seco) | "dissolve" | "push" | "zoom" | "slide" | "flash"
+     "transicao": null}                // null (corte seco) | "dissolve" | "push" | "zoom" | "slide" | "flash" | "giro" | "rasgo" | "vidro" | "luz"
   ],
   "duracao_transicao": 0.5,            // 0.3 é o padrão; "dissolve" fica melhor com 0.5 a 0.7
   "zooms": [{"ini": 13.6, "fim": 15.0, "fator": 1.1, "modo": "suave"}],

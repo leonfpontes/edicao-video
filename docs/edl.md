@@ -35,7 +35,8 @@ Trechos que **ficam**, na ordem em que aparecem no vídeo. Apague os que saem.
 |---|---|
 | `id`, `ini`, `fim` | Identificador e tempos no original |
 | `zoom` | Enquadramento base: 1.0 (no máximo 1.08); muda devagar entre cortes |
-| `transicao` | Entrada do trecho: `null` (corte seco), `push`, `whip`, `zoom`, `slide`, `flash`, `dissolve` |
+| `transicao` | Entrada do trecho: `null` (corte seco), `push`, `whip`, `zoom`, `slide`, `flash`, `dissolve`, `giro` (giro 3D), `rasgo` (papel rasgado), `vidro` (vidro líquido), `luz` (queima de luz) |
+| `som` | Som da transição (id de `biblioteca listar sons`); `false` deixa muda. Sem o campo, vale o padrão da marca |
 | `gancho` | `true` repete o trecho no início do vídeo (a frase mais forte abrindo). O original continua no lugar |
 | `texto` | A fala do trecho (referência para o agente) |
 
@@ -104,12 +105,14 @@ E posição: `x`, `y` (0 a 1), `altura` ou `largura` (fração da tela).
 | `titulo` | `texto` | Wipe, palavras subindo e giro 3D. Até 6 palavras |
 | `destaque` | `texto`, `tam` | Rótulo na cor de destaque com mola. Até 4 palavras; empilhe em listas (`y` 0.08, 0.14, 0.20) |
 | `objeto3d` | `nome`, `fase` | Da biblioteca 3D ou da pasta da marca. Dois objetos: um de cada lado da cabeça |
-| `efeito` | `nome`, `cor`, `cor2`, `intensidade`, parâmetros do efeito | 20 efeitos; veja [bibliotecas.md](bibliotecas.md#efeitos) |
+| `efeito` | `nome`, `cor`, `cor2`, `intensidade`, parâmetros do efeito | 28 efeitos; veja [bibliotecas.md](bibliotecas.md#efeitos) |
 | `leo` | `pose`, `lado` | Só @pontes_brain, e só com contexto narrativo |
 | `imagem` | `arquivo` | Print, foto, gráfico |
 | `broll` | `arquivo` | Cobre a tela inteira; a voz continua |
+| `som` | `nome`, `volume_db` | Só áudio, da biblioteca de sons. O ápice do som cai na âncora (riser chegando na palavra) |
 
-`"sfx_elementos": false` (no topo do EDL) desliga o "pop" sonoro dos elementos.
+Qualquer elemento aceita `"som": "<id>"` (troca o som de entrada) ou `"som": false` (mudo). `"sfx_elementos": false`
+(em `audio`) desliga os sons automáticos dos elementos; os do `tipo` `som` continuam. Veja [bibliotecas.md](bibliotecas.md#sons).
 
 ## `cta`
 

@@ -1,8 +1,67 @@
-"""Áudio: efeitos sonoros gerados, loudnorm em duas passadas e medição EBU R128."""
+"""Áudio: efeitos sonoros (da biblioteca ou gerados), loudnorm em duas passadas e medição EBU R128."""
 import json
 import subprocess
 
+from .marca import CFG
 from .util import sh
+
+# Sons padrão quando a marca usa a biblioteca de sons ("sons": {"modo": "biblioteca"} no marca.json).
+# Listas alternam a cada uso (whoosh repetido cansa o ouvido); a marca pode sobrescrever qualquer chave.
+SONS_PADRAO = {
+    "transicoes": {
+        "push": ["whoosh-ar", "whoosh-suave", "whoosh-vento"],
+        "whip": ["whoosh-rapido", "whoosh-curto"],
+        "zoom": ["whoosh-profundo"],
+        "slide": ["deslizar"],
+        "flash": ["reverso"],
+        "dissolve": ["whoosh-sopro"],
+        "fade": ["whoosh-sopro"],
+        "giro": ["whoosh-giro"],
+        "rasgo": ["papel-rasgo", "pagina"],
+        "vidro": ["vidro-shimmer"],
+        "luz": ["whoosh-sopro", "whoosh-lento"],
+    },
+    "elementos": {"titulo": "whoosh-curto", "destaque": "pop-limpo", "objeto3d": "pop-bolha", "leo": "ui-sobe",
+                  "imagem": "deslizar"},
+    "vinheta": {"abertura": "whoosh-suave", "ponto": "toque-vidro", "mergulho": "whoosh-profundo"},
+    "cta": "whoosh-profundo",
+}
+
+
+def modo_sons():
+    """"biblioteca" (sons gravados e desenhados de biblioteca/sons/) ou "gerado" (o whoosh e o pop sintéticos de antes)."""
+    return (CFG.get("sons") or {}).get("modo", "gerado")
+
+
+def som_padrao(grupo, chave=None, n=0):
+    """Id do som padrão de um papel (ex.: grupo "transicoes", chave "push"), com a variação n."""
+    cfg = dict(SONS_PADRAO)
+    for g, v in (CFG.get("sons") or {}).items():
+        cfg[g] = dict(cfg.get(g, {}), **v) if isinstance(v, dict) and isinstance(cfg.get(g), dict) else v
+    v = cfg.get(grupo)
+    if chave is not None:
+        v = v.get(chave) if isinstance(v, dict) else None
+    if isinstance(v, list):
+        return v[n % len(v)] if v else None
+    return v
+
+
+def mixar_eventos(eventos, idx0):
+    """Monta o trecho do filter_complex que posiciona os sons. eventos: [(início em s, caminho, ganho em dB)].
+    idx0: índice da primeira entrada "-i" dos sons. Devolve (entradas, filtro, rótulos)."""
+    por_arq = {}
+    for ini, cam, g in eventos:
+        por_arq.setdefault(str(cam), []).append((ini, g))
+    ins, fc, rot = [], "", []
+    for k, (cam, evs) in enumerate(por_arq.items()):
+        idx = idx0 + k
+        ins += ["-i", cam]
+        fc += f";[{idx}:a]aresample=48000,aformat=channel_layouts=stereo,asplit={len(evs)}" + "".join(f"[s{k}_{i}]" for i in range(len(evs)))
+        for i, (ini, g) in enumerate(evs):
+            ms = int(max(ini, 0) * 1000)
+            fc += f";[s{k}_{i}]volume={g:.1f}dB,adelay={ms}|{ms}[sd{k}_{i}]"
+            rot.append(f"[sd{k}_{i}]")
+    return ins, fc, rot
 
 
 def gerar_sfx(pasta):

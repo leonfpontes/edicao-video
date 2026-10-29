@@ -2576,6 +2576,773 @@
    "fonte": "Simple Icons",
    "licenca": "CC0 1.0",
    "aviso": "marca registrada do dono; uso editorial"
+  },
+  {
+   "id": "semaforo",
+   "nome": "Vertical traffic light",
+   "tipo": "render",
+   "categoria": "gestao",
+   "tags": [
+    "status",
+    "farol",
+    "verde amarelo vermelho",
+    "RAG",
+    "report"
+   ],
+   "arquivo": "renders/semaforo.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Vertical traffic light"
+  },
+  {
+   "id": "cadeado-aberto",
+   "nome": "Unlocked",
+   "tipo": "render",
+   "categoria": "estrategia",
+   "tags": [
+    "destravar",
+    "desbloquear",
+    "liberado",
+    "acesso"
+   ],
+   "arquivo": "renders/cadeado-aberto.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Unlocked"
+  },
+  {
+   "id": "porta",
+   "nome": "Door",
+   "tipo": "render",
+   "categoria": "gestao",
+   "tags": [
+    "gate",
+    "passagem",
+    "próxima fase",
+    "entrada"
+   ],
+   "arquivo": "renders/porta.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Door"
+  },
+  {
+   "id": "caracol",
+   "nome": "Snail",
+   "tipo": "render",
+   "categoria": "tempo",
+   "tags": [
+    "atraso",
+    "lento",
+    "devagar",
+    "prazo"
+   ],
+   "arquivo": "renders/caracol.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Snail"
+  },
+  {
+   "id": "tartaruga",
+   "nome": "Turtle",
+   "tipo": "render",
+   "categoria": "tempo",
+   "tags": [
+    "lento",
+    "constante",
+    "devagar e sempre"
+   ],
+   "arquivo": "renders/tartaruga.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Turtle"
+  },
+  {
+   "id": "tesoura",
+   "nome": "Scissors",
+   "tipo": "render",
+   "categoria": "gestao",
+   "tags": [
+    "cortar escopo",
+    "corte",
+    "priorizar",
+    "MVP"
+   ],
+   "arquivo": "renders/tesoura.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Scissors"
+  },
+  {
+   "id": "extintor",
+   "nome": "Fire extinguisher",
+   "tipo": "render",
+   "categoria": "gestao",
+   "tags": [
+    "apagar incêndio",
+    "crise",
+    "urgência",
+    "emergência"
+   ],
+   "arquivo": "renders/extintor.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Fire extinguisher"
+  },
+  {
+   "id": "boia",
+   "nome": "Ring buoy",
+   "tipo": "render",
+   "categoria": "gestao",
+   "tags": [
+    "resgate",
+    "salvar projeto",
+    "socorro",
+    "ajuda"
+   ],
+   "arquivo": "renders/boia.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Ring buoy"
+  },
+  {
+   "id": "balanca",
+   "nome": "Balance scale",
+   "tipo": "render",
+   "categoria": "estrategia",
+   "tags": [
+    "trade-off",
+    "priorização",
+    "equilíbrio",
+    "decisão"
+   ],
+   "arquivo": "renders/balanca.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Balance scale"
+  },
+  {
+   "id": "ciclo",
+   "nome": "Counterclockwise arrows button",
+   "tipo": "render",
+   "categoria": "processo",
+   "tags": [
+    "ciclo",
+    "PDCA",
+    "iteração",
+    "repetir",
+    "melhoria contínua"
+   ],
+   "arquivo": "renders/ciclo.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Counterclockwise arrows button"
+  },
+  {
+   "id": "dado",
+   "nome": "Game die",
+   "tipo": "render",
+   "categoria": "estrategia",
+   "tags": [
+    "risco",
+    "aposta",
+    "sorte",
+    "incerteza"
+   ],
+   "arquivo": "renders/dado.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Game die"
+  },
+  {
+   "id": "bomba",
+   "nome": "Bomb",
+   "tipo": "render",
+   "categoria": "sinais",
+   "tags": [
+    "crise",
+    "risco",
+    "explodir",
+    "problema"
+   ],
+   "arquivo": "renders/bomba.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Bomb"
+  },
+  {
+   "id": "derretendo",
+   "nome": "Melting face",
+   "tipo": "render",
+   "categoria": "reacoes",
+   "tags": [
+    "burnout",
+    "cansaço",
+    "sobrecarga",
+    "calor"
+   ],
+   "arquivo": "renders/derretendo.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Melting face"
+  },
+  {
+   "id": "tonto",
+   "nome": "Face with spiral eyes",
+   "tipo": "render",
+   "categoria": "reacoes",
+   "tags": [
+    "confuso",
+    "perdido",
+    "caos",
+    "tontura"
+   ],
+   "arquivo": "renders/tonto.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Face with spiral eyes"
+  },
+  {
+   "id": "dormindo",
+   "nome": "Sleeping face",
+   "tipo": "render",
+   "categoria": "reacoes",
+   "tags": [
+    "parado",
+    "travado",
+    "tédio",
+    "sono"
+   ],
+   "arquivo": "renders/dormindo.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Sleeping face"
+  },
+  {
+   "id": "voce",
+   "nome": "Index pointing at the viewer",
+   "tipo": "render",
+   "categoria": "gestos",
+   "tags": [
+    "você",
+    "apontando para você",
+    "chamada",
+    "CTA"
+   ],
+   "arquivo": "renders/voce.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Index pointing at the viewer"
+  },
+  {
+   "id": "negativo",
+   "nome": "Thumbs down",
+   "tipo": "render",
+   "categoria": "gestos",
+   "tags": [
+    "não",
+    "ruim",
+    "reprovado",
+    "erro"
+   ],
+   "arquivo": "renders/negativo.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Thumbs down"
+  },
+  {
+   "id": "coroa",
+   "nome": "Crown",
+   "tipo": "render",
+   "categoria": "conquista",
+   "tags": [
+    "liderança",
+    "dono",
+    "rei",
+    "melhor"
+   ],
+   "arquivo": "renders/coroa.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Crown"
+  },
+  {
+   "id": "telescopio",
+   "nome": "Telescope",
+   "tipo": "render",
+   "categoria": "estrategia",
+   "tags": [
+    "visão",
+    "longo prazo",
+    "futuro",
+    "roadmap"
+   ],
+   "arquivo": "renders/telescopio.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Telescope"
+  },
+  {
+   "id": "microscopio",
+   "nome": "Microscope",
+   "tipo": "render",
+   "categoria": "analise",
+   "tags": [
+    "detalhe",
+    "análise",
+    "diagnóstico",
+    "investigar"
+   ],
+   "arquivo": "renders/microscopio.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Microscope"
+  },
+  {
+   "id": "ima",
+   "nome": "Magnet",
+   "tipo": "render",
+   "categoria": "crescimento",
+   "tags": [
+    "atrair",
+    "clientes",
+    "leads",
+    "atração"
+   ],
+   "arquivo": "renders/ima.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Magnet"
+  },
+  {
+   "id": "ancora",
+   "nome": "Anchor",
+   "tipo": "render",
+   "categoria": "estrategia",
+   "tags": [
+    "âncora",
+    "estabilidade",
+    "preso",
+    "base"
+   ],
+   "arquivo": "renders/ancora.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Anchor"
+  },
+  {
+   "id": "tijolo",
+   "nome": "Brick",
+   "tipo": "render",
+   "categoria": "processo",
+   "tags": [
+    "base",
+    "fundação",
+    "construir",
+    "passo a passo"
+   ],
+   "arquivo": "renders/tijolo.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Brick"
+  },
+  {
+   "id": "construcao",
+   "nome": "Building construction",
+   "tipo": "render",
+   "categoria": "processo",
+   "tags": [
+    "em construção",
+    "obra",
+    "delivery",
+    "construir"
+   ],
+   "arquivo": "renders/construcao.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Building construction"
+  },
+  {
+   "id": "porca-parafuso",
+   "nome": "Nut and bolt",
+   "tipo": "render",
+   "categoria": "processo",
+   "tags": [
+    "detalhe técnico",
+    "engrenagem",
+    "execução",
+    "operação"
+   ],
+   "arquivo": "renders/porca-parafuso.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Nut and bolt"
+  },
+  {
+   "id": "caixa-entrada",
+   "nome": "Inbox tray",
+   "tipo": "render",
+   "categoria": "trabalho",
+   "tags": [
+    "intake",
+    "demanda",
+    "entrada",
+    "backlog"
+   ],
+   "arquivo": "renders/caixa-entrada.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Inbox tray"
+  },
+  {
+   "id": "fichario",
+   "nome": "Card index dividers",
+   "tipo": "render",
+   "categoria": "trabalho",
+   "tags": [
+    "organizar",
+    "documentação",
+    "fichas",
+    "categorias"
+   ],
+   "arquivo": "renders/fichario.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Card index dividers"
+  },
+  {
+   "id": "regua",
+   "nome": "Straight ruler",
+   "tipo": "render",
+   "categoria": "dados",
+   "tags": [
+    "medir",
+    "métrica",
+    "KPI",
+    "régua"
+   ],
+   "arquivo": "renders/regua.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Straight ruler"
+  },
+  {
+   "id": "lapis",
+   "nome": "Pencil",
+   "tipo": "render",
+   "categoria": "trabalho",
+   "tags": [
+    "escrever",
+    "rascunho",
+    "planejar",
+    "editar"
+   ],
+   "arquivo": "renders/lapis.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Pencil"
+  },
+  {
+   "id": "correntes",
+   "nome": "Chains",
+   "tipo": "render",
+   "categoria": "gestao",
+   "tags": [
+    "dependências",
+    "preso",
+    "amarras",
+    "integração"
+   ],
+   "arquivo": "renders/correntes.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Chains"
+  },
+  {
+   "id": "fantasma",
+   "nome": "Ghost",
+   "tipo": "render",
+   "categoria": "reacoes",
+   "tags": [
+    "sumiu",
+    "ghosting",
+    "sem resposta",
+    "invisível"
+   ],
+   "arquivo": "renders/fantasma.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Ghost"
+  },
+  {
+   "id": "pare",
+   "nome": "Stop sign",
+   "tipo": "render",
+   "categoria": "sinais",
+   "tags": [
+    "pare",
+    "stop",
+    "parar",
+    "limite"
+   ],
+   "arquivo": "renders/pare.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Stop sign"
+  },
+  {
+   "id": "continencia",
+   "nome": "Saluting face",
+   "tipo": "render",
+   "categoria": "reacoes",
+   "tags": [
+    "entendido",
+    "sim senhor",
+    "respeito",
+    "missão"
+   ],
+   "arquivo": "renders/continencia.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Saluting face"
+  },
+  {
+   "id": "nerd",
+   "nome": "Nerd face",
+   "tipo": "render",
+   "categoria": "reacoes",
+   "tags": [
+    "nerd",
+    "técnico",
+    "estudioso",
+    "dica"
+   ],
+   "arquivo": "renders/nerd.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Nerd face"
+  },
+  {
+   "id": "segredo",
+   "nome": "Shushing face",
+   "tipo": "render",
+   "categoria": "reacoes",
+   "tags": [
+    "segredo",
+    "silêncio",
+    "não conta",
+    "bastidores"
+   ],
+   "arquivo": "renders/segredo.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Shushing face"
+  },
+  {
+   "id": "montanha",
+   "nome": "Mountain",
+   "tipo": "render",
+   "categoria": "crescimento",
+   "tags": [
+    "meta",
+    "desafio",
+    "subir",
+    "topo"
+   ],
+   "arquivo": "renders/montanha.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Mountain"
+  },
+  {
+   "id": "escrevendo",
+   "nome": "Writing hand",
+   "tipo": "render",
+   "categoria": "trabalho",
+   "tags": [
+    "escrever",
+    "anotar",
+    "assinar",
+    "documentar"
+   ],
+   "arquivo": "renders/escrevendo.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Writing hand"
+  },
+  {
+   "id": "olho",
+   "nome": "Eye",
+   "tipo": "render",
+   "categoria": "analise",
+   "tags": [
+    "visibilidade",
+    "observar",
+    "transparência",
+    "ver"
+   ],
+   "arquivo": "renders/olho.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Eye"
+  },
+  {
+   "id": "computador",
+   "nome": "Desktop computer",
+   "tipo": "render",
+   "categoria": "tecnologia",
+   "tags": [
+    "computador",
+    "sistema",
+    "software",
+    "trabalho"
+   ],
+   "arquivo": "renders/computador.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Desktop computer"
+  },
+  {
+   "id": "lixeira",
+   "nome": "Wastebasket",
+   "tipo": "render",
+   "categoria": "gestao",
+   "tags": [
+    "descartar",
+    "jogar fora",
+    "desperdício",
+    "cortar"
+   ],
+   "arquivo": "renders/lixeira.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Wastebasket"
+  },
+  {
+   "id": "marcadores",
+   "nome": "Bookmark tabs",
+   "tipo": "render",
+   "categoria": "trabalho",
+   "tags": [
+    "referência",
+    "estudo",
+    "documentos",
+    "marcadores"
+   ],
+   "arquivo": "renders/marcadores.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Bookmark tabs"
+  },
+  {
+   "id": "coracao-fogo",
+   "nome": "Heart on fire",
+   "tipo": "render",
+   "categoria": "sinais",
+   "tags": [
+    "paixão",
+    "amor pelo produto",
+    "intenso"
+   ],
+   "arquivo": "renders/coracao-fogo.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Heart on fire"
+  },
+  {
+   "id": "estrela-brilhante",
+   "nome": "Glowing star",
+   "tipo": "render",
+   "categoria": "conquista",
+   "tags": [
+    "destaque",
+    "brilhar",
+    "excelência",
+    "estrela"
+   ],
+   "arquivo": "renders/estrela-brilhante.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Glowing star"
+  },
+  {
+   "id": "ampulheta-fim",
+   "nome": "Hourglass done",
+   "tipo": "render",
+   "categoria": "tempo",
+   "tags": [
+    "acabou o tempo",
+    "prazo vencido",
+    "deadline"
+   ],
+   "arquivo": "renders/ampulheta-fim.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Hourglass done"
+  },
+  {
+   "id": "caderno",
+   "nome": "Spiral notepad",
+   "tipo": "render",
+   "categoria": "trabalho",
+   "tags": [
+    "caderno",
+    "notas",
+    "ata",
+    "anotações"
+   ],
+   "arquivo": "renders/caderno.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Spiral notepad"
+  },
+  {
+   "id": "martelo",
+   "nome": "Hammer",
+   "tipo": "render",
+   "categoria": "processo",
+   "tags": [
+    "decisão",
+    "martelo batido",
+    "construir",
+    "aprovado"
+   ],
+   "arquivo": "renders/martelo.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Hammer"
+  },
+  {
+   "id": "zumbi",
+   "nome": "Man zombie",
+   "tipo": "render",
+   "categoria": "gestao",
+   "tags": [
+    "projeto zumbi",
+    "morto-vivo",
+    "parado",
+    "sem dono"
+   ],
+   "arquivo": "renders/zumbi.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Man zombie"
+  },
+  {
+   "id": "sos",
+   "nome": "Sos button",
+   "tipo": "render",
+   "categoria": "sinais",
+   "tags": [
+    "socorro",
+    "SOS",
+    "emergência",
+    "ajuda"
+   ],
+   "arquivo": "renders/sos.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Sos button"
   }
  ]
 }

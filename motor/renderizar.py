@@ -11,8 +11,8 @@ import cv2
 import numpy as np
 
 from . import __version__
-from .audio import gerar_sfx, loudnorm_2a, medir_loudnorm
-from .bibliotecas import musica_do_edl
+from .audio import gerar_sfx, loudnorm_2a, medir_loudnorm, mixar_eventos, modo_sons, som_padrao
+from .bibliotecas import musica_do_edl, som
 from .camera import Camera, Rosto, matriz_enquadre, transicao, zoom_em
 from .config import FORMATOS, FPS
 from .cor import aplicar_cor, lut_cor
@@ -25,6 +25,52 @@ from .marca import CFG, CORES, ErroDeMarca, ativar, logo_marca, padrao, registra
 from .segmentacao import Segmentador
 from .util import bgr, sh, tem_audio
 from .vinhetas import cartao_cta, quadro_intro
+
+
+def sons_do_video(segs, els, au, dur_intro, dur_fala, dur_cta, pasta):
+    """Todos os efeitos sonoros do vídeo: [(início em s, arquivo, ganho em dB)], na linha do tempo final.
+    Modo "biblioteca": o ápice de cada som (campo "ataque" do catálogo) cai no corte ou na entrada do elemento.
+    Modo "gerado": o whoosh e o pop sintéticos, como sempre foram."""
+    biblio = modo_sons() == "biblioteca"
+    marcas_tempo = []  # (instante-alvo, id do som ou "whoosh"/"pop", ajuste em dB)
+    if au.get("sfx_transicoes", True):
+        n = 0
+        for s in segs:
+            tr, pedido = s.get("transicao"), s.get("som")
+            if not tr or pedido is False or pedido == "":
+                continue
+            if isinstance(pedido, str):
+                marcas_tempo.append((s["o"], pedido, 0))
+            elif biblio:
+                marcas_tempo.append((s["o"], som_padrao("transicoes", tr, n) or som_padrao("transicoes", "push", n), 0))
+                n += 1
+            else:
+                marcas_tempo.append((s["o"] - 0.12, "whoosh", 0))
+        if dur_cta:
+            marcas_tempo.append((dur_fala, som_padrao("cta"), 0) if biblio else (dur_fala - 0.12, "whoosh", 0))
+    if au.get("sfx_elementos", True):
+        marcas_tempo += els.eventos(modo_sons())
+    else:  # sons pedidos de propósito ("tipo": "som") tocam sempre
+        marcas_tempo += [(e["o_ini"], e["nome"], e.get("volume_db", 0)) for e in els.items if e["tipo"] == "som"]
+    marcas_tempo = [(t + dur_intro, sid, g) for t, sid, g in marcas_tempo]
+    if dur_intro:  # assinatura sonora da vinheta: whoosh na abertura, toque no ponto, mergulho no fim
+        if biblio:
+            marcas_tempo += [(0.35, som_padrao("vinheta", "abertura"), 0), (1.05, som_padrao("vinheta", "ponto"), 0),
+                             (dur_intro, som_padrao("vinheta", "mergulho"), 0)]
+        else:
+            marcas_tempo += [(0.0, "whoosh", 0), (dur_intro - 0.45, "whoosh", 0), (1.05, "pop", 0)]
+    eventos = []
+    gerados = None
+    for t, sid, g in marcas_tempo:
+        if not sid:
+            continue
+        if sid in ("whoosh", "pop"):
+            gerados = gerados or gerar_sfx(pasta)
+            eventos.append((t, gerados[0 if sid == "whoosh" else 1], g))
+        else:
+            cam, it = som(sid)
+            eventos.append((t - it.get("ataque", 0), cam, it.get("volume_db", 0) + g))
+    return sorted(eventos, key=lambda ev: ev[0])
 
 
 def cmd_renderizar(a):
@@ -248,27 +294,12 @@ def cmd_renderizar(a):
     fc = (f"[0:a]adelay={int(dur_intro * 1000)}:all=1,apad=whole_dur={total:.4f}"
           + (f",volume={ganho}dB" if ganho else "") + "[voz]")
     ins = ["-i", str(voz)]
-    ev_wh = [s["o"] - 0.12 for s in segs if s.get("transicao")] + ([dur_fala - 0.12] if dur_cta else [])
-    ev_pop = els.eventos() if au.get("sfx_elementos", True) else []
-    if not au.get("sfx_transicoes", True):
-        ev_wh = []
-    ev_wh = [t + dur_intro for t in ev_wh]
-    ev_pop = [t + dur_intro for t in ev_pop]
-    if dur_intro:  # assinatura sonora da vinheta: whoosh na abertura, pop no ponto, whoosh no mergulho
-        ev_wh += [0.0, dur_intro - 0.45]
-        ev_pop += [1.05]
+    eventos = sons_do_video(segs, els, au, dur_intro, dur_fala, dur_cta, pasta)
     alvo, mix = "[voz]", []
-    if ev_wh or ev_pop:
-        wh, pop = gerar_sfx(pasta)
-        ins += ["-i", str(wh), "-i", str(pop)]
-        for idx, evs, nome in ((1, ev_wh, "w"), (2, ev_pop, "p")):
-            if not evs:
-                continue
-            fc += f";[{idx}:a]asplit={len(evs)}" + "".join(f"[{nome}{i}]" for i in range(len(evs)))
-            for i, t in enumerate(evs):
-                ms = int(max(t, 0) * 1000)
-                fc += f";[{nome}{i}]adelay={ms}|{ms}[{nome}d{i}]"
-                mix.append(f"[{nome}d{i}]")
+    if eventos:
+        ins_s, fc_s, mix = mixar_eventos(eventos, 1)
+        ins += ins_s
+        fc += fc_s
     rot_voz = "[voz]"
     if trilha:
         # trilha real: nivelada pelo loudness medido, em loop se for curta, com fade na entrada e no fim;
