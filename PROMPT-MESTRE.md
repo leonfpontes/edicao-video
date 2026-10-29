@@ -20,6 +20,7 @@ Tudo roda nesta pasta, com `.venv/bin/python editor.py`. Se `.venv` não existir
 | `editor.py renderizar <pasta>/edl.json --rapido` | Render para conferência (codificação rápida). Gera `final.mp4` e `previa.jpg` (12 quadros). |
 | `editor.py renderizar <pasta>/edl.json` | Render final de qualidade. |
 | `editor.py renderizar <pasta>/edl.json --so-audio` | Refaz só o áudio sobre o vídeo já renderizado (segundos). |
+| `editor.py testar` | Teste de regressão de todas as marcas (visual + render de 4 s + áudio). Rode depois de qualquer mudança no `editor.py`; precisa terminar em `TUDO OK`. |
 
 Você pode e deve **ler `previa.jpg`** (é uma imagem) e extrair quadros específicos para conferir: `ffmpeg -ss <seg> -i final.mp4 -frames:v 1 q.jpg`.
 
@@ -90,7 +91,7 @@ A identidade abaixo já está em `marcas/pontes_brain.json` (cores, fontes, logo
 ## 4. Processo
 
 ### Fase 1: análise
-1. Rode `editor.py analisar <VIDEO>`.
+1. Rode `editor.py analisar <VIDEO> --marca pontes_brain`.
 2. Leia `transcricao.txt` inteira antes de decidir qualquer coisa. Entenda a mensagem central do vídeo em uma frase.
 
 ### Fase 2: cortes (o que mais muda a qualidade)

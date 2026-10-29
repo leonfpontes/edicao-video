@@ -30,6 +30,7 @@ Tudo roda na pasta do editor, com `.venv/bin/python editor.py`.
 | `editor.py renderizar <pasta>/edl.json --rapido` | Render de conferência. Gera o vídeo e `previa.jpg` (12 quadros). |
 | `editor.py renderizar <pasta>/edl.json` | Render final de qualidade. |
 | `editor.py renderizar <pasta>/edl.json --so-audio` | Refaz só o áudio sobre o vídeo já renderizado. |
+| `editor.py testar` | Teste de regressão de todas as marcas (visual + render de 4 s + áudio). Rode depois de qualquer mudança no `editor.py`; precisa terminar em `TUDO OK`. |
 
 **Sempre** use `--marca girahub`. Se o `edl.json` não tiver `"marca": "girahub"`, o vídeo sai com a identidade do @pontes_brain: corrija antes de renderizar.
 
