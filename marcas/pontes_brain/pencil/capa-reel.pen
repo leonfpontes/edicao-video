@@ -1,0 +1,181 @@
+{
+  "version": "2.21",
+  "children": [
+    {
+      "type": "frame",
+      "id": "u9V8x",
+      "x": 0,
+      "y": 0,
+      "name": "Capa Reel",
+      "clip": true,
+      "width": 1080,
+      "height": 1920,
+      "fill": "$marinho",
+      "layout": "none",
+      "children": [
+        {
+          "type": "ellipse",
+          "id": "DhXQq",
+          "x": 560,
+          "y": -260,
+          "name": "Arco PDCA",
+          "fill": "$marinho_2",
+          "width": 820,
+          "height": 820
+        },
+        {
+          "type": "rectangle",
+          "id": "v6v6p",
+          "x": 40,
+          "y": 230,
+          "name": "Monograma LP",
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "../logo.png",
+            "mode": "contain"
+          },
+          "width": 220,
+          "height": 220
+        },
+        {
+          "type": "ellipse",
+          "id": "TnJTN",
+          "x": 190,
+          "y": 1080,
+          "name": "Halo da foto",
+          "opacity": 0.35,
+          "fill": "$bronze",
+          "width": 700,
+          "height": 700
+        },
+        {
+          "type": "frame",
+          "id": "TMHYI",
+          "x": 140,
+          "y": 1000,
+          "name": "Foto do Leonardo (recortada)",
+          "opacity": 0.6,
+          "width": 800,
+          "height": 920,
+          "fill": "$marinho_2",
+          "cornerRadius": [
+            40,
+            40,
+            0,
+            0
+          ],
+          "layout": "vertical",
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "KOp2m",
+              "name": "Rotulo da foto",
+              "fill": "$nevoa",
+              "content": "FOTO DO LEONARDO\nPNG recortado, sem fundo",
+              "lineHeight": 1.4,
+              "textAlign": "center",
+              "fontFamily": "Roboto",
+              "fontSize": 34,
+              "fontWeight": "500"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "wSv3j",
+          "x": 640,
+          "y": 318,
+          "name": "Arroba",
+          "fill": "$champanhe",
+          "textGrowth": "fixed-width",
+          "width": 380,
+          "content": "@pontes_brain",
+          "textAlign": "right",
+          "fontFamily": "Roboto",
+          "fontSize": 38,
+          "fontWeight": "700"
+        },
+        {
+          "type": "frame",
+          "id": "YSdtk",
+          "x": 96,
+          "y": 500,
+          "name": "Bloco do titulo",
+          "width": 920,
+          "fill": "#14213D00",
+          "layout": "vertical",
+          "gap": 32,
+          "children": [
+            {
+              "type": "text",
+              "id": "f0GC0",
+              "name": "Sobretitulo",
+              "fill": "$champanhe",
+              "content": "MENTORIA DE PRODUTO",
+              "fontFamily": "Roboto",
+              "fontSize": 34,
+              "fontWeight": "700",
+              "letterSpacing": 6
+            },
+            {
+              "type": "text",
+              "id": "JOdSK",
+              "name": "Titulo",
+              "fill": "$papel",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "O que é o Pontes Brain?",
+              "lineHeight": 1,
+              "fontFamily": "Roboto",
+              "fontSize": 124,
+              "fontWeight": "900"
+            },
+            {
+              "type": "rectangle",
+              "cornerRadius": 6,
+              "id": "MPGWZ",
+              "name": "Filete",
+              "fill": "$champanhe",
+              "width": 160,
+              "height": 12
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variables": {
+    "marinho": {
+      "type": "color",
+      "value": "#14213D"
+    },
+    "marinho_2": {
+      "type": "color",
+      "value": "#22305A"
+    },
+    "champanhe": {
+      "type": "color",
+      "value": "#D4B98C"
+    },
+    "bronze": {
+      "type": "color",
+      "value": "#94733D"
+    },
+    "papel": {
+      "type": "color",
+      "value": "#F2EEE6"
+    },
+    "papel_2": {
+      "type": "color",
+      "value": "#FFFDF8"
+    },
+    "nevoa": {
+      "type": "color",
+      "value": "#A9B2C4"
+    }
+  },
+  "fileToken": "731f58f4-97c6-4540-8b1e-6d29bd78b49f"
+}

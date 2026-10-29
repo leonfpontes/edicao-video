@@ -8,7 +8,8 @@ marcas/pontes_brain/
 ├── logo.png        # logo claro (marca d'água, CTA, vinheta)
 ├── vinheta.mp4     # prévia da vinheta (referência para humanos)
 ├── leo/            # mascote (só esta marca)
-└── 3d/lp.png       # objetos 3D próprios
+├── 3d/lp.png       # objetos 3D próprios
+└── pencil/         # peças fixas desenhadas no Pencil (.pen + PNG exportado)
 ```
 
 ### `marca.json`
@@ -41,6 +42,19 @@ marcas/pontes_brain/
 
 Uma vinheta sob medida (como a do PDCA ou a do ticket) é código em `motor/vinhetas.py` e precisa ser registrada em
 `VINHETAS` com a marca dona; o mesmo vale para um motivo de fundo novo em `MOTIVOS`.
+
+### Peças fixas no Pencil
+
+Peças estáticas da marca (capa de Reel, card de CTA, thumbnail) podem ser desenhadas no [Pencil](https://pencil.dev) e
+ficam em `marcas/<id>/pencil/`, nunca em `biblioteca/`:
+
+- `<peca>.pen` é a fonte editável, versionada no Git. Só abra pelo app ou pelo MCP do Pencil; o arquivo é cifrado.
+- `<peca>.png` é a exportação no tamanho final (Reel: 1080×1920), gerada pelo app ou pela CLI `pen`.
+
+Use só a identidade da própria marca: as variáveis de cor do `.pen` repetem os papéis de `marca.json`, a fonte é a de
+`fontes` e o logo vem de `marcas/<id>/`. O Pencil não salva sozinho: salve (⌘S) antes de exportar e de commitar, e
+reexporte o PNG sempre que mudar o `.pen`. Exemplo: `marcas/pontes_brain/pencil/capa-reel.pen`, capa com título editável
+e espaço para a foto recortada do Leonardo.
 
 ## Isolamento
 
