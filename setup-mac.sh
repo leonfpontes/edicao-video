@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Instala o editor de vídeo do @pontes_brain no Mac (tudo gratuito, roda local).
+# Instala o editor de vídeo multimarca no Mac (tudo gratuito, roda local).
 # Uso: cd <pasta edicao-video> && bash setup-mac.sh
 set -euo pipefail
 cd "$(dirname "$0")"
@@ -25,6 +25,12 @@ baixa https://raw.githubusercontent.com/GregorR/rnnoise-models/master/somnolent-
 # pré-baixa o modelo do Whisper (≈ 480 MB, uma vez só)
 .venv/bin/python -c "from faster_whisper import WhisperModel; WhisperModel('small', device='cpu', compute_type='int8')"
 
+# músicas da biblioteca (≈ 230 MB, CC BY 4.0; ficam fora do Git e são conferidas por sha256)
+.venv/bin/python editor.py biblioteca baixar musicas
+
+.venv/bin/python editor.py biblioteca verificar
+
 echo
 echo "Pronto. Teste com:"
-echo "  .venv/bin/python editor.py analisar ~/Movies/meu-video.mov"
+echo "  .venv/bin/python editor.py testar"
+echo "  .venv/bin/python editor.py analisar ~/Movies/meu-video.mov --marca pontes_brain"

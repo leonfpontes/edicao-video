@@ -1,0 +1,238 @@
+{
+ "versao": 1,
+ "fonte": "gerado de motor/efeitos.py (`editor.py biblioteca catalogo`)",
+ "itens": [
+  {
+   "id": "bokeh",
+   "categoria": "luz",
+   "descricao": "Bolhas de luz desfocadas subindo devagar. Clima de sonho, conquista, fim de vídeo.",
+   "fase": "elementos",
+   "som_pop": false,
+   "params": {
+    "intensidade": "0 a 1",
+    "quantidade": "número de luzes (padrão 18)"
+   }
+  },
+  {
+   "id": "brilhos",
+   "categoria": "luz",
+   "descricao": "Faíscas de quatro pontas piscando ao redor de um ponto. Para algo valioso, novo, 'mágico'.",
+   "fase": "elementos",
+   "som_pop": true,
+   "params": {
+    "x": "0 a 1",
+    "y": "0 a 1",
+    "raio": "fração da largura (padrão 0.2)",
+    "quantidade": "padrão 9"
+   }
+  },
+  {
+   "id": "check",
+   "categoria": "marcacao",
+   "descricao": "Selo de 'certo' (disco com mola e check traçado). Para acerto, aprovado, 'faça assim'.",
+   "fase": "elementos",
+   "som_pop": true,
+   "params": {
+    "x": "0 a 1",
+    "y": "0 a 1",
+    "tamanho": "diâmetro em fração da largura (padrão 0.12)"
+   }
+  },
+  {
+   "id": "chuva_3d",
+   "categoria": "celebracao",
+   "descricao": "Objetos da biblioteca 3D caindo pela tela (ex.: dinheiro, corações, foguetes).",
+   "fase": "elementos",
+   "som_pop": false,
+   "params": {
+    "objeto": "id da biblioteca 3D (padrão estrela)",
+    "quantidade": "padrão 12",
+    "tamanho": "fração da largura (padrão 0.12)"
+   }
+  },
+  {
+   "id": "circulo",
+   "categoria": "marcacao",
+   "descricao": "Círculo feito 'à mão' em volta de um ponto (marca-texto de vídeo).",
+   "fase": "elementos",
+   "som_pop": false,
+   "params": {
+    "x": "0 a 1",
+    "y": "0 a 1",
+    "largura": "fração da largura (padrão 0.4)",
+    "altura": "fração da largura (padrão 0.18)"
+   }
+  },
+  {
+   "id": "confete",
+   "categoria": "celebracao",
+   "descricao": "Explosão de confete nas cores da marca, com gravidade. Para conquista, lançamento, 'deu certo'.",
+   "fase": "elementos",
+   "som_pop": true,
+   "params": {
+    "x": "0 a 1 (origem)",
+    "y": "0 a 1 (origem)",
+    "quantidade": "padrão 90"
+   }
+  },
+  {
+   "id": "contador",
+   "categoria": "informacao",
+   "descricao": "Número que conta até o valor falado (ex.: 0 → 87%), num cartão da marca.",
+   "fase": "elementos",
+   "som_pop": true,
+   "params": {
+    "de": "número inicial (padrão 0)",
+    "ate": "número final",
+    "prefixo": "ex.: R$ ",
+    "sufixo": "ex.: %",
+    "casas": "casas decimais (padrão 0)",
+    "duracao_contagem": "segundos (padrão 1.2)",
+    "y": "0 a 1 (padrão 0.3)"
+   }
+  },
+  {
+   "id": "flash",
+   "categoria": "impacto",
+   "descricao": "Clarão rápido na cor clara da marca, no instante de uma palavra forte.",
+   "fase": "pos",
+   "som_pop": true,
+   "params": {
+    "intensidade": "0 a 1 (padrão 1)"
+   }
+  },
+  {
+   "id": "foco",
+   "categoria": "atencao",
+   "descricao": "Escurece tudo fora de um círculo (íris que fecha sobre o ponto x,y). Para apontar um detalhe.",
+   "fase": "pos",
+   "som_pop": false,
+   "params": {
+    "x": "0 a 1",
+    "y": "0 a 1",
+    "raio": "fração da largura (padrão 0.22)",
+    "intensidade": "escuridão 0 a 1"
+   }
+  },
+  {
+   "id": "glitch",
+   "categoria": "impacto",
+   "descricao": "Falha digital rápida (canais de cor separados e fatias deslocadas). Para virada, erro, 'bug' no processo.",
+   "fase": "pos",
+   "som_pop": true,
+   "params": {
+    "intensidade": "0 a 1 (padrão 1)"
+   }
+  },
+  {
+   "id": "grao",
+   "categoria": "textura",
+   "descricao": "Grão de filme sutil no quadro inteiro. Dá textura de cinema a vídeos muito 'limpos'.",
+   "fase": "pos",
+   "som_pop": false,
+   "params": {
+    "intensidade": "0 a 1 (padrão 1 = grão leve)"
+   }
+  },
+  {
+   "id": "moldura_rec",
+   "categoria": "informacao",
+   "descricao": "Moldura de câmera gravando (cantos, ponto pulsando e cronômetro). Para bastidores e vlog.",
+   "fase": "elementos",
+   "som_pop": false,
+   "params": {
+    "rotulo": "texto ao lado do ponto (padrão REC)"
+   }
+  },
+  {
+   "id": "ondas",
+   "categoria": "atencao",
+   "descricao": "Anéis que se expandem a partir de um ponto (pulso de atenção, notificação, 'olha aqui').",
+   "fase": "elementos",
+   "som_pop": false,
+   "params": {
+    "x": "0 a 1",
+    "y": "0 a 1",
+    "raio": "fração da largura (padrão 0.3)"
+   }
+  },
+  {
+   "id": "seta",
+   "categoria": "marcacao",
+   "descricao": "Seta curva que se desenha e aponta para (x, y). Para indicar um detalhe da tela ou do b-roll.",
+   "fase": "elementos",
+   "som_pop": false,
+   "params": {
+    "x": "ponta 0 a 1",
+    "y": "ponta 0 a 1",
+    "de": "esquerda|direita|cima|baixo (padrão esquerda)",
+    "comprimento": "fração da largura (padrão 0.3)"
+   }
+  },
+  {
+   "id": "sublinhado",
+   "categoria": "marcacao",
+   "descricao": "Sublinhado ondulado desenhado da esquerda para a direita, sob uma palavra ou número.",
+   "fase": "elementos",
+   "som_pop": false,
+   "params": {
+    "x": "centro 0 a 1",
+    "y": "0 a 1",
+    "largura": "fração da largura (padrão 0.5)"
+   }
+  },
+  {
+   "id": "tremor",
+   "categoria": "impacto",
+   "descricao": "Câmera treme e assenta (impacto, susto, revelação). Curto: 0,3 a 0,6 s.",
+   "fase": "pos",
+   "som_pop": false,
+   "params": {
+    "intensidade": "0 a 1 (padrão 1)"
+   }
+  },
+  {
+   "id": "vazamento_luz",
+   "categoria": "luz",
+   "descricao": "Vazamento de luz quente que atravessa a tela, como em filme. Bom em abertura e virada de assunto.",
+   "fase": "pos",
+   "som_pop": false,
+   "params": {
+    "intensidade": "0 a 1 (padrão 1)",
+    "direcao": "esquerda|direita (padrão direita)"
+   }
+  },
+  {
+   "id": "vhs",
+   "categoria": "textura",
+   "descricao": "Estética VHS: linhas de varredura, cor deslocada e uma faixa de ruído. Para memória, nostalgia, 'antigamente'.",
+   "fase": "pos",
+   "som_pop": false,
+   "params": {
+    "intensidade": "0 a 1 (padrão 1)"
+   }
+  },
+  {
+   "id": "vinheta",
+   "categoria": "textura",
+   "descricao": "Escurece as bordas e leva o olhar para o centro. Use em fala emotiva ou dramática.",
+   "fase": "pos",
+   "som_pop": false,
+   "params": {
+    "intensidade": "0 a 1 (padrão 1)"
+   }
+  },
+  {
+   "id": "xis",
+   "categoria": "marcacao",
+   "descricao": "Selo de 'errado' (disco com mola e X traçado). Para erro comum, mito, 'não faça'.",
+   "fase": "elementos",
+   "som_pop": true,
+   "params": {
+    "x": "0 a 1",
+    "y": "0 a 1",
+    "tamanho": "diâmetro em fração da largura (padrão 0.12)"
+   }
+  }
+ ]
+}

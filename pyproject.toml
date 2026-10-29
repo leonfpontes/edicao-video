@@ -1,0 +1,24 @@
+[project]
+name = "edicao-video"
+version = "2.0.0"
+description = "Editor de vídeo automático e multimarca para Reels e Stories, local e gratuito."
+requires-python = ">=3.11"
+readme = "README.md"
+license = { text = "Proprietária. Todos os direitos reservados." }
+authors = [{ name = "Leonardo Pontes" }]
+
+[tool.ruff]
+line-length = 160
+target-version = "py311"
+extend-exclude = [".venv", "testes/_tmp"]
+
+[tool.ruff.lint]
+select = ["F", "E", "W", "I"]
+ignore = ["E731", "E741"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["motor"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
