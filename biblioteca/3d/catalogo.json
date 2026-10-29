@@ -1,0 +1,2581 @@
+{
+ "versao": 1,
+ "observacao": "Gerado por ferramentas/montar_3d.py. Objetos de identidade de uma marca ficam em marcas/<id>/3d/.",
+ "itens": [
+  {
+   "id": "lampada",
+   "nome": "Light bulb",
+   "tipo": "render",
+   "categoria": "ideias",
+   "tags": [
+    "ideia",
+    "insight",
+    "solução",
+    "criatividade"
+   ],
+   "arquivo": "renders/lampada.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Light bulb"
+  },
+  {
+   "id": "alvo",
+   "nome": "Bullseye",
+   "tipo": "render",
+   "categoria": "estrategia",
+   "tags": [
+    "meta",
+    "objetivo",
+    "foco",
+    "acerto",
+    "OKR"
+   ],
+   "arquivo": "renders/alvo.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Bullseye"
+  },
+  {
+   "id": "bussola",
+   "nome": "Compass",
+   "tipo": "render",
+   "categoria": "estrategia",
+   "tags": [
+    "direção",
+    "rumo",
+    "estratégia",
+    "norte"
+   ],
+   "arquivo": "renders/bussola.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Compass"
+  },
+  {
+   "id": "mapa",
+   "nome": "World map",
+   "tipo": "render",
+   "categoria": "estrategia",
+   "tags": [
+    "roadmap",
+    "plano",
+    "caminho",
+    "jornada"
+   ],
+   "arquivo": "renders/mapa.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "World map"
+  },
+  {
+   "id": "quebra-cabeca",
+   "nome": "Puzzle piece",
+   "tipo": "render",
+   "categoria": "estrategia",
+   "tags": [
+    "encaixe",
+    "integração",
+    "peça",
+    "solução"
+   ],
+   "arquivo": "renders/quebra-cabeca.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Puzzle piece"
+  },
+  {
+   "id": "cerebro",
+   "nome": "Brain",
+   "tipo": "render",
+   "categoria": "ideias",
+   "tags": [
+    "pensar",
+    "inteligência",
+    "raciocínio",
+    "mente"
+   ],
+   "arquivo": "renders/cerebro.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Brain"
+  },
+  {
+   "id": "xadrez",
+   "nome": "Chess pawn",
+   "tipo": "render",
+   "categoria": "estrategia",
+   "tags": [
+    "estratégia",
+    "jogada",
+    "tática"
+   ],
+   "arquivo": "renders/xadrez.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Chess pawn"
+  },
+  {
+   "id": "chave",
+   "nome": "Key",
+   "tipo": "render",
+   "categoria": "estrategia",
+   "tags": [
+    "segredo",
+    "acesso",
+    "chave do sucesso"
+   ],
+   "arquivo": "renders/chave.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Key"
+  },
+  {
+   "id": "lupa",
+   "nome": "Magnifying glass tilted left",
+   "tipo": "render",
+   "categoria": "analise",
+   "tags": [
+    "análise",
+    "investigar",
+    "diagnóstico",
+    "detalhe",
+    "discovery"
+   ],
+   "arquivo": "renders/lupa.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Magnifying glass tilted left"
+  },
+  {
+   "id": "engrenagem",
+   "nome": "Gear",
+   "tipo": "render",
+   "categoria": "processo",
+   "tags": [
+    "processo",
+    "configuração",
+    "operação",
+    "engrenagem"
+   ],
+   "arquivo": "renders/engrenagem.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Gear"
+  },
+  {
+   "id": "ferramentas",
+   "nome": "Hammer and wrench",
+   "tipo": "render",
+   "categoria": "processo",
+   "tags": [
+    "ferramenta",
+    "construir",
+    "ajuste",
+    "conserto"
+   ],
+   "arquivo": "renders/ferramentas.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Hammer and wrench"
+  },
+  {
+   "id": "caixa-ferramentas",
+   "nome": "Toolbox",
+   "tipo": "render",
+   "categoria": "processo",
+   "tags": [
+    "kit",
+    "ferramentas",
+    "recursos"
+   ],
+   "arquivo": "renders/caixa-ferramentas.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Toolbox"
+  },
+  {
+   "id": "foguete",
+   "nome": "Rocket",
+   "tipo": "render",
+   "categoria": "crescimento",
+   "tags": [
+    "lançamento",
+    "crescimento",
+    "decolar",
+    "startup",
+    "escala"
+   ],
+   "arquivo": "renders/foguete.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Rocket"
+  },
+  {
+   "id": "escada",
+   "nome": "Ladder",
+   "tipo": "render",
+   "categoria": "crescimento",
+   "tags": [
+    "evolução",
+    "degrau",
+    "carreira",
+    "subir"
+   ],
+   "arquivo": "renders/escada.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Ladder"
+  },
+  {
+   "id": "bandeira-chegada",
+   "nome": "Chequered flag",
+   "tipo": "render",
+   "categoria": "crescimento",
+   "tags": [
+    "chegada",
+    "fim",
+    "entrega",
+    "meta batida"
+   ],
+   "arquivo": "renders/bandeira-chegada.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Chequered flag"
+  },
+  {
+   "id": "bandeira",
+   "nome": "Triangular flag",
+   "tipo": "render",
+   "categoria": "estrategia",
+   "tags": [
+    "marco",
+    "milestone",
+    "marcador"
+   ],
+   "arquivo": "renders/bandeira.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Triangular flag"
+  },
+  {
+   "id": "obras",
+   "nome": "Construction",
+   "tipo": "render",
+   "categoria": "processo",
+   "tags": [
+    "em construção",
+    "obra",
+    "andamento",
+    "atenção"
+   ],
+   "arquivo": "renders/obras.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Construction"
+  },
+  {
+   "id": "laboratorio",
+   "nome": "Test tube",
+   "tipo": "render",
+   "categoria": "analise",
+   "tags": [
+    "teste",
+    "experimento",
+    "hipótese",
+    "MVP"
+   ],
+   "arquivo": "renders/laboratorio.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Test tube"
+  },
+  {
+   "id": "bola-cristal",
+   "nome": "Crystal ball",
+   "tipo": "render",
+   "categoria": "ideias",
+   "tags": [
+    "previsão",
+    "futuro",
+    "tendência"
+   ],
+   "arquivo": "renders/bola-cristal.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Crystal ball"
+  },
+  {
+   "id": "grafico-subindo",
+   "nome": "Chart increasing",
+   "tipo": "render",
+   "categoria": "dados",
+   "tags": [
+    "crescimento",
+    "alta",
+    "resultado",
+    "métrica",
+    "subiu"
+   ],
+   "arquivo": "renders/grafico-subindo.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Chart increasing"
+  },
+  {
+   "id": "grafico-descendo",
+   "nome": "Chart decreasing",
+   "tipo": "render",
+   "categoria": "dados",
+   "tags": [
+    "queda",
+    "baixa",
+    "perda",
+    "caiu"
+   ],
+   "arquivo": "renders/grafico-descendo.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Chart decreasing"
+  },
+  {
+   "id": "grafico-barras",
+   "nome": "Bar chart",
+   "tipo": "render",
+   "categoria": "dados",
+   "tags": [
+    "dados",
+    "relatório",
+    "dashboard",
+    "métricas"
+   ],
+   "arquivo": "renders/grafico-barras.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Bar chart"
+  },
+  {
+   "id": "saco-dinheiro",
+   "nome": "Money bag",
+   "tipo": "render",
+   "categoria": "dinheiro",
+   "tags": [
+    "dinheiro",
+    "lucro",
+    "receita",
+    "faturamento"
+   ],
+   "arquivo": "renders/saco-dinheiro.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Money bag"
+  },
+  {
+   "id": "dinheiro",
+   "nome": "Dollar banknote",
+   "tipo": "render",
+   "categoria": "dinheiro",
+   "tags": [
+    "dinheiro",
+    "pagamento",
+    "custo",
+    "preço"
+   ],
+   "arquivo": "renders/dinheiro.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Dollar banknote"
+  },
+  {
+   "id": "dinheiro-voando",
+   "nome": "Money with wings",
+   "tipo": "render",
+   "categoria": "dinheiro",
+   "tags": [
+    "gasto",
+    "desperdício",
+    "prejuízo",
+    "dinheiro indo embora"
+   ],
+   "arquivo": "renders/dinheiro-voando.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Money with wings"
+  },
+  {
+   "id": "moeda",
+   "nome": "Coin",
+   "tipo": "render",
+   "categoria": "dinheiro",
+   "tags": [
+    "moeda",
+    "economia",
+    "troco",
+    "investimento"
+   ],
+   "arquivo": "renders/moeda.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Coin"
+  },
+  {
+   "id": "cartao-credito",
+   "nome": "Credit card",
+   "tipo": "render",
+   "categoria": "dinheiro",
+   "tags": [
+    "pagamento",
+    "cartão",
+    "compra",
+    "assinatura"
+   ],
+   "arquivo": "renders/cartao-credito.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Credit card"
+  },
+  {
+   "id": "recibo",
+   "nome": "Receipt",
+   "tipo": "render",
+   "categoria": "dinheiro",
+   "tags": [
+    "nota",
+    "recibo",
+    "conta",
+    "cobrança"
+   ],
+   "arquivo": "renders/recibo.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Receipt"
+  },
+  {
+   "id": "abaco",
+   "nome": "Abacus",
+   "tipo": "render",
+   "categoria": "dados",
+   "tags": [
+    "conta",
+    "cálculo",
+    "matemática"
+   ],
+   "arquivo": "renders/abaco.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Abacus"
+  },
+  {
+   "id": "maleta",
+   "nome": "Briefcase",
+   "tipo": "render",
+   "categoria": "trabalho",
+   "tags": [
+    "trabalho",
+    "negócio",
+    "carreira",
+    "empresa"
+   ],
+   "arquivo": "renders/maleta.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Briefcase"
+  },
+  {
+   "id": "calendario",
+   "nome": "Spiral calendar",
+   "tipo": "render",
+   "categoria": "trabalho",
+   "tags": [
+    "agenda",
+    "data",
+    "prazo",
+    "planejamento"
+   ],
+   "arquivo": "renders/calendario.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Spiral calendar"
+  },
+  {
+   "id": "prancheta",
+   "nome": "Clipboard",
+   "tipo": "render",
+   "categoria": "trabalho",
+   "tags": [
+    "checklist",
+    "plano",
+    "lista",
+    "briefing"
+   ],
+   "arquivo": "renders/prancheta.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Clipboard"
+  },
+  {
+   "id": "anotacao",
+   "nome": "Memo",
+   "tipo": "render",
+   "categoria": "trabalho",
+   "tags": [
+    "nota",
+    "escrever",
+    "documento",
+    "requisito"
+   ],
+   "arquivo": "renders/anotacao.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Memo"
+  },
+  {
+   "id": "alfinete",
+   "nome": "Pushpin",
+   "tipo": "render",
+   "categoria": "trabalho",
+   "tags": [
+    "fixar",
+    "importante",
+    "lembrete"
+   ],
+   "arquivo": "renders/alfinete.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Pushpin"
+  },
+  {
+   "id": "pasta",
+   "nome": "File folder",
+   "tipo": "render",
+   "categoria": "trabalho",
+   "tags": [
+    "arquivo",
+    "organização",
+    "documentos"
+   ],
+   "arquivo": "renders/pasta.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "File folder"
+  },
+  {
+   "id": "caixa",
+   "nome": "Package",
+   "tipo": "render",
+   "categoria": "trabalho",
+   "tags": [
+    "entrega",
+    "produto",
+    "pacote",
+    "envio"
+   ],
+   "arquivo": "renders/caixa.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Package"
+  },
+  {
+   "id": "aperto-maos",
+   "nome": "Handshake",
+   "tipo": "render",
+   "categoria": "trabalho",
+   "tags": [
+    "acordo",
+    "parceria",
+    "negócio fechado",
+    "stakeholder"
+   ],
+   "arquivo": "renders/aperto-maos.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Handshake"
+  },
+  {
+   "id": "predio",
+   "nome": "Office building",
+   "tipo": "render",
+   "categoria": "trabalho",
+   "tags": [
+    "empresa",
+    "corporativo",
+    "escritório"
+   ],
+   "arquivo": "renders/predio.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Office building"
+  },
+  {
+   "id": "trofeu",
+   "nome": "Trophy",
+   "tipo": "render",
+   "categoria": "conquista",
+   "tags": [
+    "conquista",
+    "vitória",
+    "prêmio",
+    "campeão"
+   ],
+   "arquivo": "renders/trofeu.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Trophy"
+  },
+  {
+   "id": "medalha",
+   "nome": "1st place medal",
+   "tipo": "render",
+   "categoria": "conquista",
+   "tags": [
+    "primeiro lugar",
+    "medalha",
+    "melhor"
+   ],
+   "arquivo": "renders/medalha.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "1st place medal"
+  },
+  {
+   "id": "diamante",
+   "nome": "Gem stone",
+   "tipo": "render",
+   "categoria": "conquista",
+   "tags": [
+    "valor",
+    "premium",
+    "precioso",
+    "raro"
+   ],
+   "arquivo": "renders/diamante.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Gem stone"
+  },
+  {
+   "id": "livros",
+   "nome": "Books",
+   "tipo": "render",
+   "categoria": "trabalho",
+   "tags": [
+    "estudo",
+    "conhecimento",
+    "aprender",
+    "leitura"
+   ],
+   "arquivo": "renders/livros.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Books"
+  },
+  {
+   "id": "formatura",
+   "nome": "Graduation cap",
+   "tipo": "render",
+   "categoria": "trabalho",
+   "tags": [
+    "formação",
+    "curso",
+    "mentoria",
+    "aprender"
+   ],
+   "arquivo": "renders/formatura.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Graduation cap"
+  },
+  {
+   "id": "despertador",
+   "nome": "Alarm clock",
+   "tipo": "render",
+   "categoria": "tempo",
+   "tags": [
+    "prazo",
+    "urgência",
+    "acordar",
+    "hora"
+   ],
+   "arquivo": "renders/despertador.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Alarm clock"
+  },
+  {
+   "id": "ampulheta",
+   "nome": "Hourglass not done",
+   "tipo": "render",
+   "categoria": "tempo",
+   "tags": [
+    "tempo",
+    "espera",
+    "prazo acabando"
+   ],
+   "arquivo": "renders/ampulheta.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Hourglass not done"
+  },
+  {
+   "id": "cronometro",
+   "nome": "Stopwatch",
+   "tipo": "render",
+   "categoria": "tempo",
+   "tags": [
+    "velocidade",
+    "rápido",
+    "cronômetro",
+    "tempo"
+   ],
+   "arquivo": "renders/cronometro.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Stopwatch"
+  },
+  {
+   "id": "balao-fala",
+   "nome": "Speech balloon",
+   "tipo": "render",
+   "categoria": "comunicacao",
+   "tags": [
+    "comentário",
+    "conversa",
+    "feedback",
+    "diálogo"
+   ],
+   "arquivo": "renders/balao-fala.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Speech balloon"
+  },
+  {
+   "id": "balao-pensamento",
+   "nome": "Thought balloon",
+   "tipo": "render",
+   "categoria": "comunicacao",
+   "tags": [
+    "pensamento",
+    "dúvida",
+    "reflexão"
+   ],
+   "arquivo": "renders/balao-pensamento.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Thought balloon"
+  },
+  {
+   "id": "megafone",
+   "nome": "Megaphone",
+   "tipo": "render",
+   "categoria": "comunicacao",
+   "tags": [
+    "anúncio",
+    "divulgar",
+    "marketing",
+    "aviso"
+   ],
+   "arquivo": "renders/megafone.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Megaphone"
+  },
+  {
+   "id": "sino",
+   "nome": "Bell",
+   "tipo": "render",
+   "categoria": "comunicacao",
+   "tags": [
+    "notificação",
+    "alerta",
+    "lembrete",
+    "sino"
+   ],
+   "arquivo": "renders/sino.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Bell"
+  },
+  {
+   "id": "envelope",
+   "nome": "Envelope",
+   "tipo": "render",
+   "categoria": "comunicacao",
+   "tags": [
+    "e-mail",
+    "mensagem",
+    "carta",
+    "contato"
+   ],
+   "arquivo": "renders/envelope.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Envelope"
+  },
+  {
+   "id": "celular",
+   "nome": "Mobile phone",
+   "tipo": "render",
+   "categoria": "tecnologia",
+   "tags": [
+    "celular",
+    "app",
+    "WhatsApp",
+    "mobile"
+   ],
+   "arquivo": "renders/celular.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Mobile phone"
+  },
+  {
+   "id": "notebook",
+   "nome": "Laptop",
+   "tipo": "render",
+   "categoria": "tecnologia",
+   "tags": [
+    "computador",
+    "trabalho remoto",
+    "sistema",
+    "software"
+   ],
+   "arquivo": "renders/notebook.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Laptop"
+  },
+  {
+   "id": "robo",
+   "nome": "Robot",
+   "tipo": "render",
+   "categoria": "tecnologia",
+   "tags": [
+    "IA",
+    "inteligência artificial",
+    "automação",
+    "bot"
+   ],
+   "arquivo": "renders/robo.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Robot"
+  },
+  {
+   "id": "link",
+   "nome": "Link",
+   "tipo": "render",
+   "categoria": "tecnologia",
+   "tags": [
+    "link",
+    "conexão",
+    "integração",
+    "link na bio"
+   ],
+   "arquivo": "renders/link.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Link"
+  },
+  {
+   "id": "cadeado",
+   "nome": "Locked",
+   "tipo": "render",
+   "categoria": "tecnologia",
+   "tags": [
+    "segurança",
+    "privacidade",
+    "bloqueado"
+   ],
+   "arquivo": "renders/cadeado.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Locked"
+  },
+  {
+   "id": "escudo",
+   "nome": "Shield",
+   "tipo": "render",
+   "categoria": "tecnologia",
+   "tags": [
+    "proteção",
+    "segurança",
+    "garantia"
+   ],
+   "arquivo": "renders/escudo.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Shield"
+  },
+  {
+   "id": "inseto",
+   "nome": "Bug",
+   "tipo": "render",
+   "categoria": "tecnologia",
+   "tags": [
+    "bug",
+    "erro",
+    "problema",
+    "falha"
+   ],
+   "arquivo": "renders/inseto.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Bug"
+  },
+  {
+   "id": "bateria-fraca",
+   "nome": "Low battery",
+   "tipo": "render",
+   "categoria": "tecnologia",
+   "tags": [
+    "cansaço",
+    "sem energia",
+    "esgotado"
+   ],
+   "arquivo": "renders/bateria-fraca.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Low battery"
+  },
+  {
+   "id": "claquete",
+   "nome": "Clapper board",
+   "tipo": "render",
+   "categoria": "comunicacao",
+   "tags": [
+    "vídeo",
+    "gravação",
+    "bastidores",
+    "ação"
+   ],
+   "arquivo": "renders/claquete.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Clapper board"
+  },
+  {
+   "id": "microfone",
+   "nome": "Studio microphone",
+   "tipo": "render",
+   "categoria": "comunicacao",
+   "tags": [
+    "podcast",
+    "fala",
+    "entrevista",
+    "áudio"
+   ],
+   "arquivo": "renders/microfone.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Studio microphone"
+  },
+  {
+   "id": "camera",
+   "nome": "Camera with flash",
+   "tipo": "render",
+   "categoria": "comunicacao",
+   "tags": [
+    "foto",
+    "registro",
+    "momento"
+   ],
+   "arquivo": "renders/camera.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Camera with flash"
+  },
+  {
+   "id": "pensativo",
+   "nome": "Thinking face",
+   "tipo": "render",
+   "categoria": "reacoes",
+   "tags": [
+    "dúvida",
+    "pensando",
+    "será?",
+    "hmm"
+   ],
+   "arquivo": "renders/pensativo.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Thinking face"
+  },
+  {
+   "id": "cabeca-explodindo",
+   "nome": "Exploding head",
+   "tipo": "render",
+   "categoria": "reacoes",
+   "tags": [
+    "chocante",
+    "mind blown",
+    "surpresa"
+   ],
+   "arquivo": "renders/cabeca-explodindo.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Exploding head"
+  },
+  {
+   "id": "susto",
+   "nome": "Face screaming in fear",
+   "tipo": "render",
+   "categoria": "reacoes",
+   "tags": [
+    "medo",
+    "susto",
+    "pânico",
+    "erro grave"
+   ],
+   "arquivo": "renders/susto.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Face screaming in fear"
+  },
+  {
+   "id": "estrelas-olhos",
+   "nome": "Star-struck",
+   "tipo": "render",
+   "categoria": "reacoes",
+   "tags": [
+    "encantado",
+    "uau",
+    "incrível"
+   ],
+   "arquivo": "renders/estrelas-olhos.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Star-struck"
+  },
+  {
+   "id": "oculos-escuros",
+   "nome": "Smiling face with sunglasses",
+   "tipo": "render",
+   "categoria": "reacoes",
+   "tags": [
+    "confiante",
+    "tranquilo",
+    "de boa"
+   ],
+   "arquivo": "renders/oculos-escuros.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Smiling face with sunglasses"
+  },
+  {
+   "id": "monoculo",
+   "nome": "Face with monocle",
+   "tipo": "render",
+   "categoria": "reacoes",
+   "tags": [
+    "analisando",
+    "curioso",
+    "investigando"
+   ],
+   "arquivo": "renders/monoculo.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Face with monocle"
+  },
+  {
+   "id": "festa",
+   "nome": "Partying face",
+   "tipo": "render",
+   "categoria": "reacoes",
+   "tags": [
+    "festa",
+    "comemorar",
+    "aniversário"
+   ],
+   "arquivo": "renders/festa.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Partying face"
+  },
+  {
+   "id": "mao-na-boca",
+   "nome": "Face with hand over mouth",
+   "tipo": "render",
+   "categoria": "reacoes",
+   "tags": [
+    "ops",
+    "segredo",
+    "surpresa"
+   ],
+   "arquivo": "renders/mao-na-boca.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Face with hand over mouth"
+  },
+  {
+   "id": "olhos",
+   "nome": "Eyes",
+   "tipo": "render",
+   "categoria": "reacoes",
+   "tags": [
+    "olha isso",
+    "atenção",
+    "de olho"
+   ],
+   "arquivo": "renders/olhos.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Eyes"
+  },
+  {
+   "id": "coracao",
+   "nome": "Red heart",
+   "tipo": "render",
+   "categoria": "sinais",
+   "tags": [
+    "amor",
+    "carinho",
+    "gostei",
+    "coração"
+   ],
+   "arquivo": "renders/coracao.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Red heart"
+  },
+  {
+   "id": "fogo",
+   "nome": "Fire",
+   "tipo": "render",
+   "categoria": "sinais",
+   "tags": [
+    "em alta",
+    "quente",
+    "incrível",
+    "fogo"
+   ],
+   "arquivo": "renders/fogo.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Fire"
+  },
+  {
+   "id": "brilho",
+   "nome": "Sparkles",
+   "tipo": "render",
+   "categoria": "sinais",
+   "tags": [
+    "novo",
+    "mágica",
+    "especial",
+    "brilho"
+   ],
+   "arquivo": "renders/brilho.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Sparkles"
+  },
+  {
+   "id": "estrela",
+   "nome": "Star",
+   "tipo": "render",
+   "categoria": "sinais",
+   "tags": [
+    "destaque",
+    "favorito",
+    "avaliação",
+    "estrela"
+   ],
+   "arquivo": "renders/estrela.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Star"
+  },
+  {
+   "id": "cem",
+   "nome": "Hundred points",
+   "tipo": "render",
+   "categoria": "sinais",
+   "tags": [
+    "perfeito",
+    "100%",
+    "nota máxima"
+   ],
+   "arquivo": "renders/cem.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Hundred points"
+  },
+  {
+   "id": "check",
+   "nome": "Check mark button",
+   "tipo": "render",
+   "categoria": "sinais",
+   "tags": [
+    "certo",
+    "feito",
+    "aprovado",
+    "ok"
+   ],
+   "arquivo": "renders/check.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Check mark button"
+  },
+  {
+   "id": "xis",
+   "nome": "Cross mark",
+   "tipo": "render",
+   "categoria": "sinais",
+   "tags": [
+    "errado",
+    "não",
+    "erro",
+    "proibido"
+   ],
+   "arquivo": "renders/xis.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Cross mark"
+  },
+  {
+   "id": "alerta",
+   "nome": "Warning",
+   "tipo": "render",
+   "categoria": "sinais",
+   "tags": [
+    "atenção",
+    "cuidado",
+    "risco",
+    "alerta"
+   ],
+   "arquivo": "renders/alerta.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Warning"
+  },
+  {
+   "id": "proibido",
+   "nome": "No entry",
+   "tipo": "render",
+   "categoria": "sinais",
+   "tags": [
+    "proibido",
+    "pare",
+    "bloqueio"
+   ],
+   "arquivo": "renders/proibido.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "No entry"
+  },
+  {
+   "id": "interrogacao",
+   "nome": "Red question mark",
+   "tipo": "render",
+   "categoria": "sinais",
+   "tags": [
+    "pergunta",
+    "dúvida",
+    "por quê?"
+   ],
+   "arquivo": "renders/interrogacao.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Red question mark"
+  },
+  {
+   "id": "exclamacao",
+   "nome": "Red exclamation mark",
+   "tipo": "render",
+   "categoria": "sinais",
+   "tags": [
+    "importante",
+    "atenção",
+    "exclamação"
+   ],
+   "arquivo": "renders/exclamacao.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Red exclamation mark"
+  },
+  {
+   "id": "joinha",
+   "nome": "Thumbs up",
+   "tipo": "render",
+   "categoria": "gestos",
+   "tags": [
+    "ok",
+    "aprovado",
+    "curti",
+    "joinha"
+   ],
+   "arquivo": "renders/joinha.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Thumbs up"
+  },
+  {
+   "id": "palmas",
+   "nome": "Clapping hands",
+   "tipo": "render",
+   "categoria": "gestos",
+   "tags": [
+    "parabéns",
+    "aplausos",
+    "bravo"
+   ],
+   "arquivo": "renders/palmas.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Clapping hands"
+  },
+  {
+   "id": "maos-pra-cima",
+   "nome": "Raising hands",
+   "tipo": "render",
+   "categoria": "gestos",
+   "tags": [
+    "comemoração",
+    "viva",
+    "finalmente"
+   ],
+   "arquivo": "renders/maos-pra-cima.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Raising hands"
+  },
+  {
+   "id": "musculo",
+   "nome": "Flexed biceps",
+   "tipo": "render",
+   "categoria": "gestos",
+   "tags": [
+    "força",
+    "consegui",
+    "disciplina"
+   ],
+   "arquivo": "renders/musculo.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Flexed biceps"
+  },
+  {
+   "id": "aceno",
+   "nome": "Waving hand",
+   "tipo": "render",
+   "categoria": "gestos",
+   "tags": [
+    "oi",
+    "tchau",
+    "olá"
+   ],
+   "arquivo": "renders/aceno.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Waving hand"
+  },
+  {
+   "id": "maos-unidas",
+   "nome": "Folded hands",
+   "tipo": "render",
+   "categoria": "gestos",
+   "tags": [
+    "gratidão",
+    "por favor",
+    "obrigado",
+    "fé"
+   ],
+   "arquivo": "renders/maos-unidas.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Folded hands"
+  },
+  {
+   "id": "apontando-cima",
+   "nome": "Index pointing up",
+   "tipo": "render",
+   "categoria": "gestos",
+   "tags": [
+    "dica",
+    "atenção",
+    "um ponto"
+   ],
+   "arquivo": "renders/apontando-cima.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Index pointing up"
+  },
+  {
+   "id": "apontando-direita",
+   "nome": "Backhand index pointing right",
+   "tipo": "render",
+   "categoria": "gestos",
+   "tags": [
+    "próximo",
+    "veja",
+    "ao lado"
+   ],
+   "arquivo": "renders/apontando-direita.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Backhand index pointing right"
+  },
+  {
+   "id": "apontando-baixo",
+   "nome": "Backhand index pointing down",
+   "tipo": "render",
+   "categoria": "gestos",
+   "tags": [
+    "link na bio",
+    "abaixo",
+    "comente"
+   ],
+   "arquivo": "renders/apontando-baixo.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Backhand index pointing down"
+  },
+  {
+   "id": "confete",
+   "nome": "Party popper",
+   "tipo": "render",
+   "categoria": "conquista",
+   "tags": [
+    "comemorar",
+    "lançamento",
+    "parabéns"
+   ],
+   "arquivo": "renders/confete.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Party popper"
+  },
+  {
+   "id": "presente",
+   "nome": "Wrapped gift",
+   "tipo": "render",
+   "categoria": "conquista",
+   "tags": [
+    "presente",
+    "bônus",
+    "brinde",
+    "surpresa"
+   ],
+   "arquivo": "renders/presente.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Wrapped gift"
+  },
+  {
+   "id": "balao",
+   "nome": "Balloon",
+   "tipo": "render",
+   "categoria": "conquista",
+   "tags": [
+    "festa",
+    "aniversário",
+    "comemoração"
+   ],
+   "arquivo": "renders/balao.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Balloon"
+  },
+  {
+   "id": "casa",
+   "nome": "House",
+   "tipo": "render",
+   "categoria": "vida",
+   "tags": [
+    "casa",
+    "lar",
+    "família"
+   ],
+   "arquivo": "renders/casa.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "House"
+  },
+  {
+   "id": "sol",
+   "nome": "Sun",
+   "tipo": "render",
+   "categoria": "vida",
+   "tags": [
+    "dia",
+    "sol",
+    "verão",
+    "bom dia"
+   ],
+   "arquivo": "renders/sol.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Sun"
+  },
+  {
+   "id": "lua",
+   "nome": "Crescent moon",
+   "tipo": "render",
+   "categoria": "vida",
+   "tags": [
+    "noite",
+    "lua",
+    "descanso"
+   ],
+   "arquivo": "renders/lua.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Crescent moon"
+  },
+  {
+   "id": "arco-iris",
+   "nome": "Rainbow",
+   "tipo": "render",
+   "categoria": "vida",
+   "tags": [
+    "esperança",
+    "depois da chuva",
+    "cores"
+   ],
+   "arquivo": "renders/arco-iris.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Rainbow"
+  },
+  {
+   "id": "cafe",
+   "nome": "Hot beverage",
+   "tipo": "render",
+   "categoria": "vida",
+   "tags": [
+    "café",
+    "manhã",
+    "pausa",
+    "rotina"
+   ],
+   "arquivo": "renders/cafe.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Hot beverage"
+  },
+  {
+   "id": "bolo",
+   "nome": "Birthday cake",
+   "tipo": "render",
+   "categoria": "vida",
+   "tags": [
+    "aniversário",
+    "bolo",
+    "festa"
+   ],
+   "arquivo": "renders/bolo.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Birthday cake"
+  },
+  {
+   "id": "aviao",
+   "nome": "Airplane",
+   "tipo": "render",
+   "categoria": "vida",
+   "tags": [
+    "viagem",
+    "voo",
+    "férias"
+   ],
+   "arquivo": "renders/aviao.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Airplane"
+  },
+  {
+   "id": "praia",
+   "nome": "Beach with umbrella",
+   "tipo": "render",
+   "categoria": "vida",
+   "tags": [
+    "praia",
+    "férias",
+    "verão"
+   ],
+   "arquivo": "renders/praia.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Beach with umbrella"
+  },
+  {
+   "id": "carro",
+   "nome": "Automobile",
+   "tipo": "render",
+   "categoria": "vida",
+   "tags": [
+    "carro",
+    "viagem",
+    "estrada"
+   ],
+   "arquivo": "renders/carro.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Automobile"
+  },
+  {
+   "id": "bicicleta",
+   "nome": "Bicycle",
+   "tipo": "render",
+   "categoria": "vida",
+   "tags": [
+    "bicicleta",
+    "passeio",
+    "exercício"
+   ],
+   "arquivo": "renders/bicicleta.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Bicycle"
+  },
+  {
+   "id": "cachorro",
+   "nome": "Dog face",
+   "tipo": "render",
+   "categoria": "vida",
+   "tags": [
+    "cachorro",
+    "pet",
+    "amigo"
+   ],
+   "arquivo": "renders/cachorro.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Dog face"
+  },
+  {
+   "id": "broto",
+   "nome": "Seedling",
+   "tipo": "render",
+   "categoria": "vida",
+   "tags": [
+    "crescer",
+    "começo",
+    "semente",
+    "cuidado"
+   ],
+   "arquivo": "renders/broto.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Seedling"
+  },
+  {
+   "id": "girassol",
+   "nome": "Sunflower",
+   "tipo": "render",
+   "categoria": "vida",
+   "tags": [
+    "alegria",
+    "sol",
+    "flor"
+   ],
+   "arquivo": "renders/girassol.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Sunflower"
+  },
+  {
+   "id": "rosa",
+   "nome": "Rose",
+   "tipo": "render",
+   "categoria": "vida",
+   "tags": [
+    "rosa",
+    "flor",
+    "carinho",
+    "oferenda"
+   ],
+   "arquivo": "renders/rosa.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Rose"
+  },
+  {
+   "id": "flor-cerejeira",
+   "nome": "Cherry blossom",
+   "tipo": "render",
+   "categoria": "vida",
+   "tags": [
+    "flor",
+    "primavera",
+    "delicado"
+   ],
+   "arquivo": "renders/flor-cerejeira.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Cherry blossom"
+  },
+  {
+   "id": "buque",
+   "nome": "Bouquet",
+   "tipo": "render",
+   "categoria": "vida",
+   "tags": [
+    "flores",
+    "homenagem",
+    "presente"
+   ],
+   "arquivo": "renders/buque.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Bouquet"
+  },
+  {
+   "id": "notas-musicais",
+   "nome": "Musical notes",
+   "tipo": "render",
+   "categoria": "vida",
+   "tags": [
+    "música",
+    "som",
+    "trilha"
+   ],
+   "arquivo": "renders/notas-musicais.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Musical notes"
+  },
+  {
+   "id": "violao",
+   "nome": "Guitar",
+   "tipo": "render",
+   "categoria": "vida",
+   "tags": [
+    "violão",
+    "música",
+    "roda"
+   ],
+   "arquivo": "renders/violao.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Guitar"
+  },
+  {
+   "id": "bola",
+   "nome": "Soccer ball",
+   "tipo": "render",
+   "categoria": "vida",
+   "tags": [
+    "futebol",
+    "jogo",
+    "esporte"
+   ],
+   "arquivo": "renders/bola.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Soccer ball"
+  },
+  {
+   "id": "ticket",
+   "nome": "Admission tickets",
+   "tipo": "render",
+   "categoria": "comunidade",
+   "tags": [
+    "senha",
+    "ingresso",
+    "fila",
+    "entrada"
+   ],
+   "arquivo": "renders/ticket.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Admission tickets"
+  },
+  {
+   "id": "vela",
+   "nome": "Candle",
+   "tipo": "render",
+   "categoria": "comunidade",
+   "tags": [
+    "vela",
+    "luz",
+    "fé",
+    "oração"
+   ],
+   "arquivo": "renders/vela.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Candle"
+  },
+  {
+   "id": "erva",
+   "nome": "Herb",
+   "tipo": "render",
+   "categoria": "comunidade",
+   "tags": [
+    "erva",
+    "natureza",
+    "folha",
+    "banho"
+   ],
+   "arquivo": "renders/erva.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Herb"
+  },
+  {
+   "id": "onda",
+   "nome": "Water wave",
+   "tipo": "render",
+   "categoria": "comunidade",
+   "tags": [
+    "mar",
+    "água",
+    "onda"
+   ],
+   "arquivo": "renders/onda.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Water wave"
+  },
+  {
+   "id": "pessoas",
+   "nome": "People hugging",
+   "tipo": "render",
+   "categoria": "comunidade",
+   "tags": [
+    "comunidade",
+    "acolhimento",
+    "abraço",
+    "juntos"
+   ],
+   "arquivo": "renders/pessoas.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "People hugging"
+  },
+  {
+   "id": "grupo",
+   "nome": "Busts in silhouette",
+   "tipo": "render",
+   "categoria": "comunidade",
+   "tags": [
+    "equipe",
+    "grupo",
+    "pessoas",
+    "membros"
+   ],
+   "arquivo": "renders/grupo.png",
+   "fonte": "Microsoft Fluent Emoji 3D",
+   "licenca": "MIT",
+   "fluent": "Busts in silhouette"
+  },
+  {
+   "id": "claude",
+   "nome": "Claude",
+   "tipo": "extrusao",
+   "categoria": "logos",
+   "tags": [
+    "IA",
+    "Anthropic",
+    "Claude"
+   ],
+   "arquivo": "logos/claude.png",
+   "fonte": "Simple Icons",
+   "licenca": "CC0 1.0",
+   "aviso": "marca registrada do dono; uso editorial"
+  },
+  {
+   "id": "chatgpt",
+   "nome": "ChatGPT",
+   "tipo": "extrusao",
+   "categoria": "logos",
+   "tags": [
+    "IA",
+    "OpenAI",
+    "ChatGPT"
+   ],
+   "arquivo": "logos/chatgpt.png",
+   "fonte": "Simple Icons",
+   "licenca": "CC0 1.0",
+   "aviso": "marca registrada do dono; uso editorial"
+  },
+  {
+   "id": "gemini",
+   "nome": "Google Gemini",
+   "tipo": "extrusao",
+   "categoria": "logos",
+   "tags": [
+    "IA",
+    "Google",
+    "Gemini"
+   ],
+   "arquivo": "logos/gemini.png",
+   "cor": "#8E75B2",
+   "fonte": "Simple Icons",
+   "licenca": "CC0 1.0",
+   "aviso": "marca registrada do dono; uso editorial"
+  },
+  {
+   "id": "perplexity",
+   "nome": "Perplexity",
+   "tipo": "extrusao",
+   "categoria": "logos",
+   "tags": [
+    "IA",
+    "busca"
+   ],
+   "arquivo": "logos/perplexity.png",
+   "cor": "#1FB8CD",
+   "fonte": "Simple Icons",
+   "licenca": "CC0 1.0",
+   "aviso": "marca registrada do dono; uso editorial"
+  },
+  {
+   "id": "deepseek",
+   "nome": "DeepSeek",
+   "tipo": "extrusao",
+   "categoria": "logos",
+   "tags": [
+    "IA"
+   ],
+   "arquivo": "logos/deepseek.png",
+   "cor": "#5786FE",
+   "fonte": "Simple Icons",
+   "licenca": "CC0 1.0",
+   "aviso": "marca registrada do dono; uso editorial"
+  },
+  {
+   "id": "mistral",
+   "nome": "Mistral AI",
+   "tipo": "extrusao",
+   "categoria": "logos",
+   "tags": [
+    "IA"
+   ],
+   "arquivo": "logos/mistral.png",
+   "cor": "#FA520F",
+   "fonte": "Simple Icons",
+   "licenca": "CC0 1.0",
+   "aviso": "marca registrada do dono; uso editorial"
+  },
+  {
+   "id": "copilot",
+   "nome": "GitHub Copilot",
+   "tipo": "extrusao",
+   "categoria": "logos",
+   "tags": [
+    "IA",
+    "código"
+   ],
+   "arquivo": "logos/copilot.png",
+   "cor": "#FFFFFF",
+   "fonte": "Simple Icons",
+   "licenca": "CC0 1.0",
+   "aviso": "marca registrada do dono; uso editorial"
+  },
+  {
+   "id": "cursor",
+   "nome": "Cursor",
+   "tipo": "extrusao",
+   "categoria": "logos",
+   "tags": [
+    "IA",
+    "código",
+    "editor"
+   ],
+   "arquivo": "logos/cursor.png",
+   "cor": "#FFFFFF",
+   "fonte": "Simple Icons",
+   "licenca": "CC0 1.0",
+   "aviso": "marca registrada do dono; uso editorial"
+  },
+  {
+   "id": "notion",
+   "nome": "Notion",
+   "tipo": "extrusao",
+   "categoria": "logos",
+   "tags": [
+    "documentação",
+    "wiki",
+    "produtividade"
+   ],
+   "arquivo": "logos/notion.png",
+   "cor": "#FFFFFF",
+   "fonte": "Simple Icons",
+   "licenca": "CC0 1.0",
+   "aviso": "marca registrada do dono; uso editorial"
+  },
+  {
+   "id": "figma",
+   "nome": "Figma",
+   "tipo": "extrusao",
+   "categoria": "logos",
+   "tags": [
+    "design",
+    "protótipo",
+    "UX"
+   ],
+   "arquivo": "logos/figma.png",
+   "cor": "#F24E1E",
+   "fonte": "Simple Icons",
+   "licenca": "CC0 1.0",
+   "aviso": "marca registrada do dono; uso editorial"
+  },
+  {
+   "id": "jira",
+   "nome": "Jira",
+   "tipo": "extrusao",
+   "categoria": "logos",
+   "tags": [
+    "backlog",
+    "sprint",
+    "ágil"
+   ],
+   "arquivo": "logos/jira.png",
+   "cor": "#0052CC",
+   "fonte": "Simple Icons",
+   "licenca": "CC0 1.0",
+   "aviso": "marca registrada do dono; uso editorial"
+  },
+  {
+   "id": "trello",
+   "nome": "Trello",
+   "tipo": "extrusao",
+   "categoria": "logos",
+   "tags": [
+    "kanban",
+    "tarefas"
+   ],
+   "arquivo": "logos/trello.png",
+   "cor": "#0052CC",
+   "fonte": "Simple Icons",
+   "licenca": "CC0 1.0",
+   "aviso": "marca registrada do dono; uso editorial"
+  },
+  {
+   "id": "miro",
+   "nome": "Miro",
+   "tipo": "extrusao",
+   "categoria": "logos",
+   "tags": [
+    "quadro",
+    "workshop",
+    "discovery"
+   ],
+   "arquivo": "logos/miro.png",
+   "cor": "#FFFFFF",
+   "fonte": "Simple Icons",
+   "licenca": "CC0 1.0",
+   "aviso": "marca registrada do dono; uso editorial"
+  },
+  {
+   "id": "asana",
+   "nome": "Asana",
+   "tipo": "extrusao",
+   "categoria": "logos",
+   "tags": [
+    "tarefas",
+    "projetos"
+   ],
+   "arquivo": "logos/asana.png",
+   "cor": "#F06A6A",
+   "fonte": "Simple Icons",
+   "licenca": "CC0 1.0",
+   "aviso": "marca registrada do dono; uso editorial"
+  },
+  {
+   "id": "clickup",
+   "nome": "ClickUp",
+   "tipo": "extrusao",
+   "categoria": "logos",
+   "tags": [
+    "tarefas",
+    "projetos"
+   ],
+   "arquivo": "logos/clickup.png",
+   "cor": "#7B68EE",
+   "fonte": "Simple Icons",
+   "licenca": "CC0 1.0",
+   "aviso": "marca registrada do dono; uso editorial"
+  },
+  {
+   "id": "airtable",
+   "nome": "Airtable",
+   "tipo": "extrusao",
+   "categoria": "logos",
+   "tags": [
+    "base de dados",
+    "planilha"
+   ],
+   "arquivo": "logos/airtable.png",
+   "cor": "#18BFFF",
+   "fonte": "Simple Icons",
+   "licenca": "CC0 1.0",
+   "aviso": "marca registrada do dono; uso editorial"
+  },
+  {
+   "id": "github",
+   "nome": "GitHub",
+   "tipo": "extrusao",
+   "categoria": "logos",
+   "tags": [
+    "código",
+    "repositório"
+   ],
+   "arquivo": "logos/github.png",
+   "cor": "#FFFFFF",
+   "fonte": "Simple Icons",
+   "licenca": "CC0 1.0",
+   "aviso": "marca registrada do dono; uso editorial"
+  },
+  {
+   "id": "vercel",
+   "nome": "Vercel",
+   "tipo": "extrusao",
+   "categoria": "logos",
+   "tags": [
+    "deploy",
+    "site"
+   ],
+   "arquivo": "logos/vercel.png",
+   "cor": "#FFFFFF",
+   "fonte": "Simple Icons",
+   "licenca": "CC0 1.0",
+   "aviso": "marca registrada do dono; uso editorial"
+  },
+  {
+   "id": "supabase",
+   "nome": "Supabase",
+   "tipo": "extrusao",
+   "categoria": "logos",
+   "tags": [
+    "banco de dados",
+    "backend"
+   ],
+   "arquivo": "logos/supabase.png",
+   "cor": "#3FCF8E",
+   "fonte": "Simple Icons",
+   "licenca": "CC0 1.0",
+   "aviso": "marca registrada do dono; uso editorial"
+  },
+  {
+   "id": "n8n",
+   "nome": "n8n",
+   "tipo": "extrusao",
+   "categoria": "logos",
+   "tags": [
+    "automação",
+    "no-code"
+   ],
+   "arquivo": "logos/n8n.png",
+   "cor": "#EA4B71",
+   "fonte": "Simple Icons",
+   "licenca": "CC0 1.0",
+   "aviso": "marca registrada do dono; uso editorial"
+  },
+  {
+   "id": "zapier",
+   "nome": "Zapier",
+   "tipo": "extrusao",
+   "categoria": "logos",
+   "tags": [
+    "automação",
+    "no-code"
+   ],
+   "arquivo": "logos/zapier.png",
+   "cor": "#FF4F00",
+   "fonte": "Simple Icons",
+   "licenca": "CC0 1.0",
+   "aviso": "marca registrada do dono; uso editorial"
+  },
+  {
+   "id": "make",
+   "nome": "Make",
+   "tipo": "extrusao",
+   "categoria": "logos",
+   "tags": [
+    "automação",
+    "no-code"
+   ],
+   "arquivo": "logos/make.png",
+   "cor": "#FFFFFF",
+   "fonte": "Simple Icons",
+   "licenca": "CC0 1.0",
+   "aviso": "marca registrada do dono; uso editorial"
+  },
+  {
+   "id": "obsidian",
+   "nome": "Obsidian",
+   "tipo": "extrusao",
+   "categoria": "logos",
+   "tags": [
+    "notas",
+    "segundo cérebro"
+   ],
+   "arquivo": "logos/obsidian.png",
+   "cor": "#7C3AED",
+   "fonte": "Simple Icons",
+   "licenca": "CC0 1.0",
+   "aviso": "marca registrada do dono; uso editorial"
+  },
+  {
+   "id": "loom",
+   "nome": "Loom",
+   "tipo": "extrusao",
+   "categoria": "logos",
+   "tags": [
+    "vídeo",
+    "assíncrono"
+   ],
+   "arquivo": "logos/loom.png",
+   "cor": "#625DF5",
+   "fonte": "Simple Icons",
+   "licenca": "CC0 1.0",
+   "aviso": "marca registrada do dono; uso editorial"
+  },
+  {
+   "id": "hubspot",
+   "nome": "HubSpot",
+   "tipo": "extrusao",
+   "categoria": "logos",
+   "tags": [
+    "CRM",
+    "vendas"
+   ],
+   "arquivo": "logos/hubspot.png",
+   "cor": "#FF7A59",
+   "fonte": "Simple Icons",
+   "licenca": "CC0 1.0",
+   "aviso": "marca registrada do dono; uso editorial"
+  },
+  {
+   "id": "stripe",
+   "nome": "Stripe",
+   "tipo": "extrusao",
+   "categoria": "logos",
+   "tags": [
+    "pagamento",
+    "SaaS"
+   ],
+   "arquivo": "logos/stripe.png",
+   "cor": "#635BFF",
+   "fonte": "Simple Icons",
+   "licenca": "CC0 1.0",
+   "aviso": "marca registrada do dono; uso editorial"
+  },
+  {
+   "id": "shopify",
+   "nome": "Shopify",
+   "tipo": "extrusao",
+   "categoria": "logos",
+   "tags": [
+    "e-commerce",
+    "loja"
+   ],
+   "arquivo": "logos/shopify.png",
+   "cor": "#7AB55C",
+   "fonte": "Simple Icons",
+   "licenca": "CC0 1.0",
+   "aviso": "marca registrada do dono; uso editorial"
+  },
+  {
+   "id": "google",
+   "nome": "Google",
+   "tipo": "extrusao",
+   "categoria": "logos",
+   "tags": [
+    "Google",
+    "busca"
+   ],
+   "arquivo": "logos/google.png",
+   "cor": "#4285F4",
+   "fonte": "Simple Icons",
+   "licenca": "CC0 1.0",
+   "aviso": "marca registrada do dono; uso editorial"
+  },
+  {
+   "id": "gmail",
+   "nome": "Gmail",
+   "tipo": "extrusao",
+   "categoria": "logos",
+   "tags": [
+    "e-mail"
+   ],
+   "arquivo": "logos/gmail.png",
+   "cor": "#EA4335",
+   "fonte": "Simple Icons",
+   "licenca": "CC0 1.0",
+   "aviso": "marca registrada do dono; uso editorial"
+  },
+  {
+   "id": "google-drive",
+   "nome": "Google Drive",
+   "tipo": "extrusao",
+   "categoria": "logos",
+   "tags": [
+    "arquivos"
+   ],
+   "arquivo": "logos/google-drive.png",
+   "cor": "#4285F4",
+   "fonte": "Simple Icons",
+   "licenca": "CC0 1.0",
+   "aviso": "marca registrada do dono; uso editorial"
+  },
+  {
+   "id": "google-sheets",
+   "nome": "Google Sheets",
+   "tipo": "extrusao",
+   "categoria": "logos",
+   "tags": [
+    "planilha",
+    "dados"
+   ],
+   "arquivo": "logos/google-sheets.png",
+   "cor": "#34A853",
+   "fonte": "Simple Icons",
+   "licenca": "CC0 1.0",
+   "aviso": "marca registrada do dono; uso editorial"
+  },
+  {
+   "id": "google-calendar",
+   "nome": "Google Calendar",
+   "tipo": "extrusao",
+   "categoria": "logos",
+   "tags": [
+    "agenda"
+   ],
+   "arquivo": "logos/google-calendar.png",
+   "cor": "#4285F4",
+   "fonte": "Simple Icons",
+   "licenca": "CC0 1.0",
+   "aviso": "marca registrada do dono; uso editorial"
+  },
+  {
+   "id": "google-meet",
+   "nome": "Google Meet",
+   "tipo": "extrusao",
+   "categoria": "logos",
+   "tags": [
+    "reunião",
+    "chamada"
+   ],
+   "arquivo": "logos/google-meet.png",
+   "cor": "#00897B",
+   "fonte": "Simple Icons",
+   "licenca": "CC0 1.0",
+   "aviso": "marca registrada do dono; uso editorial"
+  },
+  {
+   "id": "zoom",
+   "nome": "Zoom",
+   "tipo": "extrusao",
+   "categoria": "logos",
+   "tags": [
+    "reunião",
+    "chamada"
+   ],
+   "arquivo": "logos/zoom.png",
+   "cor": "#0B5CFF",
+   "fonte": "Simple Icons",
+   "licenca": "CC0 1.0",
+   "aviso": "marca registrada do dono; uso editorial"
+  },
+  {
+   "id": "discord",
+   "nome": "Discord",
+   "tipo": "extrusao",
+   "categoria": "logos",
+   "tags": [
+    "comunidade",
+    "chat"
+   ],
+   "arquivo": "logos/discord.png",
+   "cor": "#5865F2",
+   "fonte": "Simple Icons",
+   "licenca": "CC0 1.0",
+   "aviso": "marca registrada do dono; uso editorial"
+  },
+  {
+   "id": "telegram",
+   "nome": "Telegram",
+   "tipo": "extrusao",
+   "categoria": "logos",
+   "tags": [
+    "mensagem"
+   ],
+   "arquivo": "logos/telegram.png",
+   "cor": "#26A5E4",
+   "fonte": "Simple Icons",
+   "licenca": "CC0 1.0",
+   "aviso": "marca registrada do dono; uso editorial"
+  },
+  {
+   "id": "whatsapp",
+   "nome": "WhatsApp",
+   "tipo": "extrusao",
+   "categoria": "logos",
+   "tags": [
+    "mensagem",
+    "WhatsApp",
+    "atendimento"
+   ],
+   "arquivo": "logos/whatsapp.png",
+   "cor": "#25D366",
+   "fonte": "Simple Icons",
+   "licenca": "CC0 1.0",
+   "aviso": "marca registrada do dono; uso editorial"
+  },
+  {
+   "id": "instagram",
+   "nome": "Instagram",
+   "tipo": "extrusao",
+   "categoria": "logos",
+   "tags": [
+    "rede social",
+    "Reels"
+   ],
+   "arquivo": "logos/instagram.png",
+   "cor": "#FF0069",
+   "fonte": "Simple Icons",
+   "licenca": "CC0 1.0",
+   "aviso": "marca registrada do dono; uso editorial"
+  },
+  {
+   "id": "youtube",
+   "nome": "YouTube",
+   "tipo": "extrusao",
+   "categoria": "logos",
+   "tags": [
+    "vídeo",
+    "canal"
+   ],
+   "arquivo": "logos/youtube.png",
+   "cor": "#FFFFFF",
+   "fonte": "Simple Icons",
+   "licenca": "CC0 1.0",
+   "aviso": "marca registrada do dono; uso editorial"
+  },
+  {
+   "id": "tiktok",
+   "nome": "TikTok",
+   "tipo": "extrusao",
+   "categoria": "logos",
+   "tags": [
+    "vídeo curto"
+   ],
+   "arquivo": "logos/tiktok.png",
+   "cor": "#FFFFFF",
+   "fonte": "Simple Icons",
+   "licenca": "CC0 1.0",
+   "aviso": "marca registrada do dono; uso editorial"
+  },
+  {
+   "id": "x",
+   "nome": "X",
+   "tipo": "extrusao",
+   "categoria": "logos",
+   "tags": [
+    "rede social",
+    "Twitter"
+   ],
+   "arquivo": "logos/x.png",
+   "cor": "#FFFFFF",
+   "fonte": "Simple Icons",
+   "licenca": "CC0 1.0",
+   "aviso": "marca registrada do dono; uso editorial"
+  },
+  {
+   "id": "meta",
+   "nome": "Meta",
+   "tipo": "extrusao",
+   "categoria": "logos",
+   "tags": [
+    "Facebook",
+    "anúncios"
+   ],
+   "arquivo": "logos/meta.png",
+   "cor": "#0467DF",
+   "fonte": "Simple Icons",
+   "licenca": "CC0 1.0",
+   "aviso": "marca registrada do dono; uso editorial"
+  },
+  {
+   "id": "spotify",
+   "nome": "Spotify",
+   "tipo": "extrusao",
+   "categoria": "logos",
+   "tags": [
+    "música",
+    "podcast"
+   ],
+   "arquivo": "logos/spotify.png",
+   "cor": "#1ED760",
+   "fonte": "Simple Icons",
+   "licenca": "CC0 1.0",
+   "aviso": "marca registrada do dono; uso editorial"
+  },
+  {
+   "id": "apple",
+   "nome": "Apple",
+   "tipo": "extrusao",
+   "categoria": "logos",
+   "tags": [
+    "iPhone",
+    "Mac"
+   ],
+   "arquivo": "logos/apple.png",
+   "cor": "#FFFFFF",
+   "fonte": "Simple Icons",
+   "licenca": "CC0 1.0",
+   "aviso": "marca registrada do dono; uso editorial"
+  },
+  {
+   "id": "python",
+   "nome": "Python",
+   "tipo": "extrusao",
+   "categoria": "logos",
+   "tags": [
+    "código",
+    "dados"
+   ],
+   "arquivo": "logos/python.png",
+   "cor": "#3776AB",
+   "fonte": "Simple Icons",
+   "licenca": "CC0 1.0",
+   "aviso": "marca registrada do dono; uso editorial"
+  },
+  {
+   "id": "pix",
+   "nome": "Pix",
+   "tipo": "extrusao",
+   "categoria": "logos",
+   "tags": [
+    "pagamento",
+    "Brasil"
+   ],
+   "arquivo": "logos/pix.png",
+   "cor": "#77B6A8",
+   "fonte": "Simple Icons",
+   "licenca": "CC0 1.0",
+   "aviso": "marca registrada do dono; uso editorial"
+  },
+  {
+   "id": "nubank",
+   "nome": "Nubank",
+   "tipo": "extrusao",
+   "categoria": "logos",
+   "tags": [
+    "banco",
+    "fintech"
+   ],
+   "arquivo": "logos/nubank.png",
+   "cor": "#FFFFFF",
+   "fonte": "Simple Icons",
+   "licenca": "CC0 1.0",
+   "aviso": "marca registrada do dono; uso editorial"
+  },
+  {
+   "id": "mercado-pago",
+   "nome": "Mercado Pago",
+   "tipo": "extrusao",
+   "categoria": "logos",
+   "tags": [
+    "pagamento"
+   ],
+   "arquivo": "logos/mercado-pago.png",
+   "cor": "#00B1EA",
+   "fonte": "Simple Icons",
+   "licenca": "CC0 1.0",
+   "aviso": "marca registrada do dono; uso editorial"
+  }
+ ]
+}
