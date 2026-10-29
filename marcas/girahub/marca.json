@@ -1,0 +1,55 @@
+{
+  "id": "girahub",
+  "nome": "GiraHub · @girahuboficial",
+  "cores": {
+    "marinho": "#180E09",
+    "marinho_2": "#2B1A10",
+    "champanhe": "#E9B04A",
+    "bronze": "#A64B22",
+    "papel": "#FCF8F2",
+    "papel_2": "#FFFDF8",
+    "nevoa": "#CDBBA5",
+    "folha": "#2E6A4E"
+  },
+  "fontes": {
+    "titulo": {
+      "Black": "Fraunces-Bold.ttf",
+      "Bold": "Fraunces-SemiBold.ttf",
+      "Regular": "Fraunces-SemiBold.ttf"
+    },
+    "texto": {
+      "Black": "Inter-Black.ttf",
+      "Bold": "Inter-Bold.ttf",
+      "Regular": "Inter-Regular.ttf"
+    }
+  },
+  "logo": "logo.png",
+  "marca_dagua_alt": 64,
+  "marca_dagua_y": 0.16,
+  "cta_logo_alt": 0.13,
+  "intro": {
+    "tipo": "ticket",
+    "nome": "GiraHub",
+    "sub": "SENHA DA GIRA  ·  GESTÃO DO TERREIRO"
+  },
+  "fundo_motivo": "ticket",
+  "leo": false,
+  "musica": {
+    "politica": "opcional"
+  },
+  "cta": {
+    "chamada": "A fila em paz no portão",
+    "url": "girahub.com.br",
+    "apoio": "Comece grátis · link na bio"
+  },
+  "exclusivo": {
+    "termos": [
+      "girahub",
+      "gira hub",
+      "girahuboficial",
+      "girahub.com.br",
+      "senha da gira"
+    ]
+  },
+  "vocabulario": "GiraHub, girahub.com.br, terreiro, terreiros, Umbanda, Candomblé, casa de axé, gira, senha da gira, médium, médiuns, cambone, cambones, consulente, pai de santo, mãe de santo, zelador, corrente, Preto Velho, Caboclo, Iemanjá, Oxalá, Ogum, Exu, axé, mensalidade, Porta, Modo TV, WhatsApp"
+}
