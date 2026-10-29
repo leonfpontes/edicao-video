@@ -8,6 +8,7 @@
    "descricao": "Bolhas de luz desfocadas subindo devagar. Clima de sonho, conquista, fim de vídeo.",
    "fase": "elementos",
    "som_pop": false,
+   "som": null,
    "params": {
     "intensidade": "0 a 1",
     "quantidade": "número de luzes (padrão 18)"
@@ -19,6 +20,7 @@
    "descricao": "Faíscas de quatro pontas piscando ao redor de um ponto. Para algo valioso, novo, 'mágico'.",
    "fase": "elementos",
    "som_pop": true,
+   "som": "brilho",
    "params": {
     "x": "0 a 1",
     "y": "0 a 1",
@@ -27,15 +29,59 @@
    }
   },
   {
+   "id": "carregando",
+   "categoria": "informacao",
+   "descricao": "Barra de progresso em vidro que enche até o valor (formato 'loading' em alta). Para status de projeto, avanço, 'quanto falta'.",
+   "fase": "elementos",
+   "som_pop": true,
+   "som": "rolagem",
+   "params": {
+    "rotulo": "texto acima da barra",
+    "ate": "porcentagem final (padrão 100)",
+    "duracao_carga": "segundos (padrão 1.6)",
+    "y": "0 a 1 (padrão 0.26)"
+   }
+  },
+  {
+   "id": "cartao_vidro",
+   "categoria": "informacao",
+   "descricao": "Cartão de vidro líquido (fosco, fio de luz, brilho) com título e linha de apoio. Para conceito, definição, gate, número com contexto.",
+   "fase": "elementos",
+   "som_pop": true,
+   "som": "toque-vidro",
+   "params": {
+    "texto": "título do cartão",
+    "sub": "linha de apoio (opcional)",
+    "x": "0 a 1",
+    "y": "0 a 1 (padrão 0.24)",
+    "largura": "fração da largura (padrão 0.78)"
+   }
+  },
+  {
    "id": "check",
    "categoria": "marcacao",
    "descricao": "Selo de 'certo' (disco com mola e check traçado). Para acerto, aprovado, 'faça assim'.",
    "fase": "elementos",
    "som_pop": true,
+   "som": "acerto",
    "params": {
     "x": "0 a 1",
     "y": "0 a 1",
     "tamanho": "diâmetro em fração da largura (padrão 0.12)"
+   }
+  },
+  {
+   "id": "checklist",
+   "categoria": "informacao",
+   "descricao": "Lista em vidro em que cada item entra e é marcado com um check, um por vez. Para passo a passo, critérios, 'o que você precisa'.",
+   "fase": "elementos",
+   "som_pop": false,
+   "som": "tique",
+   "params": {
+    "itens": "lista de textos (até 5)",
+    "intervalo": "segundos entre itens (padrão 0.7)",
+    "titulo": "cabeçalho (opcional)",
+    "y": "0 a 1 (padrão 0.3)"
    }
   },
   {
@@ -44,6 +90,7 @@
    "descricao": "Objetos da biblioteca 3D caindo pela tela (ex.: dinheiro, corações, foguetes).",
    "fase": "elementos",
    "som_pop": false,
+   "som": "pop-bolha",
    "params": {
     "objeto": "id da biblioteca 3D (padrão estrela)",
     "quantidade": "padrão 12",
@@ -56,6 +103,7 @@
    "descricao": "Círculo feito 'à mão' em volta de um ponto (marca-texto de vídeo).",
    "fase": "elementos",
    "som_pop": false,
+   "som": "lapis",
    "params": {
     "x": "0 a 1",
     "y": "0 a 1",
@@ -69,6 +117,7 @@
    "descricao": "Explosão de confete nas cores da marca, com gravidade. Para conquista, lançamento, 'deu certo'.",
    "fase": "elementos",
    "som_pop": true,
+   "som": "pop-bolha",
    "params": {
     "x": "0 a 1 (origem)",
     "y": "0 a 1 (origem)",
@@ -81,6 +130,7 @@
    "descricao": "Número que conta até o valor falado (ex.: 0 → 87%), num cartão da marca.",
    "fase": "elementos",
    "som_pop": true,
+   "som": "rolagem",
    "params": {
     "de": "número inicial (padrão 0)",
     "ate": "número final",
@@ -97,6 +147,7 @@
    "descricao": "Clarão rápido na cor clara da marca, no instante de uma palavra forte.",
    "fase": "pos",
    "som_pop": true,
+   "som": "reverso",
    "params": {
     "intensidade": "0 a 1 (padrão 1)"
    }
@@ -107,6 +158,7 @@
    "descricao": "Escurece tudo fora de um círculo (íris que fecha sobre o ponto x,y). Para apontar um detalhe.",
    "fase": "pos",
    "som_pop": false,
+   "som": "whoosh-lento",
    "params": {
     "x": "0 a 1",
     "y": "0 a 1",
@@ -120,6 +172,7 @@
    "descricao": "Falha digital rápida (canais de cor separados e fatias deslocadas). Para virada, erro, 'bug' no processo.",
    "fase": "pos",
    "som_pop": true,
+   "som": "glitch",
    "params": {
     "intensidade": "0 a 1 (padrão 1)"
    }
@@ -130,8 +183,24 @@
    "descricao": "Grão de filme sutil no quadro inteiro. Dá textura de cinema a vídeos muito 'limpos'.",
    "fase": "pos",
    "som_pop": false,
+   "som": null,
    "params": {
     "intensidade": "0 a 1 (padrão 1 = grão leve)"
+   }
+  },
+  {
+   "id": "marca_texto",
+   "categoria": "marcacao",
+   "descricao": "Marca-texto passando sobre uma linha (print, b-roll, documento), com borda de traço real. Com 'texto', escreve a frase em marinho e passa o marca-texto champanhe por trás (funciona sobre qualquer fundo).",
+   "fase": "elementos",
+   "som_pop": false,
+   "som": "lapis",
+   "params": {
+    "texto": "frase marcada (opcional; sem ela, só a faixa sobre o que já está na tela)",
+    "x": "centro 0 a 1",
+    "y": "0 a 1",
+    "largura": "fração da largura (padrão 0.5)",
+    "altura": "fração da altura (padrão 0.035)"
    }
   },
   {
@@ -140,8 +209,22 @@
    "descricao": "Moldura de câmera gravando (cantos, ponto pulsando e cronômetro). Para bastidores e vlog.",
    "fase": "elementos",
    "som_pop": false,
+   "som": "clique",
    "params": {
     "rotulo": "texto ao lado do ponto (padrão REC)"
+   }
+  },
+  {
+   "id": "notificacao",
+   "categoria": "informacao",
+   "descricao": "Notificação de celular em vidro descendo do topo (mensagem de cliente, alerta, lembrete). Formato que prende o olho em 2026.",
+   "fase": "elementos",
+   "som_pop": true,
+   "som": "notificacao",
+   "params": {
+    "app": "nome do remetente/app (padrão Mensagem)",
+    "texto": "texto da notificação",
+    "y": "0 a 1 (padrão 0.15)"
    }
   },
   {
@@ -150,10 +233,37 @@
    "descricao": "Anéis que se expandem a partir de um ponto (pulso de atenção, notificação, 'olha aqui').",
    "fase": "elementos",
    "som_pop": false,
+   "som": "notificacao",
    "params": {
     "x": "0 a 1",
     "y": "0 a 1",
     "raio": "fração da largura (padrão 0.3)"
+   }
+  },
+  {
+   "id": "reacoes",
+   "categoria": "celebracao",
+   "descricao": "Objetos 3D subindo e balançando como reações de live (corações, fogo, 100). Para engajamento, 'comenta aqui', resultado bom.",
+   "fase": "elementos",
+   "som_pop": false,
+   "som": "pop-bolha",
+   "params": {
+    "objeto": "id da biblioteca 3D (padrão coracao)",
+    "objetos": "lista de ids (alterna)",
+    "quantidade": "padrão 10",
+    "x": "0 a 1 (padrão 0.82)"
+   }
+  },
+  {
+   "id": "reflexo",
+   "categoria": "luz",
+   "descricao": "Reflexo de vidro: uma faixa de luz atravessa a tela na diagonal (acabamento premium, revelação).",
+   "fase": "pos",
+   "som_pop": false,
+   "som": "vidro-shimmer",
+   "params": {
+    "intensidade": "0 a 1 (padrão 1)",
+    "duracao_passada": "segundos (padrão 0.9)"
    }
   },
   {
@@ -162,6 +272,7 @@
    "descricao": "Seta curva que se desenha e aponta para (x, y). Para indicar um detalhe da tela ou do b-roll.",
    "fase": "elementos",
    "som_pop": false,
+   "som": "lapis",
    "params": {
     "x": "ponta 0 a 1",
     "y": "ponta 0 a 1",
@@ -175,10 +286,25 @@
    "descricao": "Sublinhado ondulado desenhado da esquerda para a direita, sob uma palavra ou número.",
    "fase": "elementos",
    "som_pop": false,
+   "som": "lapis",
    "params": {
     "x": "centro 0 a 1",
     "y": "0 a 1",
     "largura": "fração da largura (padrão 0.5)"
+   }
+  },
+  {
+   "id": "tipografia",
+   "categoria": "texto",
+   "descricao": "Tipografia cinética: palavra grande com letras caindo em cascata e mola, que se abrem de leve e saem subindo. Para a palavra-chave do vídeo (gancho, conceito).",
+   "fase": "elementos",
+   "som_pop": true,
+   "som": "impacto-seco",
+   "params": {
+    "texto": "1 ou 2 palavras",
+    "y": "0 a 1 (padrão 0.22)",
+    "tam": "tamanho da letra (padrão 170)",
+    "maiusculas": "true|false (padrão true)"
    }
   },
   {
@@ -187,6 +313,7 @@
    "descricao": "Câmera treme e assenta (impacto, susto, revelação). Curto: 0,3 a 0,6 s.",
    "fase": "pos",
    "som_pop": false,
+   "som": "impacto-grave",
    "params": {
     "intensidade": "0 a 1 (padrão 1)"
    }
@@ -197,6 +324,7 @@
    "descricao": "Vazamento de luz quente que atravessa a tela, como em filme. Bom em abertura e virada de assunto.",
    "fase": "pos",
    "som_pop": false,
+   "som": "whoosh-sopro",
    "params": {
     "intensidade": "0 a 1 (padrão 1)",
     "direcao": "esquerda|direita (padrão direita)"
@@ -208,6 +336,7 @@
    "descricao": "Estética VHS: linhas de varredura, cor deslocada e uma faixa de ruído. Para memória, nostalgia, 'antigamente'.",
    "fase": "pos",
    "som_pop": false,
+   "som": null,
    "params": {
     "intensidade": "0 a 1 (padrão 1)"
    }
@@ -218,6 +347,7 @@
    "descricao": "Escurece as bordas e leva o olhar para o centro. Use em fala emotiva ou dramática.",
    "fase": "pos",
    "som_pop": false,
+   "som": null,
    "params": {
     "intensidade": "0 a 1 (padrão 1)"
    }
@@ -228,6 +358,7 @@
    "descricao": "Selo de 'errado' (disco com mola e X traçado). Para erro comum, mito, 'não faça'.",
    "fase": "elementos",
    "som_pop": true,
+   "som": "erro",
    "params": {
     "x": "0 a 1",
     "y": "0 a 1",

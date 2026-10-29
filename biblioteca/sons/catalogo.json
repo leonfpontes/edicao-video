@@ -1,0 +1,715 @@
+{
+ "versao": 1,
+ "observacao": "Gerado por ferramentas/montar_sons.py. Arquivos em biblioteca/sons/arquivos/ (no Git).",
+ "itens": [
+  {
+   "id": "whoosh-ar",
+   "categoria": "transicao",
+   "tags": [
+    "whoosh",
+    "ar",
+    "rápido",
+    "corte"
+   ],
+   "usos": "Virada de assunto com empurrão lateral (push/whip). Passa exatamente no corte.",
+   "arquivo": "arquivos/whoosh-ar.ogg",
+   "duracao": 0.529,
+   "ataque": 0.172,
+   "volume_db": -7,
+   "fonte": "OpenGameArt: qubodup",
+   "licenca": "CC0 1.0",
+   "credito": "qubodup (CC0)",
+   "url": "https://opengameart.org/content/wind-hit-time-morph"
+  },
+  {
+   "id": "whoosh-vento",
+   "categoria": "transicao",
+   "tags": [
+    "whoosh",
+    "vento",
+    "corte"
+   ],
+   "usos": "Variação do whoosh de transição, um pouco mais encorpada.",
+   "arquivo": "arquivos/whoosh-vento.ogg",
+   "duracao": 0.591,
+   "ataque": 0.083,
+   "volume_db": -7,
+   "fonte": "OpenGameArt: qubodup",
+   "licenca": "CC0 1.0",
+   "credito": "qubodup (CC0)",
+   "url": "https://opengameart.org/content/wind-hit-time-morph"
+  },
+  {
+   "id": "whoosh-curto",
+   "categoria": "transicao",
+   "tags": [
+    "whoosh",
+    "curto",
+    "swish"
+   ],
+   "usos": "Swish curto e seco: entrada de título, troca rápida.",
+   "arquivo": "arquivos/whoosh-curto.ogg",
+   "duracao": 0.32,
+   "ataque": 0.075,
+   "volume_db": -9,
+   "fonte": "OpenGameArt: qubodup",
+   "licenca": "CC0 1.0",
+   "credito": "qubodup (CC0)",
+   "url": "https://opengameart.org/content/wind-hit-time-morph"
+  },
+  {
+   "id": "whoosh-lento",
+   "categoria": "transicao",
+   "tags": [
+    "whoosh",
+    "lento",
+    "câmera lenta"
+   ],
+   "usos": "Passagem lenta, câmera lenta, mergulho calmo.",
+   "arquivo": "arquivos/whoosh-lento.ogg",
+   "duracao": 0.968,
+   "ataque": 0.81,
+   "volume_db": -8,
+   "fonte": "OpenGameArt: qubodup",
+   "licenca": "CC0 1.0",
+   "credito": "qubodup (CC0)",
+   "url": "https://opengameart.org/content/wind-hit-time-morph"
+  },
+  {
+   "id": "whoosh-sopro",
+   "categoria": "transicao",
+   "tags": [
+    "whoosh",
+    "sopro",
+    "suave",
+    "ar"
+   ],
+   "usos": "Sopro de ar macio para fusão, abertura e fim de vídeo.",
+   "arquivo": "arquivos/whoosh-sopro.ogg",
+   "duracao": 1.05,
+   "ataque": 0.52,
+   "volume_db": -6,
+   "fonte": "OpenGameArt: Pyranostudios",
+   "licenca": "CC0 1.0",
+   "credito": "Pyranostudios (CC0)",
+   "url": "https://opengameart.org/content/air-whoosh"
+  },
+  {
+   "id": "whoosh-suave",
+   "categoria": "transicao",
+   "tags": [
+    "whoosh",
+    "suave",
+    "elegante",
+    "pan"
+   ],
+   "usos": "Whoosh desenhado, limpo e elegante, atravessando da esquerda para a direita.",
+   "arquivo": "arquivos/whoosh-suave.ogg",
+   "duracao": 0.711,
+   "ataque": 0.359,
+   "volume_db": -7,
+   "fonte": "Própria (ferramentas/montar_sons.py)",
+   "licenca": "Própria",
+   "credito": "Leonardo Pontes / edicao-video"
+  },
+  {
+   "id": "whoosh-rapido",
+   "categoria": "transicao",
+   "tags": [
+    "whoosh",
+    "rápido",
+    "whip",
+    "agudo"
+   ],
+   "usos": "Whip pan: whoosh curto e brilhante para o chicote de câmera.",
+   "arquivo": "arquivos/whoosh-rapido.ogg",
+   "duracao": 0.365,
+   "ataque": 0.174,
+   "volume_db": -8,
+   "fonte": "Própria (ferramentas/montar_sons.py)",
+   "licenca": "Própria",
+   "credito": "Leonardo Pontes / edicao-video"
+  },
+  {
+   "id": "whoosh-profundo",
+   "categoria": "transicao",
+   "tags": [
+    "whoosh",
+    "grave",
+    "mergulho",
+    "zoom"
+   ],
+   "usos": "Mergulho com corpo grave: transição zoom, entrada do CTA, mergulho da vinheta.",
+   "arquivo": "arquivos/whoosh-profundo.ogg",
+   "duracao": 0.901,
+   "ataque": 0.515,
+   "volume_db": -6,
+   "fonte": "Própria (ferramentas/montar_sons.py)",
+   "licenca": "Própria",
+   "credito": "Leonardo Pontes / edicao-video"
+  },
+  {
+   "id": "whoosh-giro",
+   "categoria": "transicao",
+   "tags": [
+    "whoosh",
+    "giro",
+    "rotação",
+    "spin"
+   ],
+   "usos": "Rotação acelerando: transição de giro 3D.",
+   "arquivo": "arquivos/whoosh-giro.ogg",
+   "duracao": 0.746,
+   "ataque": 0.39,
+   "volume_db": -7,
+   "fonte": "Própria (ferramentas/montar_sons.py)",
+   "licenca": "Própria",
+   "credito": "Leonardo Pontes / edicao-video"
+  },
+  {
+   "id": "deslizar",
+   "categoria": "transicao",
+   "tags": [
+    "swipe",
+    "deslizar",
+    "cartão",
+    "slide"
+   ],
+   "usos": "Cartão deslizando na mesa: slide para cima, lista, próximo passo.",
+   "arquivo": "arquivos/deslizar.ogg",
+   "duracao": 0.589,
+   "ataque": 0.154,
+   "volume_db": -6,
+   "fonte": "OpenGameArt: Kenney (kenney.nl)",
+   "licenca": "CC0 1.0",
+   "credito": "Kenney (kenney.nl) (CC0)",
+   "url": "https://opengameart.org/content/54-casino-sound-effects-cards-dice-chips"
+  },
+  {
+   "id": "pagina",
+   "categoria": "transicao",
+   "tags": [
+    "página",
+    "papel",
+    "virar",
+    "livro"
+   ],
+   "usos": "Virar de página: próximo capítulo, rasgo de papel, 'agora a parte dois'.",
+   "arquivo": "arquivos/pagina.ogg",
+   "duracao": 0.544,
+   "ataque": 0.436,
+   "volume_db": -6,
+   "fonte": "OpenGameArt: StarNinjas",
+   "licenca": "CC0 1.0",
+   "credito": "StarNinjas (CC0)",
+   "url": "https://opengameart.org/content/10-book-page-flips"
+  },
+  {
+   "id": "papel-rasgo",
+   "categoria": "transicao",
+   "tags": [
+    "papel",
+    "rasgo",
+    "amassar",
+    "colagem"
+   ],
+   "usos": "Papel sendo amassado e rasgado: transição rasgo e estética de colagem.",
+   "arquivo": "arquivos/papel-rasgo.ogg",
+   "duracao": 0.421,
+   "ataque": 0.202,
+   "volume_db": -5,
+   "fonte": "OpenGameArt: rubberduck",
+   "licenca": "CC0 1.0",
+   "credito": "rubberduck (CC0)",
+   "url": "https://opengameart.org/content/100-cc0-sfx"
+  },
+  {
+   "id": "vidro-shimmer",
+   "categoria": "transicao",
+   "tags": [
+    "vidro",
+    "brilho",
+    "cristal",
+    "shimmer",
+    "liquid glass"
+   ],
+   "usos": "Cintilar de cristal: transição de vidro, brilho, revelação elegante.",
+   "arquivo": "arquivos/vidro-shimmer.ogg",
+   "duracao": 1.238,
+   "ataque": 0.141,
+   "volume_db": -9,
+   "fonte": "Própria (ferramentas/montar_sons.py)",
+   "licenca": "Própria",
+   "credito": "Leonardo Pontes / edicao-video"
+  },
+  {
+   "id": "riser-curto",
+   "categoria": "tensao",
+   "tags": [
+    "riser",
+    "subida",
+    "tensão",
+    "antes da revelação"
+   ],
+   "usos": "Subida de 1,2 s que chega no ápice exatamente na palavra (ancore na palavra da revelação).",
+   "arquivo": "arquivos/riser-curto.ogg",
+   "duracao": 1.059,
+   "ataque": 0.965,
+   "volume_db": -8,
+   "fonte": "Própria (ferramentas/montar_sons.py)",
+   "licenca": "Própria",
+   "credito": "Leonardo Pontes / edicao-video"
+  },
+  {
+   "id": "riser-longo",
+   "categoria": "tensao",
+   "tags": [
+    "riser",
+    "subida",
+    "suspense",
+    "build-up"
+   ],
+   "usos": "Subida longa de 2,5 s para gancho e grande revelação.",
+   "arquivo": "arquivos/riser-longo.ogg",
+   "duracao": 2.232,
+   "ataque": 2.113,
+   "volume_db": -9,
+   "fonte": "Própria (ferramentas/montar_sons.py)",
+   "licenca": "Própria",
+   "credito": "Leonardo Pontes / edicao-video"
+  },
+  {
+   "id": "reverso",
+   "categoria": "tensao",
+   "tags": [
+    "reverso",
+    "sucção",
+    "swell",
+    "antes do corte"
+   ],
+   "usos": "Prato ao contrário: puxa para o próximo momento; bom antes de um corte seco ou flash.",
+   "arquivo": "arquivos/reverso.ogg",
+   "duracao": 1.0,
+   "ataque": 0.905,
+   "volume_db": -8,
+   "fonte": "Própria (ferramentas/montar_sons.py)",
+   "licenca": "Própria",
+   "credito": "Leonardo Pontes / edicao-video"
+  },
+  {
+   "id": "impacto-grave",
+   "categoria": "impacto",
+   "tags": [
+    "impacto",
+    "boom",
+    "sub",
+    "drop",
+    "peso"
+   ],
+   "usos": "Batida grave cinematográfica: número forte, conclusão, 'é isso'.",
+   "arquivo": "arquivos/impacto-grave.ogg",
+   "duracao": 1.4,
+   "ataque": 0.068,
+   "volume_db": -6,
+   "fonte": "Própria (ferramentas/montar_sons.py)",
+   "licenca": "Própria",
+   "credito": "Leonardo Pontes / edicao-video"
+  },
+  {
+   "id": "impacto-seco",
+   "categoria": "impacto",
+   "tags": [
+    "impacto",
+    "batida",
+    "seco",
+    "soco"
+   ],
+   "usos": "Batida seca e curta: carimbo, xis, 'não faça isso'.",
+   "arquivo": "arquivos/impacto-seco.ogg",
+   "duracao": 0.328,
+   "ataque": 0.032,
+   "volume_db": -9,
+   "fonte": "OpenGameArt: rubberduck",
+   "licenca": "CC0 1.0",
+   "credito": "rubberduck (CC0)",
+   "url": "https://opengameart.org/content/100-cc0-sfx"
+  },
+  {
+   "id": "sub-boom",
+   "categoria": "impacto",
+   "tags": [
+    "boom",
+    "sub",
+    "grave",
+    "explosão"
+   ],
+   "usos": "Grave longo e profundo, discreto: revelação grande, entrada da vinheta.",
+   "arquivo": "arquivos/sub-boom.ogg",
+   "duracao": 1.2,
+   "ataque": 0.224,
+   "volume_db": -8,
+   "fonte": "OpenGameArt: Kenney (kenney.nl)",
+   "licenca": "CC0 1.0",
+   "credito": "Kenney (kenney.nl) (CC0)",
+   "url": "https://opengameart.org/content/sci-fi-sounds"
+  },
+  {
+   "id": "pop-limpo",
+   "categoria": "interface",
+   "tags": [
+    "pop",
+    "bolha",
+    "entrada",
+    "texto"
+   ],
+   "usos": "Pop limpo e curto: entrada de destaque, rótulo, item de lista.",
+   "arquivo": "arquivos/pop-limpo.ogg",
+   "duracao": 0.181,
+   "ataque": 0.026,
+   "volume_db": -10,
+   "fonte": "Própria (ferramentas/montar_sons.py)",
+   "licenca": "Própria",
+   "credito": "Leonardo Pontes / edicao-video"
+  },
+  {
+   "id": "pop-bolha",
+   "categoria": "interface",
+   "tags": [
+    "pop",
+    "bolha",
+    "plop",
+    "orgânico"
+   ],
+   "usos": "Pop orgânico de bolha: objeto 3D surgindo, emoji, reação.",
+   "arquivo": "arquivos/pop-bolha.ogg",
+   "duracao": 0.238,
+   "ataque": 0.036,
+   "volume_db": -11,
+   "fonte": "OpenGameArt: rubberduck",
+   "licenca": "CC0 1.0",
+   "credito": "rubberduck (CC0)",
+   "url": "https://opengameart.org/content/100-cc0-sfx"
+  },
+  {
+   "id": "clique",
+   "categoria": "interface",
+   "tags": [
+    "clique",
+    "mouse",
+    "botão",
+    "ui"
+   ],
+   "usos": "Clique de botão: cursor, seleção, 'clica aqui'.",
+   "arquivo": "arquivos/clique.ogg",
+   "duracao": 0.012,
+   "ataque": 0.006,
+   "volume_db": -10,
+   "fonte": "OpenGameArt: Kenney (kenney.nl)",
+   "licenca": "CC0 1.0",
+   "credito": "Kenney (kenney.nl) (CC0)",
+   "url": "https://opengameart.org/content/interface-sounds"
+  },
+  {
+   "id": "tique",
+   "categoria": "interface",
+   "tags": [
+    "tique",
+    "tick",
+    "item",
+    "lista"
+   ],
+   "usos": "Tique curto: item de checklist marcado, contagem.",
+   "arquivo": "arquivos/tique.ogg",
+   "duracao": 0.02,
+   "ataque": 0.01,
+   "volume_db": -12,
+   "fonte": "OpenGameArt: Kenney (kenney.nl)",
+   "licenca": "CC0 1.0",
+   "credito": "Kenney (kenney.nl) (CC0)",
+   "url": "https://opengameart.org/content/interface-sounds"
+  },
+  {
+   "id": "toque-vidro",
+   "categoria": "interface",
+   "tags": [
+    "vidro",
+    "toque",
+    "cristal",
+    "ui"
+   ],
+   "usos": "Toque de vidro: cartão de vidro (liquid glass) aparecendo.",
+   "arquivo": "arquivos/toque-vidro.ogg",
+   "duracao": 0.122,
+   "ataque": 0.025,
+   "volume_db": -10,
+   "fonte": "OpenGameArt: Kenney (kenney.nl)",
+   "licenca": "CC0 1.0",
+   "credito": "Kenney (kenney.nl) (CC0)",
+   "url": "https://opengameart.org/content/interface-sounds"
+  },
+  {
+   "id": "ui-sobe",
+   "categoria": "interface",
+   "tags": [
+    "subir",
+    "abrir",
+    "entrada",
+    "ui"
+   ],
+   "usos": "Tom que sobe: painel abrindo, Leo entrando, barra enchendo.",
+   "arquivo": "arquivos/ui-sobe.ogg",
+   "duracao": 0.258,
+   "ataque": 0.202,
+   "volume_db": -12,
+   "fonte": "OpenGameArt: Kenney (kenney.nl)",
+   "licenca": "CC0 1.0",
+   "credito": "Kenney (kenney.nl) (CC0)",
+   "url": "https://opengameart.org/content/interface-sounds"
+  },
+  {
+   "id": "ui-desce",
+   "categoria": "interface",
+   "tags": [
+    "descer",
+    "fechar",
+    "saída",
+    "ui"
+   ],
+   "usos": "Tom que desce: painel fechando, saída de elemento.",
+   "arquivo": "arquivos/ui-desce.ogg",
+   "duracao": 0.258,
+   "ataque": 0.027,
+   "volume_db": -12,
+   "fonte": "OpenGameArt: Kenney (kenney.nl)",
+   "licenca": "CC0 1.0",
+   "credito": "Kenney (kenney.nl) (CC0)",
+   "url": "https://opengameart.org/content/interface-sounds"
+  },
+  {
+   "id": "interruptor",
+   "categoria": "interface",
+   "tags": [
+    "interruptor",
+    "switch",
+    "liga",
+    "toggle"
+   ],
+   "usos": "Interruptor: liga/desliga, antes e depois, 'virou a chave'.",
+   "arquivo": "arquivos/interruptor.ogg",
+   "duracao": 0.192,
+   "ataque": 0.057,
+   "volume_db": -10,
+   "fonte": "OpenGameArt: Kenney (kenney.nl)",
+   "licenca": "CC0 1.0",
+   "credito": "Kenney (kenney.nl) (CC0)",
+   "url": "https://opengameart.org/content/51-ui-sound-effects-buttons-switches-and-clicks"
+  },
+  {
+   "id": "rolagem",
+   "categoria": "interface",
+   "tags": [
+    "rolagem",
+    "scroll",
+    "contagem",
+    "roleta"
+   ],
+   "usos": "Catraca de rolagem: contador subindo, barra carregando.",
+   "arquivo": "arquivos/rolagem.ogg",
+   "duracao": 1.0,
+   "ataque": 0.223,
+   "volume_db": -13,
+   "fonte": "OpenGameArt: Kenney (kenney.nl)",
+   "licenca": "CC0 1.0",
+   "credito": "Kenney (kenney.nl) (CC0)",
+   "url": "https://opengameart.org/content/interface-sounds"
+  },
+  {
+   "id": "notificacao",
+   "categoria": "interface",
+   "tags": [
+    "notificação",
+    "alerta",
+    "mensagem",
+    "celular"
+   ],
+   "usos": "Notificação de celular: cartão de notificação, mensagem de cliente.",
+   "arquivo": "arquivos/notificacao.ogg",
+   "duracao": 0.932,
+   "ataque": 0.151,
+   "volume_db": -8,
+   "fonte": "OpenGameArt: Frosty Ham",
+   "licenca": "CC0 1.0",
+   "credito": "Frosty Ham (CC0)",
+   "url": "https://opengameart.org/content/alertnotification-sound"
+  },
+  {
+   "id": "glitch",
+   "categoria": "interface",
+   "tags": [
+    "glitch",
+    "falha",
+    "digital",
+    "bug"
+   ],
+   "usos": "Falha digital curta: efeito glitch, erro, 'bug no processo'.",
+   "arquivo": "arquivos/glitch.ogg",
+   "duracao": 0.398,
+   "ataque": 0.025,
+   "volume_db": -12,
+   "fonte": "Própria (ferramentas/montar_sons.py)",
+   "licenca": "Própria",
+   "credito": "Leonardo Pontes / edicao-video"
+  },
+  {
+   "id": "acerto",
+   "categoria": "marcacao",
+   "tags": [
+    "acerto",
+    "certo",
+    "confirmação",
+    "sucesso"
+   ],
+   "usos": "Arpejo de confirmação: check, aprovado, 'faça assim'.",
+   "arquivo": "arquivos/acerto.ogg",
+   "duracao": 0.539,
+   "ataque": 0.026,
+   "volume_db": -11,
+   "fonte": "OpenGameArt: Kenney (kenney.nl)",
+   "licenca": "CC0 1.0",
+   "credito": "Kenney (kenney.nl) (CC0)",
+   "url": "https://opengameart.org/content/interface-sounds"
+  },
+  {
+   "id": "erro",
+   "categoria": "marcacao",
+   "tags": [
+    "erro",
+    "errado",
+    "não",
+    "alerta"
+   ],
+   "usos": "Buzina suave de erro: xis, mito, 'não faça isso'.",
+   "arquivo": "arquivos/erro.ogg",
+   "duracao": 0.252,
+   "ataque": 0.092,
+   "volume_db": -13,
+   "fonte": "OpenGameArt: Kenney (kenney.nl)",
+   "licenca": "CC0 1.0",
+   "credito": "Kenney (kenney.nl) (CC0)",
+   "url": "https://opengameart.org/content/interface-sounds"
+  },
+  {
+   "id": "ding",
+   "categoria": "marcacao",
+   "tags": [
+    "ding",
+    "sino",
+    "ideia",
+    "insight"
+   ],
+   "usos": "Ding metálico: insight, ideia, 'percebe?'.",
+   "arquivo": "arquivos/ding.ogg",
+   "duracao": 1.459,
+   "ataque": 0.092,
+   "volume_db": -11,
+   "fonte": "OpenGameArt: StarNinjas",
+   "licenca": "CC0 1.0",
+   "credito": "StarNinjas (CC0)",
+   "url": "https://opengameart.org/content/4-metal-dingsrings"
+  },
+  {
+   "id": "lapis",
+   "categoria": "marcacao",
+   "tags": [
+    "lápis",
+    "escrever",
+    "rabisco",
+    "mão"
+   ],
+   "usos": "Lápis escrevendo: círculo, sublinhado, seta e marca-texto desenhados à mão.",
+   "arquivo": "arquivos/lapis.ogg",
+   "duracao": 0.9,
+   "ataque": 0.093,
+   "volume_db": -6,
+   "fonte": "OpenGameArt: Jordan Irwin (AntumDeluge)",
+   "licenca": "CC0 1.0",
+   "credito": "Jordan Irwin (AntumDeluge) (CC0)",
+   "url": "https://opengameart.org/content/pencil-sounds"
+  },
+  {
+   "id": "brilho",
+   "categoria": "marcacao",
+   "tags": [
+    "brilho",
+    "faísca",
+    "mágico",
+    "valioso"
+   ],
+   "usos": "Faíscas cintilando: algo valioso, novo, premium.",
+   "arquivo": "arquivos/brilho.ogg",
+   "duracao": 0.771,
+   "ataque": 0.213,
+   "volume_db": -10,
+   "fonte": "Própria (ferramentas/montar_sons.py)",
+   "licenca": "Própria",
+   "credito": "Leonardo Pontes / edicao-video"
+  },
+  {
+   "id": "teclado",
+   "categoria": "objetos",
+   "tags": [
+    "teclado",
+    "digitar",
+    "computador",
+    "escrever"
+   ],
+   "usos": "Digitação em teclado: texto se escrevendo, prompt, e-mail, 'eu escrevi…'.",
+   "arquivo": "arquivos/teclado.ogg",
+   "duracao": 1.8,
+   "ataque": 0.638,
+   "volume_db": -10,
+   "fonte": "OpenGameArt: Unicae Games",
+   "licenca": "CC0 1.0",
+   "credito": "Unicae Games (CC0)",
+   "url": "https://opengameart.org/content/keyboard-soundpack-1-typing-and-single-keystrokes"
+  },
+  {
+   "id": "maquina-escrever",
+   "categoria": "objetos",
+   "tags": [
+    "máquina de escrever",
+    "texto",
+    "roteiro",
+    "retrô"
+   ],
+   "usos": "Máquina de escrever: título letra a letra, roteiro, citação.",
+   "arquivo": "arquivos/maquina-escrever.ogg",
+   "duracao": 0.659,
+   "ataque": 0.097,
+   "volume_db": -9,
+   "fonte": "OpenGameArt: Cassie (Orbit Games)",
+   "licenca": "CC0 1.0",
+   "credito": "Cassie (Orbit Games) (CC0)",
+   "url": "https://opengameart.org/content/typewriter-sounds"
+  },
+  {
+   "id": "moedas",
+   "categoria": "objetos",
+   "tags": [
+    "moedas",
+    "dinheiro",
+    "fichas",
+    "custo"
+   ],
+   "usos": "Fichas/moedas empilhando: dinheiro, custo, orçamento, ROI.",
+   "arquivo": "arquivos/moedas.ogg",
+   "duracao": 0.371,
+   "ataque": 0.046,
+   "volume_db": -8,
+   "fonte": "OpenGameArt: Kenney (kenney.nl)",
+   "licenca": "CC0 1.0",
+   "credito": "Kenney (kenney.nl) (CC0)",
+   "url": "https://opengameart.org/content/54-casino-sound-effects-cards-dice-chips"
+  }
+ ]
+}

@@ -93,7 +93,7 @@ def dono_do_caminho(caminho, base=None):
 
 def conferir_edl(edl, analise=None, pasta=None):
     """Levanta ErroDeMarca com todos os problemas encontrados (nada é renderizado se houver um)."""
-    from .bibliotecas import item, objeto_3d, permitido
+    from .bibliotecas import item, objeto_3d, permitido, som
     from .efeitos import REGISTRO
     mid = ATIVA["id"]
     pr = []
@@ -118,6 +118,15 @@ def conferir_edl(edl, analise=None, pasta=None):
         dono = dono_do_caminho(caminho, pasta)
         if dono and dono != mid:
             pr.append(f"{onde} aponta para a pasta da marca {dono}: {caminho}")
+    pedidos = [(f"segmentos[{i}].som", sg.get("som")) for i, sg in enumerate(edl.get("segmentos", []))]
+    pedidos += [(f"elementos[{i}].som", e.get("som")) for i, e in enumerate(edl.get("elementos", []))]
+    pedidos += [(f"elementos[{i}].nome", e.get("nome")) for i, e in enumerate(edl.get("elementos", [])) if e.get("tipo") == "som"]
+    for onde, sid in pedidos:
+        if isinstance(sid, str) and sid:
+            try:
+                som(sid)
+            except ErroDeMarca as err:
+                pr.append(f"{onde}: {err}")
     for i, e in enumerate(edl.get("elementos", [])):
         tp = e.get("tipo")
         if tp == "leo" and not tem_leo():

@@ -33,6 +33,8 @@ def _linha(qual, it):
                 f"{'sob fala' if it.get('sob_fala') else '        '}  {', '.join(it.get('clima', []))}  · {it['genero']}")
     if qual == "3d":
         return f"{it['id']:22s} {it['tipo']:9s} {it['categoria']:14s} {', '.join(it.get('tags', [])[:6])}"
+    if qual == "sons":
+        return f"{it['id']:18s} {it['categoria']:10s} {it['duracao']:5.2f}s  {it['usos']}"
     return f"{it['id']:16s} {it['categoria']:12s} {it['descricao']}"
 
 
@@ -41,7 +43,7 @@ def cmd_biblioteca(a):
         ativar(a.marca)
     if a.acao == "listar":
         if not a.qual:
-            sys.exit("diga qual biblioteca: 3d, musicas ou efeitos")
+            sys.exit("diga qual biblioteca: 3d, musicas, efeitos ou sons")
         if a.qual == "efeitos":
             from .efeitos import catalogo_efeitos
             lista = [e for e in catalogo_efeitos() if not a.categoria or e["categoria"] == a.categoria]
@@ -89,7 +91,7 @@ def verificar_bibliotecas():
     from .bibliotecas import LICENCAS_LIVRES
     from .efeitos import catalogo_efeitos
     ok = True
-    for qual in ("3d", "musicas"):
+    for qual in ("3d", "musicas", "sons"):
         ids = set()
         for it in itens(qual):
             if it["id"] in ids:
@@ -100,8 +102,8 @@ def verificar_bibliotecas():
                 print(f"[{qual}] {it['id']}: licença fora da lista livre: {it.get('licenca')}")
                 ok = False
             p = BIBLIOTECA / qual / it["arquivo"]
-            if qual == "3d" and not p.exists():
-                print(f"[3d] {it['id']}: arquivo ausente {p}")
+            if qual in ("3d", "sons") and not p.exists():
+                print(f"[{qual}] {it['id']}: arquivo ausente {p}")
                 ok = False
             for m in it.get("marcas", []):
                 if m not in listar_marcas():
@@ -112,8 +114,12 @@ def verificar_bibliotecas():
     if gravado != json.loads(json.dumps(catalogo_efeitos(), ensure_ascii=False)):
         print("[efeitos] catalogo.json desatualizado: rode `editor.py biblioteca catalogo`")
         ok = False
+    for e in catalogo_efeitos():
+        if e.get("som") and e["som"] not in {it["id"] for it in itens("sons")}:
+            print(f"[efeitos] {e['id']}: som padrão desconhecido: {e['som']}")
+            ok = False
     print(f"3D: {len(itens('3d'))} objetos · músicas: {len(itens('musicas'))} faixas ({baixadas} baixadas) · "
-          f"efeitos: {len(catalogo_efeitos())}")
+          f"efeitos: {len(catalogo_efeitos())} · sons: {len(itens('sons'))}")
     print("TUDO OK" if ok else "HÁ PROBLEMAS")
     return ok
 

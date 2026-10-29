@@ -36,6 +36,9 @@
   "musica": {
     "politica": "proibida"
   },
+  "sons": {
+    "modo": "biblioteca"
+  },
   "cta": {
     "chamada": "Quer destravar seu produto?",
     "url": "leopontes.com.br/mentoria-produto",

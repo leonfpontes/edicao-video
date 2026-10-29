@@ -4,7 +4,7 @@
   editor.py renderizar trabalho/edl.json [--rapido] [--so-audio]
   editor.py testar     [--marca <marca>] [--atualizar] [--so-visual]
   editor.py marcas
-  editor.py biblioteca listar 3d|musicas|efeitos [termo] [--clima …] [--categoria …]
+  editor.py biblioteca listar 3d|musicas|efeitos|sons [termo] [--clima …] [--categoria …]
   editor.py biblioteca baixar [musicas [id …]|3d <nome-fluent>]
   editor.py biblioteca verificar
   editor.py biblioteca previa efeitos|3d|musicas --marca <marca>
@@ -20,4 +20,4 @@ visual vem de marcas/<marca>/marca.json; o edl.json guarda a marca em "marca" e 
 misture marcas (veja motor/guarda.py). As chaves de cor são papéis: "marinho" = cor escura de fundo/caixa,
 "champanhe" = cor de destaque, "papel" = cor clara.
 """
-__version__ = "2.0.0"
+__version__ = "2.1.0"

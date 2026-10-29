@@ -12,10 +12,10 @@
 </p>
 
 <p align="center">
-  <img alt="Versão" src="https://img.shields.io/badge/vers%C3%A3o-2.0.0-D4B98C?style=flat-square&labelColor=14213D">
+  <img alt="Versão" src="https://img.shields.io/badge/vers%C3%A3o-2.1.0-D4B98C?style=flat-square&labelColor=14213D">
   <img alt="Python" src="https://img.shields.io/badge/Python-3.11%2B-D4B98C?style=flat-square&labelColor=14213D">
   <img alt="Roda local" src="https://img.shields.io/badge/roda-local%20e%20gratuito-D4B98C?style=flat-square&labelColor=14213D">
-  <img alt="Testes" src="https://img.shields.io/badge/testes-87%20%2B%20regress%C3%A3o%20visual-D4B98C?style=flat-square&labelColor=14213D">
+  <img alt="Testes" src="https://img.shields.io/badge/testes-114%20%2B%20regress%C3%A3o%20visual-D4B98C?style=flat-square&labelColor=14213D">
 </p>
 
 # Editor de vídeo multimarca
@@ -78,18 +78,19 @@ exclusivos) e os arquivos que são só dela: logo, vinheta, Leo, objetos 3D pró
 
 ## Bibliotecas
 
-Três bibliotecas compartilhadas por todas as marcas. Tudo é desenhado **com a paleta da marca ativa**, então o mesmo efeito
+Quatro bibliotecas compartilhadas por todas as marcas. Tudo é desenhado **com a paleta da marca ativa**, então o mesmo efeito
 sai azul e champanhe no @pontes_brain e terra e ouro no GiraHub.
 
-### 3D: 167 objetos
+### 3D: 215 objetos
 
 <p align="center"><img src="docs/img/biblioteca-3d.png" alt="Amostra da biblioteca 3D: ícones renderizados e logos extrudados" width="100%"></p>
 
-- **119 renders 3D** (Microsoft Fluent Emoji 3D, licença MIT) em 18 categorias: dinheiro, crescimento, estratégia,
-  tempo, conquista, reações, vida, comunidade… Entram com mola, flutuam e saem girando.
+- **167 renders 3D** (Microsoft Fluent Emoji 3D, licença MIT) em 19 categorias: gestão (semáforo de status, projeto
+  zumbi, tesoura de escopo, extintor, boia…), dinheiro, crescimento, estratégia, tempo, conquista, reações, vida… Entram com mola, flutuam e saem girando.
 - **48 logos extrudados** (Simple Icons, CC0): Claude, ChatGPT, Gemini, Notion, Figma, Trello, WhatsApp, Instagram, Pix,
   Nubank… O motor dá espessura, luz e reflexo a partir do PNG plano.
-- Objetos de identidade ficam com a marca dona (`marcas/<id>/3d/`) e só aparecem para ela.
+- Objetos de identidade ficam com a marca dona (`marcas/<id>/3d/`) e só aparecem para ela: o @pontes_brain tem o
+  Monograma LP, as placas dos gates G1 a G4 e o ciclo PDCA em 3D.
 
 ```bash
 editor.py biblioteca listar 3d dinheiro          # busca por nome, tag ou categoria
@@ -108,19 +109,35 @@ editor.py biblioteca listar musicas bossa
 editor.py biblioteca baixar musicas              # ≈ 230 MB, uma vez; os arquivos ficam fora do Git
 ```
 
-### Efeitos: 20 layers
+### Efeitos: 29 layers
 
-<p align="center"><img src="docs/img/biblioteca-efeitos.jpg" alt="Galeria dos 20 efeitos na paleta do @pontes_brain" width="100%"></p>
+<p align="center"><img src="docs/img/biblioteca-efeitos.jpg" alt="Galeria dos 28 efeitos na paleta do @pontes_brain" width="100%"></p>
 
-Luz e textura (vazamento de luz, grão, vinheta, VHS, glitch, flash, tremor, foco), celebração (confete, brilhos, bokeh,
-chuva de objetos 3D, ondas), anotação (círculo desenhado, sublinhado, seta, check, xis) e informação (contador animado,
-moldura REC). Todos são determinísticos, aceitam só papéis da paleta como cor e entram ancorados na fala, como qualquer
+Luz e textura (vazamento de luz, reflexo de vidro, grão, vinheta, VHS, glitch, flash, tremor, foco), celebração (confete,
+brilhos, bokeh, chuva de objetos 3D, reações de live, ondas), anotação (círculo desenhado, sublinhado, seta, marca-texto,
+check, xis), informação (contador, cartão de vidro líquido, notificação, barra carregando, checklist, moldura REC) e
+tipografia cinética. Todos são determinísticos, aceitam só papéis da paleta como cor e entram ancorados na fala, como qualquer
 elemento do EDL.
 
 ```jsonc
 {"tipo": "efeito", "nome": "confete", "na": "deu certo", "cor": "champanhe"}
 {"tipo": "efeito", "nome": "contador", "na": "oitenta e sete por cento", "ate": 87, "sufixo": "%"}
 ```
+
+### Sons: 38 efeitos sonoros
+
+Whooshes, risers, impactos, sons de interface, papel, lápis, teclado e notificação: gravações **CC0** (Kenney, qubodup,
+StarNinjas…) e efeitos **próprios** desenhados em `ferramentas/montar_sons.py`. Cada som sabe onde fica o próprio pico,
+então o whoosh passa exatamente no corte e o riser chega exatamente na palavra. Marcas com `"sons": {"modo": "biblioteca"}`
+(o @pontes_brain) tocam o som certo em cada transição, elemento e efeito; as outras seguem com o whoosh e o pop sintéticos.
+
+```jsonc
+{"tipo": "som", "nome": "riser-curto", "na": "o segredo"}
+{"tipo": "destaque", "texto": "ROI", "na": "retorno", "som": "moedas"}
+```
+
+Transições: `push`, `whip`, `zoom`, `slide`, `flash`, `dissolve` e, desde a 2.1, `giro` (giro 3D), `rasgo` (papel rasgado),
+`vidro` (vidro líquido) e `luz` (queima de luz).
 
 ## Isolamento entre marcas
 
@@ -161,7 +178,7 @@ O agente usa a skill da marca (`skills/editor-video-<marca>/SKILL.md`), analisa,
 
 ## Qualidade
 
-- **87 testes de unidade** (`make testes`): validação das marcas, guarda, efeitos, catálogos.
+- **114 testes de unidade** (`make testes`): validação das marcas, guarda, efeitos, catálogos.
 - **Regressão visual** (`make regressao`): a folha de cada marca é comparada pixel a pixel com a referência, a guarda é
   testada contra as outras marcas e um vídeo sintético é renderizado de ponta a ponta, com loudness medido.
 - **CI no GitHub Actions** em todo PR: lint (ruff), testes, bibliotecas e regressão.

@@ -24,11 +24,12 @@ from .movimento import clamp01, ease_in, ease_in_out, ease_out, mola
 REGISTRO = {}
 
 
-def efeito(nome, categoria, descricao, params=None, fase="elementos", pop=False):
-    """Registra uma classe de efeito na biblioteca."""
+def efeito(nome, categoria, descricao, params=None, fase="elementos", pop=False, som=None):
+    """Registra uma classe de efeito na biblioteca. pop: ganha o "pop" sintético nas marcas sem biblioteca de
+    sons; som: id do som padrão (biblioteca/sons/) nas marcas com "sons": {"modo": "biblioteca"}."""
     def reg(cls):
         cls.nome, cls.categoria, cls.descricao = nome, categoria, descricao
-        cls.params, cls.fase, cls.pop = params or {}, fase, pop
+        cls.params, cls.fase, cls.pop, cls.som = params or {}, fase, pop, som
         REGISTRO[nome] = cls
         return cls
     return reg
@@ -43,7 +44,7 @@ def criar_efeito(e, W, H, semente=0):
 
 def catalogo_efeitos():
     return [{"id": n, "categoria": c.categoria, "descricao": c.descricao, "fase": c.fase, "som_pop": c.pop,
-             "params": c.params} for n, c in sorted(REGISTRO.items())]
+             "som": c.som, "params": c.params} for n, c in sorted(REGISTRO.items())]
 
 
 def cor_marca(nome):
@@ -100,7 +101,7 @@ class Efeito:
 # ───────────────────────────── luz e textura (quadro inteiro) ─────────────────────────────
 
 @efeito("vazamento_luz", "luz", "Vazamento de luz quente que atravessa a tela, como em filme. Bom em abertura e virada de assunto.",
-        {"intensidade": "0 a 1 (padrão 1)", "direcao": "esquerda|direita (padrão direita)"}, fase="pos")
+        {"intensidade": "0 a 1 (padrão 1)", "direcao": "esquerda|direita (padrão direita)"}, fase="pos", som="whoosh-sopro")
 class VazamentoLuz(Efeito):
     def preparar(self):
         w, h = self.W // 6, self.H // 6
@@ -176,7 +177,7 @@ class VHS(Efeito):
 
 
 @efeito("glitch", "impacto", "Falha digital rápida (canais de cor separados e fatias deslocadas). Para virada, erro, 'bug' no processo.",
-        {"intensidade": "0 a 1 (padrão 1)"}, fase="pos", pop=True)
+        {"intensidade": "0 a 1 (padrão 1)"}, fase="pos", pop=True, som="glitch")
 class Glitch(Efeito):
     def desenhar(self, frame, dt, rest):
         r = self.rng_quadro(dt)
@@ -197,7 +198,7 @@ class Glitch(Efeito):
 
 
 @efeito("flash", "impacto", "Clarão rápido na cor clara da marca, no instante de uma palavra forte.",
-        {"intensidade": "0 a 1 (padrão 1)"}, fase="pos", pop=True)
+        {"intensidade": "0 a 1 (padrão 1)"}, fase="pos", pop=True, som="reverso")
 class Flash(Efeito):
     def desenhar(self, frame, dt, rest):
         a = (ease_out(dt / 0.06) if dt < 0.06 else 1 - ease_out((dt - 0.06) / max(dt + rest - 0.06, 0.1)))
@@ -207,7 +208,7 @@ class Flash(Efeito):
 
 
 @efeito("tremor", "impacto", "Câmera treme e assenta (impacto, susto, revelação). Curto: 0,3 a 0,6 s.",
-        {"intensidade": "0 a 1 (padrão 1)"}, fase="pos")
+        {"intensidade": "0 a 1 (padrão 1)"}, fase="pos", som="impacto-grave")
 class Tremor(Efeito):
     def desenhar(self, frame, dt, rest):
         k = math.exp(-6 * dt) * 22 * self.forca
@@ -219,7 +220,7 @@ class Tremor(Efeito):
 
 
 @efeito("foco", "atencao", "Escurece tudo fora de um círculo (íris que fecha sobre o ponto x,y). Para apontar um detalhe.",
-        {"x": "0 a 1", "y": "0 a 1", "raio": "fração da largura (padrão 0.22)", "intensidade": "escuridão 0 a 1"}, fase="pos")
+        {"x": "0 a 1", "y": "0 a 1", "raio": "fração da largura (padrão 0.22)", "intensidade": "escuridão 0 a 1"}, fase="pos", som="whoosh-lento")
 class Foco(Efeito):
     def preparar(self):
         yy, xx = np.mgrid[0:self.H // 4, 0:self.W // 4].astype(np.float32)
@@ -264,7 +265,7 @@ class Bokeh(Efeito):
 
 
 @efeito("brilhos", "luz", "Faíscas de quatro pontas piscando ao redor de um ponto. Para algo valioso, novo, 'mágico'.",
-        {"x": "0 a 1", "y": "0 a 1", "raio": "fração da largura (padrão 0.2)", "quantidade": "padrão 9"}, pop=True)
+        {"x": "0 a 1", "y": "0 a 1", "raio": "fração da largura (padrão 0.2)", "quantidade": "padrão 9"}, pop=True, som="brilho")
 class Brilhos(Efeito):
     def preparar(self):
         n = int(self.e.get("quantidade", 9))
@@ -307,7 +308,7 @@ def _somar_roi(frame, cam, x0, y0, alpha):
 
 
 @efeito("confete", "celebracao", "Explosão de confete nas cores da marca, com gravidade. Para conquista, lançamento, 'deu certo'.",
-        {"x": "0 a 1 (origem)", "y": "0 a 1 (origem)", "quantidade": "padrão 90"}, pop=True)
+        {"x": "0 a 1 (origem)", "y": "0 a 1 (origem)", "quantidade": "padrão 90"}, pop=True, som="pop-bolha")
 class Confete(Efeito):
     def preparar(self):
         n = int(self.e.get("quantidade", 90))
@@ -336,7 +337,7 @@ class Confete(Efeito):
 
 
 @efeito("ondas", "atencao", "Anéis que se expandem a partir de um ponto (pulso de atenção, notificação, 'olha aqui').",
-        {"x": "0 a 1", "y": "0 a 1", "raio": "fração da largura (padrão 0.3)"})
+        {"x": "0 a 1", "y": "0 a 1", "raio": "fração da largura (padrão 0.3)"}, som="notificacao")
 class Ondas(Efeito):
     def desenhar(self, frame, dt, rest):
         R = self.W * self.e.get("raio", 0.3)
@@ -355,7 +356,7 @@ class Ondas(Efeito):
 
 
 @efeito("chuva_3d", "celebracao", "Objetos da biblioteca 3D caindo pela tela (ex.: dinheiro, corações, foguetes).",
-        {"objeto": "id da biblioteca 3D (padrão estrela)", "quantidade": "padrão 12", "tamanho": "fração da largura (padrão 0.12)"})
+        {"objeto": "id da biblioteca 3D (padrão estrela)", "quantidade": "padrão 12", "tamanho": "fração da largura (padrão 0.12)"}, som="pop-bolha")
 class Chuva3D(Efeito):
     def preparar(self):
         from PIL import Image
@@ -403,7 +404,7 @@ def _traco(frame, pts, p, cor, esp, alpha=1.0):
 
 
 @efeito("circulo", "marcacao", "Círculo feito 'à mão' em volta de um ponto (marca-texto de vídeo).",
-        {"x": "0 a 1", "y": "0 a 1", "largura": "fração da largura (padrão 0.4)", "altura": "fração da largura (padrão 0.18)"})
+        {"x": "0 a 1", "y": "0 a 1", "largura": "fração da largura (padrão 0.4)", "altura": "fração da largura (padrão 0.18)"}, som="lapis")
 class Circulo(Efeito):
     def preparar(self):
         rx, ry = self.W * self.e.get("largura", 0.4) / 2, self.W * self.e.get("altura", 0.18) / 2
@@ -419,7 +420,7 @@ class Circulo(Efeito):
 
 
 @efeito("sublinhado", "marcacao", "Sublinhado ondulado desenhado da esquerda para a direita, sob uma palavra ou número.",
-        {"x": "centro 0 a 1", "y": "0 a 1", "largura": "fração da largura (padrão 0.5)"})
+        {"x": "centro 0 a 1", "y": "0 a 1", "largura": "fração da largura (padrão 0.5)"}, som="lapis")
 class Sublinhado(Efeito):
     def preparar(self):
         L = self.W * self.e.get("largura", 0.5)
@@ -431,7 +432,8 @@ class Sublinhado(Efeito):
 
 
 @efeito("seta", "marcacao", "Seta curva que se desenha e aponta para (x, y). Para indicar um detalhe da tela ou do b-roll.",
-        {"x": "ponta 0 a 1", "y": "ponta 0 a 1", "de": "esquerda|direita|cima|baixo (padrão esquerda)", "comprimento": "fração da largura (padrão 0.3)"})
+        {"x": "ponta 0 a 1", "y": "ponta 0 a 1", "de": "esquerda|direita|cima|baixo (padrão esquerda)", "comprimento": "fração da largura (padrão 0.3)"},
+        som="lapis")
 class Seta(Efeito):
     def preparar(self):
         L = self.W * self.e.get("comprimento", 0.3)
@@ -482,14 +484,14 @@ class _Selo(Efeito):
 
 
 @efeito("check", "marcacao", "Selo de 'certo' (disco com mola e check traçado). Para acerto, aprovado, 'faça assim'.",
-        {"x": "0 a 1", "y": "0 a 1", "tamanho": "diâmetro em fração da largura (padrão 0.12)"}, pop=True)
+        {"x": "0 a 1", "y": "0 a 1", "tamanho": "diâmetro em fração da largura (padrão 0.12)"}, pop=True, som="acerto")
 class Check(_Selo):
     def simbolo(self):
         return [[(-0.45, 0.02), (-0.12, 0.34), (0.48, -0.32)]]
 
 
 @efeito("xis", "marcacao", "Selo de 'errado' (disco com mola e X traçado). Para erro comum, mito, 'não faça'.",
-        {"x": "0 a 1", "y": "0 a 1", "tamanho": "diâmetro em fração da largura (padrão 0.12)"}, pop=True)
+        {"x": "0 a 1", "y": "0 a 1", "tamanho": "diâmetro em fração da largura (padrão 0.12)"}, pop=True, som="erro")
 class Xis(_Selo):
     def simbolo(self):
         return [[(-0.36, -0.36), (0.36, 0.36)], [(0.36, -0.36), (-0.36, 0.36)]]
@@ -504,7 +506,7 @@ def _numero(v, casas):
 
 @efeito("contador", "informacao", "Número que conta até o valor falado (ex.: 0 → 87%), num cartão da marca.",
         {"de": "número inicial (padrão 0)", "ate": "número final", "prefixo": "ex.: R$ ", "sufixo": "ex.: %",
-         "casas": "casas decimais (padrão 0)", "duracao_contagem": "segundos (padrão 1.2)", "y": "0 a 1 (padrão 0.3)"}, pop=True)
+         "casas": "casas decimais (padrão 0)", "duracao_contagem": "segundos (padrão 1.2)", "y": "0 a 1 (padrão 0.3)"}, pop=True, som="rolagem")
 class Contador(Efeito):
     def preparar(self):
         self.y = self.H * self.e.get("y", 0.3)
@@ -523,7 +525,7 @@ class Contador(Efeito):
 
 
 @efeito("moldura_rec", "informacao", "Moldura de câmera gravando (cantos, ponto pulsando e cronômetro). Para bastidores e vlog.",
-        {"rotulo": "texto ao lado do ponto (padrão REC)"})
+        {"rotulo": "texto ao lado do ponto (padrão REC)"}, som="clique")
 class MolduraRec(Efeito):
     def preparar(self):
         self.f = fonte("Bold", int(self.W * 0.035))
@@ -548,10 +550,409 @@ class MolduraRec(Efeito):
         blend(frame, np.array(im), m + int(self.W * 0.06), m * 2 + int(self.W * 0.06) - self.f.size * 0.7, a)
 
 
+# ───────────────────────────── tendências 2026: vidro líquido, tipografia cinética, UI ─────────────────────────────
+
+def _mascara_arredondada(w, h, raio):
+    """Máscara 0..1 de um retângulo de cantos arredondados (desenhada em 2x para a borda ficar lisa)."""
+    from PIL import Image, ImageDraw
+    m = Image.new("L", (w * 2, h * 2), 0)
+    ImageDraw.Draw(m).rounded_rectangle([0, 0, w * 2 - 1, h * 2 - 1], raio * 2, fill=255)
+    return np.asarray(m.resize((w, h), Image.LANCZOS), np.float32) / 255
+
+
+def painel_vidro(frame, x0, y0, w, h, alpha=1.0, raio=None, tom="marinho", tom_alpha=0.32):
+    """Painel de vidro líquido (estilo Apple): o que está atrás fica fosco e um pouco mais claro, com um véu da cor da
+    marca para o texto ler em qualquer fundo, fio de luz champanhe na borda, brilho especular no topo e sombra macia."""
+    H, W = frame.shape[:2]
+    x0, y0, w, h = int(x0), int(y0), int(w), int(h)
+    if w < 8 or h < 8 or alpha <= 0.01:
+        return
+    raio = raio or max(8, int(12 * W / 1080))  # cantos de 8 a 12 px (nunca pílula)
+    xa, ya, xb, yb = max(0, x0), max(0, y0), min(W, x0 + w), min(H, y0 + h)
+    if xa >= xb or ya >= yb:
+        return
+    m = _mascara_arredondada(w, h, raio)[ya - y0:yb - y0, xa - x0:xb - x0][..., None]
+    # sombra macia embaixo do painel
+    pad = int(h * 0.25)
+    sy0, sy1, sx0, sx1 = max(0, ya + pad // 3), min(H, yb + pad), max(0, xa - pad // 2), min(W, xb + pad // 2)
+    if sy1 > sy0 and sx1 > sx0:
+        sm = np.zeros((sy1 - sy0, sx1 - sx0), np.float32)
+        sm[max(0, ya + pad // 3 - sy0):yb - sy0, xa - sx0:xb - sx0] = 1
+        sm = cv2.GaussianBlur(sm, (0, 0), pad / 2.5)[..., None] * 0.35 * alpha
+        frame[sy0:sy1, sx0:sx1] = (frame[sy0:sy1, sx0:sx1].astype(np.float32) * (1 - sm)).astype(np.uint8)
+    roi = frame[ya:yb, xa:xb].astype(np.float32)
+    k = max(3, int(W * 0.028)) | 1
+    fosco = cv2.GaussianBlur(cv2.resize(roi, None, fx=0.5, fy=0.5), (k, k), 0)
+    fosco = cv2.resize(fosco, (xb - xa, yb - ya))
+    vel = np.array(_bgr(cor_marca(tom)), np.float32)
+    fosco = fosco * (1 - tom_alpha) + vel * tom_alpha
+    fosco = fosco * 1.04 + 6
+    # brilho especular: faixa clara no terço de cima, apagando para baixo
+    gy = np.linspace(0, 1, h)[ya - y0:yb - y0, None, None]
+    luz = np.clip(1 - gy / 0.45, 0, 1) ** 2 * 26
+    fosco = fosco + luz
+    vidro = roi * (1 - m * alpha) + fosco * m * alpha
+    # fio de luz na borda: champanhe em cima, névoa embaixo
+    borda = np.clip(m[..., 0] - cv2.erode(m[..., 0], np.ones((3, 3), np.uint8)), 0, 1)[..., None]
+    cor_borda = np.array(_bgr(cor_marca("champanhe")), np.float32) * (1 - gy) + np.array(_bgr(cor_marca("nevoa")), np.float32) * gy
+    vidro = vidro * (1 - borda * 0.85 * alpha) + cor_borda * borda * 0.85 * alpha
+    frame[ya:yb, xa:xb] = np.clip(vidro, 0, 255).astype(np.uint8)
+
+
+def _texto_rgba(txt, peso, tam, cor, papel="texto"):
+    from PIL import Image, ImageDraw
+    f = fonte(peso, tam, papel)
+    x0, y0, x1, y1 = f.getbbox(txt)
+    im = Image.new("RGBA", (x1 - x0 + 8, y1 - y0 + 8), (0, 0, 0, 0))
+    ImageDraw.Draw(im).text((4 - x0, 4 - y0), txt, font=f, fill=tuple(int(c) for c in cor) + (255,))
+    return np.array(im)
+
+
+def _entrada_painel(dt, rest, ent=0.45, sai=0.3):
+    """Escala, deslocamento vertical e opacidade de um painel que entra com mola e sai subindo."""
+    s = clamp01(mola(dt / ent, 6, 10))
+    q = ease_in(1 - rest / sai) if rest < sai else 0.0
+    return 0.9 + 0.1 * s, (1 - clamp01(dt / ent)) * 30 - q * 40, clamp01(dt / 0.15) * (1 - q)
+
+
+@efeito("cartao_vidro", "informacao", "Cartão de vidro líquido (fosco, fio de luz, brilho) com título e linha de apoio. "
+        "Para conceito, definição, gate, número com contexto.",
+        {"texto": "título do cartão", "sub": "linha de apoio (opcional)", "x": "0 a 1", "y": "0 a 1 (padrão 0.24)",
+         "largura": "fração da largura (padrão 0.78)"}, pop=True, som="toque-vidro")
+class CartaoVidro(Efeito):
+    def preparar(self):
+        u = self.W / 1080
+        self.y = self.H * self.e.get("y", 0.24)
+        self.larg = int(self.W * self.e.get("largura", 0.78))
+        self.tit = _texto_rgba(self.e.get("texto", ""), "Black", int(64 * u), cor_marca("papel_2"), "titulo")
+        sub = self.e.get("sub")
+        self.sub = _texto_rgba(sub, "Regular", int(38 * u), cor_marca("papel")) if sub else None
+        self.pad = int(40 * u)
+        self.alt = self.pad * 2 + self.tit.shape[0] + (self.sub.shape[0] + int(10 * u) if sub else 0)
+        maior = max(self.tit.shape[1], self.sub.shape[1] if sub else 0) + 2 * self.pad + int(24 * u)
+        self.larg = max(self.larg, min(maior, int(self.W * 0.92)))
+
+    def desenhar(self, frame, dt, rest):
+        esc, dy, a = _entrada_painel(dt, rest)
+        w, h = int(self.larg * esc), int(self.alt * esc)
+        x0, y0 = self.x - w / 2, self.y - h / 2 + dy
+        painel_vidro(frame, x0, y0, w, h, a)
+        barra = int(self.W * 0.008)
+        hb = (h - 2 * self.pad * esc) * ease_out((dt - 0.15) / 0.35)
+        if hb > 2:
+            cv2.rectangle(frame, (int(x0 + self.pad * 0.55), int(y0 + h / 2 - hb / 2)),
+                          (int(x0 + self.pad * 0.55) + barra, int(y0 + h / 2 + hb / 2)), _bgr(self.cor), -1, cv2.LINE_AA)
+        tx = x0 + self.pad + barra * 2
+        p = ease_out((dt - 0.12) / 0.4)
+        blend(frame, self.tit, tx, y0 + self.pad * esc + (1 - p) * 18, a * p)
+        if self.sub is not None:
+            p2 = ease_out((dt - 0.25) / 0.4)
+            blend(frame, self.sub, tx, y0 + self.pad * esc + self.tit.shape[0] + 10 + (1 - p2) * 18, a * p2)
+
+
+@efeito("notificacao", "informacao", "Notificação de celular em vidro descendo do topo (mensagem de cliente, alerta, lembrete). "
+        "Formato que prende o olho em 2026.",
+        {"app": "nome do remetente/app (padrão Mensagem)", "texto": "texto da notificação", "y": "0 a 1 (padrão 0.15)"},
+        pop=True, som="notificacao")
+class Notificacao(Efeito):
+    def preparar(self):
+        from .marca import tem_logo
+        u = self.W / 1080
+        self.u = u
+        self.y = self.H * self.e.get("y", 0.15)
+        self.larg = int(self.W * 0.86)
+        self.app = _texto_rgba(self.e.get("app", "Mensagem"), "Bold", int(34 * u), cor_marca("papel_2"))
+        self.agora = _texto_rgba("agora", "Regular", int(28 * u), cor_marca("nevoa"))
+        from .graficos import quebrar
+        f = fonte("Regular", int(36 * u))
+        linhas = quebrar(self.e.get("texto", ""), f, self.larg - int(170 * u))[:2]
+        self.linhas = [_texto_rgba(li, "Regular", int(36 * u), cor_marca("papel")) for li in linhas]
+        self.alt = int(56 * u) + self.app.shape[0] + sum(li.shape[0] + int(4 * u) for li in self.linhas)
+        self.icone = None
+        if tem_logo():
+            from .graficos import pil2np
+            from .marca import logo_marca
+            self.icone = pil2np(logo_marca(int(56 * u)))
+
+    def desenhar(self, frame, dt, rest):
+        u = self.u
+        e = clamp01(mola(dt / 0.55, 7, 11))
+        q = ease_in(1 - rest / 0.35) if rest < 0.35 else 0.0
+        y0 = self.y - self.alt / 2 - (1 - e) * self.H * 0.14 - q * self.H * 0.14
+        a = clamp01(dt / 0.12) * (1 - q)
+        x0 = self.x - self.larg / 2
+        painel_vidro(frame, x0, y0, self.larg, self.alt, a, raio=int(12 * u))
+        ic = int(84 * u)
+        ix, iy = int(x0 + 26 * u), int(y0 + (self.alt - ic) / 2)
+        cv2.rectangle(frame, (ix, iy), (ix + ic, iy + ic), _bgr(cor_marca("marinho")), -1, cv2.LINE_AA)
+        cv2.rectangle(frame, (ix, iy), (ix + ic, iy + ic), _bgr(cor_marca("champanhe")), max(1, int(2 * u)), cv2.LINE_AA)
+        if self.icone is not None:
+            blend(frame, self.icone, ix + (ic - self.icone.shape[1]) / 2, iy + (ic - self.icone.shape[0]) / 2, a)
+        tx, ty = ix + ic + int(24 * u), y0 + int(26 * u)
+        blend(frame, self.app, tx, ty, a)
+        blend(frame, self.agora, x0 + self.larg - self.agora.shape[1] - int(28 * u), ty + 4 * u, a)
+        ty += self.app.shape[0] + int(6 * u)
+        for li in self.linhas:
+            blend(frame, li, tx, ty, a)
+            ty += li.shape[0] + int(4 * u)
+
+
+@efeito("carregando", "informacao", "Barra de progresso em vidro que enche até o valor (formato 'loading' em alta). "
+        "Para status de projeto, avanço, 'quanto falta'.",
+        {"rotulo": "texto acima da barra", "ate": "porcentagem final (padrão 100)", "duracao_carga": "segundos (padrão 1.6)",
+         "y": "0 a 1 (padrão 0.26)"}, pop=True, som="rolagem")
+class Carregando(Efeito):
+    def preparar(self):
+        u = self.W / 1080
+        self.u = u
+        self.y = self.H * self.e.get("y", 0.26)
+        self.larg, self.alt = int(self.W * 0.8), int(170 * u)
+        self.rot = _texto_rgba(self.e.get("rotulo", "Carregando"), "Bold", int(40 * u), cor_marca("papel_2"))
+        self.cache = {}
+
+    def desenhar(self, frame, dt, rest):
+        u = self.u
+        esc, dy, a = _entrada_painel(dt, rest)
+        w, h = int(self.larg * esc), int(self.alt * esc)
+        x0, y0 = self.x - w / 2, self.y - h / 2 + dy
+        painel_vidro(frame, x0, y0, w, h, a)
+        alvo = float(self.e.get("ate", 100))
+        p = ease_in_out((dt - 0.25) / self.e.get("duracao_carga", 1.6))
+        v = alvo * p
+        pct = f"{int(round(v))}%"
+        if pct not in self.cache:
+            self.cache = {pct: _texto_rgba(pct, "Black", int(44 * u), cor_marca("champanhe"))}
+        pad = int(34 * u)
+        blend(frame, self.rot, x0 + pad, y0 + pad * 0.8, a)
+        txt = self.cache[pct]
+        blend(frame, txt, x0 + w - pad - txt.shape[1], y0 + pad * 0.7, a)
+        bx0, bx1 = int(x0 + pad), int(x0 + w - pad)
+        by0 = int(y0 + h - pad - 26 * u)
+        by1 = by0 + int(26 * u)
+        trilho = frame.copy()
+        cv2.rectangle(trilho, (bx0, by0), (bx1, by1), _bgr(cor_marca("marinho")), -1, cv2.LINE_AA)
+        cheio = int(bx0 + (bx1 - bx0) * v / 100)
+        if cheio > bx0 + 2:
+            cv2.rectangle(trilho, (bx0, by0), (cheio, by1), _bgr(self.cor), -1, cv2.LINE_AA)
+            brilho = int(bx0 + (cheio - bx0) * ((dt * 0.9) % 1))  # reflexo correndo dentro da barra
+            cv2.rectangle(trilho, (max(bx0, brilho - int(30 * u)), by0), (brilho, by1), _bgr(cor_marca("papel_2")), -1)
+        frame[:] = cv2.addWeighted(trilho, 0.92 * a, frame, 1 - 0.92 * a, 0)
+
+
+@efeito("checklist", "informacao", "Lista em vidro em que cada item entra e é marcado com um check, um por vez. "
+        "Para passo a passo, critérios, 'o que você precisa'.",
+        {"itens": "lista de textos (até 5)", "intervalo": "segundos entre itens (padrão 0.7)", "titulo": "cabeçalho (opcional)",
+         "y": "0 a 1 (padrão 0.3)"}, som="tique")
+class Checklist(Efeito):
+    def preparar(self):
+        u = self.W / 1080
+        self.u = u
+        itens = list(self.e.get("itens", []))[:5]
+        self.txt = [_texto_rgba(t, "Bold", int(42 * u), cor_marca("papel_2")) for t in itens]
+        tit = self.e.get("titulo")
+        self.tit = _texto_rgba(tit, "Black", int(36 * u), cor_marca("champanhe"), "titulo") if tit else None
+        self.lh = int(78 * u)
+        self.pad = int(36 * u)
+        self.larg = int(self.W * 0.8)
+        self.alt = self.pad * 2 + self.lh * len(itens) + (self.tit.shape[0] + int(16 * u) if tit else 0)
+        self.y = self.H * self.e.get("y", 0.3)
+        self.passo = float(self.e.get("intervalo", 0.7))
+
+    def batidas(self):
+        """Instantes (desde a entrada) dos sons extras: um tique por item marcado."""
+        return [0.35 + i * self.passo + 0.25 for i in range(len(self.txt))]
+
+    def desenhar(self, frame, dt, rest):
+        u = self.u
+        esc, dy, a = _entrada_painel(dt, rest)
+        w, h = int(self.larg * esc), int(self.alt * esc)
+        x0, y0 = self.x - w / 2, self.y - h / 2 + dy
+        painel_vidro(frame, x0, y0, w, h, a)
+        y = y0 + self.pad
+        if self.tit is not None:
+            blend(frame, self.tit, x0 + self.pad, y, a)
+            y += self.tit.shape[0] + int(16 * u)
+        caixa = int(40 * u)
+        for i, t in enumerate(self.txt):
+            ti = dt - 0.35 - i * self.passo
+            p = ease_out(ti / 0.35)
+            if p <= 0:
+                continue
+            cx, cy = int(x0 + self.pad), int(y + (self.lh - caixa) / 2)
+            cv2.rectangle(frame, (cx, cy), (cx + caixa, cy + caixa), _bgr(cor_marca("champanhe")), max(2, int(3 * u)), cv2.LINE_AA)
+            pc = ease_out((ti - 0.25) / 0.25)
+            if pc > 0:
+                cv2.rectangle(frame, (cx, cy), (cx + caixa, cy + caixa), _bgr(cor_marca("champanhe")), -1, cv2.LINE_AA)
+                pts = np.array([(cx + caixa * 0.2, cy + caixa * 0.52), (cx + caixa * 0.42, cy + caixa * 0.74),
+                                (cx + caixa * 0.8, cy + caixa * 0.28)])
+                dens = np.concatenate([np.linspace(pts[k], pts[k + 1], 12) for k in range(2)])
+                n = int(len(dens) * pc)
+                if n > 1:
+                    cv2.polylines(frame, [np.int32(dens[:n])], False, _bgr(cor_marca("marinho")), max(3, int(6 * u)), cv2.LINE_AA)
+            blend(frame, t, cx + caixa + int(24 * u) + (1 - p) * 30, y + (self.lh - t.shape[0]) / 2, a * p)
+            y += self.lh
+
+
+@efeito("tipografia", "texto", "Tipografia cinética: palavra grande com letras caindo em cascata e mola, que se abrem de leve "
+        "e saem subindo. Para a palavra-chave do vídeo (gancho, conceito).",
+        {"texto": "1 ou 2 palavras", "y": "0 a 1 (padrão 0.22)", "tam": "tamanho da letra (padrão 170)",
+         "maiusculas": "true|false (padrão true)"}, pop=True, som="impacto-seco")
+class Tipografia(Efeito):
+    def preparar(self):
+        from PIL import Image, ImageDraw
+        u = self.W / 1080
+        txt = self.e.get("texto", "")
+        if self.e.get("maiusculas", True):
+            txt = txt.upper()
+        tam = int(self.e.get("tam", 170) * u)
+        f = fonte("Black", tam, "titulo")
+        while f.getlength(txt) > self.W * 0.9 and tam > 40:
+            tam = int(tam * 0.92)
+            f = fonte("Black", tam, "titulo")
+        self.letras, x = [], 0.0
+        sombra_cor = tuple(cor_marca("marinho"))
+        for ch in txt:
+            larg = f.getlength(ch)
+            if ch.strip():
+                im = Image.new("RGBA", (int(larg) + 40, int(tam * 1.5)), (0, 0, 0, 0))
+                d = ImageDraw.Draw(im)
+                d.text((20, 10 + tam * 0.06), ch, font=f, fill=sombra_cor + (170,))
+                d.text((20, 10), ch, font=f, fill=tuple(self.cor) + (255,))
+                self.letras.append((np.array(im), x))
+            x += larg
+        self.total = x
+        self.y = self.H * self.e.get("y", 0.22)
+        self.tam = tam
+
+    def desenhar(self, frame, dt, rest):
+        n = max(len(self.letras), 1)
+        abre = 1 + 0.03 * ease_out((dt - 0.6) / 1.5)  # as letras se abrem devagar enquanto a palavra fica
+        for i, (spr, x) in enumerate(self.letras):
+            ti = dt - 0.04 * i
+            p = clamp01(mola(ti / 0.5, 6, 9))
+            if ti <= 0:
+                continue
+            qi = rest - 0.03 * (n - i)
+            q = ease_in(1 - qi / 0.3) if qi < 0.3 else 0.0
+            yy = self.y - spr.shape[0] / 2 - (1 - p) * self.tam * 0.9 - q * self.tam * 0.8
+            xx = self.x - self.total * abre / 2 + x * abre - 20
+            img = transformar(spr, 1.0, (1 - clamp01(p)) * 12 * (1 if i % 2 else -1))
+            blend(frame, img, xx, yy, clamp01(ti / 0.1) * (1 - q))
+
+
+@efeito("marca_texto", "marcacao", "Marca-texto passando sobre uma linha (print, b-roll, documento), com borda de traço real. "
+        "Com 'texto', escreve a frase em marinho e passa o marca-texto champanhe por trás (funciona sobre qualquer fundo).",
+        {"texto": "frase marcada (opcional; sem ela, só a faixa sobre o que já está na tela)", "x": "centro 0 a 1", "y": "0 a 1",
+         "largura": "fração da largura (padrão 0.5)", "altura": "fração da altura (padrão 0.035)"},
+        som="lapis")
+class MarcaTexto(Efeito):
+    def preparar(self):
+        r = self.rng
+        self.L = self.W * self.e.get("largura", 0.5)
+        self.A = self.H * self.e.get("altura", 0.035)
+        self.txt = None
+        if self.e.get("texto"):
+            u = self.W / 1080
+            self.txt = _texto_rgba(self.e["texto"], "Black", int(self.e.get("tam", 64) * u), cor_marca("marinho"), "titulo")
+            self.A = max(self.A, self.txt.shape[0] * 1.35)
+            self.L = max(self.L, self.txt.shape[1] + 40 * u)
+        xs = np.linspace(0, 1, 60)
+        self.topo = r.normal(0, 0.06, 60).cumsum() * 0.2 + 0.0
+        self.base = r.normal(0, 0.06, 60).cumsum() * 0.2 + 1.0
+        self.xs = xs
+
+    def desenhar(self, frame, dt, rest):
+        p = ease_out(dt / 0.45)
+        a = clamp01(rest / 0.3)
+        if p <= 0.01 or a <= 0.01:
+            return
+        x0 = self.x - self.L / 2
+        n = max(2, int(60 * p))
+        sup = [(x0 + self.L * self.xs[i], self.y - self.A / 2 + self.topo[i] * self.A * 0.3) for i in range(n)]
+        inf = [(x0 + self.L * self.xs[i], self.y + self.A / 2 + (self.base[i] - 1) * self.A * 0.3) for i in range(n)][::-1]
+        ov = frame.copy()
+        cv2.fillPoly(ov, [np.int32(sup + inf)], _bgr(self.cor), cv2.LINE_AA)
+        forca = 0.92 if self.txt is not None else 0.42  # com texto próprio, a faixa precisa ser opaca para ler sobre o vídeo
+        frame[:] = cv2.addWeighted(ov, forca * a, frame, 1 - forca * a, 0)
+        if self.txt is not None:
+            th, tw = self.txt.shape[:2]
+            tx = int(self.x - tw / 2)
+            vis = int(min(tw, x0 + self.L * self.xs[n - 1] - tx))  # a frase aparece junto com a faixa, da esquerda para a direita
+            if vis > 0:
+                blend(frame, self.txt[:, :vis], tx, int(self.y - th / 2), a)
+
+
+@efeito("reacoes", "celebracao", "Objetos 3D subindo e balançando como reações de live (corações, fogo, 100). "
+        "Para engajamento, 'comenta aqui', resultado bom.",
+        {"objeto": "id da biblioteca 3D (padrão coracao)", "objetos": "lista de ids (alterna)", "quantidade": "padrão 10",
+         "x": "0 a 1 (padrão 0.82)"}, som="pop-bolha")
+class Reacoes(Efeito):
+    def preparar(self):
+        from PIL import Image
+
+        from .bibliotecas import objeto_3d
+        from .graficos import pil2np
+        nomes = self.e.get("objetos") or [self.e.get("objeto", "coracao")]
+        ims = []
+        for nome in nomes:
+            caminho, _ = objeto_3d(nome)
+            im = Image.open(caminho).convert("RGBA")
+            ims.append(im.crop(im.getbbox()))
+        n = int(self.e.get("quantidade", 10))
+        r = self.rng
+        self.x = self.W * self.e.get("x", 0.82)
+        self.sprites = []
+        for i in range(n):
+            im = ims[i % len(ims)]
+            lado = int(self.W * r.uniform(0.07, 0.11))
+            self.sprites.append(pil2np(im.resize((lado, int(im.height * lado / im.width)), Image.LANCZOS)))
+        self.p = np.stack([r.uniform(0, 1.6, n), r.uniform(0.9, 1.4, n), r.uniform(-0.06, 0.06, n), r.uniform(0, 6.3, n)], 1)
+
+    def desenhar(self, frame, dt, rest):
+        a_sai = clamp01(rest / 0.4)
+        for spr, (atraso, vel, dx, fase) in zip(self.sprites, self.p):
+            t = dt - atraso
+            if t <= 0:
+                continue
+            vida = t * vel / 2.2
+            if vida > 1:
+                continue
+            y = self.H * (0.86 - 0.62 * ease_out(vida))
+            x = self.x + self.W * (dx + 0.035 * math.sin(t * 3.2 + fase))
+            s = clamp01(mola(t / 0.35, 6, 10)) * (1 - 0.3 * vida)
+            img = transformar(spr, max(0.05, s), 10 * math.sin(t * 2.5 + fase))
+            blend(frame, img, x - img.shape[1] / 2, y - img.shape[0] / 2, (1 - ease_in(vida)) * a_sai)
+
+
+@efeito("reflexo", "luz", "Reflexo de vidro: uma faixa de luz atravessa a tela na diagonal (acabamento premium, revelação).",
+        {"intensidade": "0 a 1 (padrão 1)", "duracao_passada": "segundos (padrão 0.9)"}, fase="pos", som="vidro-shimmer")
+class Reflexo(Efeito):
+    def preparar(self):
+        w, h = self.W // 4, self.H // 4
+        yy, xx = np.mgrid[0:h, 0:w].astype(np.float32)
+        self.d = (xx / w) * 0.8 + (yy / h) * 0.45
+
+    def desenhar(self, frame, dt, rest):
+        p = dt / self.e.get("duracao_passada", 0.9)
+        if p > 1.05:
+            return
+        c = -0.25 + 1.6 * ease_in_out(p)
+        banda = np.exp(-((self.d - c) / 0.05) ** 2) + 0.35 * np.exp(-((self.d - c + 0.11) / 0.025) ** 2)
+        cam = cv2.resize(banda, (self.W, self.H))[..., None] * np.array(_bgr(cor_marca("papel_2")), np.float32)
+        _tela(frame, cam, 0.55 * self.forca)
+
+
 # ───────────────────────────── prévia (galeria e exportação) ─────────────────────────────
 
 EXEMPLOS = {
     "contador": {"ate": 87, "sufixo": "%"},
+    "cartao_vidro": {"texto": "Gate 2 · Business case", "sub": "Vale a pena investir?", "y": 0.3},
+    "notificacao": {"app": "Cliente", "texto": "O projeto atrasou de novo. Dá pra salvar?", "y": 0.2},
+    "carregando": {"rotulo": "Roadmap", "ate": 72, "y": 0.35},
+    "checklist": {"titulo": "Antes do kickoff", "itens": ["Problema claro", "Dono definido", "Métrica de sucesso"], "y": 0.38},
+    "tipografia": {"texto": "Escopo", "y": 0.35},
+    "marca_texto": {"y": 0.42, "texto": "o problema certo"},
+    "reacoes": {"objetos": ["coracao", "fogo", "cem"]},
     "seta": {"x": 0.62, "y": 0.42},
     "circulo": {"y": 0.42},
     "sublinhado": {"y": 0.5},

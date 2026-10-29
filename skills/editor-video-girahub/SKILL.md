@@ -150,14 +150,14 @@ Responda ao Leonardo em até 10 linhas: duração (antes → depois) e faixa da 
 - `analisar <VIDEO> --marca girahub`: normaliza (30 fps, SDR), transcreve com vocabulário de terreiro, rastreia o rosto; gera `<video>_edicao/transcricao.txt`, `analise.json` e `edl.json`.
 - `renderizar <pasta>/edl.json --rapido`: conferência + previa.jpg (12 quadros) + `manifesto.json`. Sem `--rapido`: final. `--so-audio`: refaz só o áudio.
 - `conferir <saida>.mp4 --marca girahub`: lê o selo de marca gravado no vídeo.
-- `biblioteca listar 3d|musicas|efeitos [termo] --marca girahub [--json]`: bibliotecas compartilhadas (167 objetos 3D, 35 músicas, 20 efeitos).
+- `biblioteca listar 3d|musicas|efeitos [termo] --marca girahub [--json]`: bibliotecas compartilhadas (215 objetos 3D, 35 músicas, 28 efeitos, 38 sons). `listar sons` mostra os efeitos sonoros: `"som": "<id>"` num segmento ou elemento troca o som (`false` = mudo) e `{"tipo": "som", "nome": "…", "na": "…"}` toca um som só (a marca segue com o whoosh e o pop sintéticos como padrão).
 - O `edl.json` precisa ter `"marca": "girahub"`. A guarda de marca recusa o render se faltar, se a análise for de outra marca, ou se o EDL tiver algo de outra conta (Leo, "mentoria de produto", leopontes.com.br, arquivos de `marcas/pontes_brain/`). Corrija o EDL; nunca a guarda.
 
 **EDL** (tempos da transcrição original):
 ```jsonc
 {
   "marca": "girahub", "formato": "vertical",
-  "segmentos": [{"id": 3, "ini": 16.84, "fim": 20.78, "zoom": 1.0, "transicao": null}],  // null|push|zoom|slide|flash
+  "segmentos": [{"id": 3, "ini": 16.84, "fim": 20.78, "zoom": 1.0, "transicao": null}],  // null|push|whip|zoom|slide|flash|dissolve|giro|rasgo|vidro|luz
   "zooms": [{"ini": 13.6, "fim": 14.4, "fator": 1.18, "modo": "punch"}],               // punch|suave
   "fundo": {"tipo": "original", "variante": "marinho", "parallax": true, "sombra": true}, // original|desfoque|marca|imagem
   "cor": {"contraste": 1.05, "saturacao": 1.05, "calor": 0.04, "nitidez": 0.25},
