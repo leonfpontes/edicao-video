@@ -1,5 +1,12 @@
 # Changelog
 
+## Não lançado
+
+### Novo
+
+- **Peças fixas no Pencil**: capa de Reel do @pontes_brain em `marcas/pontes_brain/pencil/capa-reel.pen` (fonte) e
+  `capa-reel.png` (1080×1920); convenção documentada em `docs/marcas.md`.
+
 ## 2.1.0 (2026-10-29)
 
 Assets em alta para Reels (pesquisa de tendências de outubro de 2026), pensados para o @pontes_brain e servindo a todas as marcas.
