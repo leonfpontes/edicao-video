@@ -1,0 +1,23 @@
+{
+  "id": "leopontesrp",
+  "nome": "Leo Pontes · @leopontesrp (Instagram pessoal: aprendendo a viver a vida)",
+  "cores": {"marinho": "#1E1C1A", "marinho_2": "#2E2A27", "champanhe": "#E0A458", "bronze": "#B5653A",
+            "papel": "#F3ECE2", "papel_2": "#FFFDF8", "nevoa": "#A9A39B"},
+  "fontes": {"titulo": {"Black": "Roboto-Black.ttf", "Bold": "Roboto-Bold.ttf", "Regular": "Roboto-Regular.ttf"},
+             "texto": {"Black": "Roboto-Black.ttf", "Bold": "Roboto-Bold.ttf", "Regular": "Roboto-Regular.ttf"}},
+  "intro": {"tipo": "logo", "nome": "Leonardo Pontes", "sub": "APRENDENDO A VIVER A VIDA"},
+  "fundo_motivo": "nenhum",
+  "leo": false,
+  "musica_obrigatoria": true,
+  "padroes_edl": {
+    "intro": {"ativo": false, "duracao": 2.2},
+    "marca_dagua": false,
+    "barra_progresso": false,
+    "cta": {"ativo": false},
+    "cor": {"contraste": 1.03, "saturacao": 1.04, "calor": 0.02, "nitidez": 0.15},
+    "audio": {"denoise": true, "denoise_db": 10, "presenca_db": 1.0, "loudness": -16,
+              "sfx_transicoes": false, "sfx_elementos": false},
+    "musica": {"arquivo": null, "ini": 0, "volume_db": null, "fade_in": 0.8, "fade_out": 2.5, "ducking": true}
+  },
+  "vocabulario": "Leonardo Pontes, Leo, leopontesrp, Ribeirão Preto, família, amigos, gratidão, viver a vida"
+}

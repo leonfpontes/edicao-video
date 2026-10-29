@@ -39,11 +39,15 @@ O mesmo `editor.py` edita vídeos das duas marcas. A identidade de cada uma fica
 
 - `--marca pontes_brain` (padrão): Papel & Marinho, Roboto, Monograma LP, vinheta PDCA, Leo. Skill `editor-video-pontes-brain` (`SKILL.md`).
 - `--marca girahub`: paleta terra, Fraunces + Inter, ticket em ouro, vinheta do ticket (`assets/vinheta-girahub.mp4`), sem Leo. Skill `editor-video-girahub` (`SKILL-girahub.md`).
+- `--marca leopontesrp`: Instagram pessoal ("aprendendo a viver a vida"), paleta escura e champanhe, Roboto, sem logo, sem vinheta, sem CTA, sem marca d'água e sem barra; **música real obrigatória** (`assets/musicas/`, créditos em `CREDITOS.md`). Skill `editor-video-leopontesrp` (`SKILL-leopontesrp.md`).
 
 Exemplo: `.venv/bin/python editor.py analisar ~/Movies/gira.mov --marca girahub`
 
 ## Marca nova e testes
 
 - **Marca nova**: copie `marcas/modelo.json` para `marcas/<id>.json` e troque as cores, as fontes, o logo (PNG transparente em `assets/<id>/`), o nome, o CTA e o vocabulário. Com `"intro": {"tipo": "logo"}` e `"fundo_motivo": "anel"` (ou `"nenhum"`), a vinheta e o fundo saem prontos, sem programar nada. Uma vinheta sob medida, como as do PDCA e do ticket, é opcional.
+- **Padrões por marca**: `"padroes_edl"` no JSON da marca preenche o rascunho do `edl.json` (ex.: `"intro": {"ativo": false}`, `"cta": {"ativo": false}`, `"marca_dagua": false`). `"logo"` é opcional; sem ele não há marca d'água nem logo no CTA.
+- **Música**: `"musica": {"arquivo", "ini", "volume_db", "fade_in", "fade_out", "ducking"}` no `edl.json` põe uma trilha real (em loop se for curta), com ducking sob a voz e loudness final do conjunto entre −17 e −15 LUFS. `"musica_obrigatoria": true` na marca impede renderizar sem trilha. Nunca sintetize música.
+- **Vídeo do dia a dia**: `analisar clipe1.mov clipe2.mov …` emenda vários clipes em sequência; vídeo sem fala (Whisper vazio ou `--sem-fala`) sai sem legenda, com cada clipe inteiro no rascunho; `--estabilizar` tira o tremor; a transição `dissolve` faz a fusão entre cenas.
 - **Teste**: `.venv/bin/python editor.py testar` compara a folha visual de cada marca com `testes/referencia/` e roda um render completo de 4 s, medindo o áudio (−17 a −15 LUFS, pico < −1,5 dBFS). Rode sempre depois de mudar o `editor.py`.
 - **Velocidade**: no Mac, o recorte usa o CoreML (Neural Engine/GPU) quando disponível e volta para a CPU sozinho se der erro. O progresso mostra quadros por segundo e o tempo restante.
