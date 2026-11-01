@@ -1,0 +1,70 @@
+{
+  "id": "auradasartes",
+  "nome": "Aura das Artes · Ribeirão Preto (@auradasartesribeiraopreto)",
+  "cores": {
+    "marinho": "#2B0307",
+    "marinho_2": "#4A0710",
+    "champanhe": "#E8B25E",
+    "bronze": "#A52023",
+    "papel": "#FBF1E3",
+    "papel_2": "#FFFDF8",
+    "nevoa": "#F1DCC0"
+  },
+  "fontes": {
+    "titulo": {
+      "Black": "Inter-Black.ttf",
+      "Bold": "Inter-Bold.ttf",
+      "Regular": "Inter-Regular.ttf"
+    },
+    "texto": {
+      "Black": "Inter-Black.ttf",
+      "Bold": "Inter-Bold.ttf",
+      "Regular": "Inter-Regular.ttf"
+    }
+  },
+  "intro": {
+    "tipo": "logo",
+    "nome": "Aura das Artes",
+    "sub": "CASA DE FLAMENCO  ·  RIBEIRÃO PRETO"
+  },
+  "fundo_motivo": "nenhum",
+  "leo": false,
+  "musica": {
+    "politica": "opcional"
+  },
+  "padroes_edl": {
+    "intro": {
+      "ativo": false,
+      "duracao": 2.2
+    },
+    "marca_dagua": false,
+    "barra_progresso": false,
+    "cta": {
+      "ativo": false
+    },
+    "fundo": {
+      "tipo": "original"
+    },
+    "cor": {
+      "contraste": 1.04,
+      "saturacao": 1.05,
+      "calor": 0.02,
+      "nitidez": 0.2
+    },
+    "audio": {
+      "denoise": true,
+      "denoise_db": 8,
+      "presenca_db": 0.5,
+      "loudness": -16,
+      "sfx_transicoes": false,
+      "sfx_elementos": false
+    }
+  },
+  "exclusivo": {
+    "termos": [
+      "auradasartesribeiraopreto",
+      "aura das artes"
+    ]
+  },
+  "vocabulario": "Aura das Artes, Casa Aberta, flamenco, palmas, cajón, guitarra flamenca, sevillanas, rumba, Ribeirão Preto"
+}
