@@ -24,7 +24,7 @@ from .marca import (
     tem_arquivo_marca,
 )
 
-LICENCAS_LIVRES = {"CC0 1.0", "CC BY 4.0", "MIT", "Domínio público", "Própria"}
+LICENCAS_LIVRES = {"CC0 1.0", "CC BY 4.0", "MIT", "OFL 1.1", "Domínio público", "Própria"}
 
 
 @lru_cache(maxsize=None)

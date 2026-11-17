@@ -215,7 +215,8 @@ class Tremor(Efeito):
         dx, dy = k * math.sin(dt * 63), k * 0.7 * math.cos(dt * 51)
         if abs(dx) + abs(dy) < 0.4:
             return
-        M = np.float32([[1.03, 0, dx - self.W * 0.015], [0, 1.03, dy - self.H * 0.015]])
+        s = 1 + 2 * (k + 4) / min(self.W, self.H)  # aproxima o bastante para o tremor nunca mostrar a borda
+        M = np.float32([[s, 0, dx - self.W * (s - 1) / 2], [0, s, dy - self.H * (s - 1) / 2]])
         frame[:] = cv2.warpAffine(frame, M, (self.W, self.H), borderMode=cv2.BORDER_REFLECT)
 
 

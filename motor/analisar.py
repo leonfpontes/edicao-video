@@ -7,8 +7,15 @@ import cv2
 import numpy as np
 
 from . import __version__
+from .cena import DICA_TOUR, aplicar_cena, dirigir_cena, ler_cena, resumo_cena, tour_pela_casa
 from .config import FPS, MODELOS
+from .cor import igualar_clipes
+from .diretor import aplicar as aplicar_diretor
+from .diretor import dirigir, montar_gancho, resumo_diretor
+from .estilos import PRESETS
 from .marca import CFG, ativar
+from .pausas import aparar_palavras, volume_db
+from .tour import dirigir_tour
 from .util import probe, sh, tem_audio
 
 
@@ -19,14 +26,37 @@ def normalizar(src, dst, estabilizar=False):
     if v.get("color_transfer") in ("arib-std-b67", "smpte2084"):  # HDR do iPhone
         vf.append("zscale=t=linear:npl=100,format=gbrpf32le,zscale=p=bt709,tonemap=hable:desat=0,"
                   "zscale=t=bt709:m=bt709:r=tv")
-    if estabilizar:  # vídeo de mão (dia a dia): tira o tremor; o zoom leve do enquadre esconde as bordas
-        vf.append("deshake=rx=48:ry=48:edge=clamp")
+    if estabilizar:  # vídeo de mão (dia a dia): tira o tremor em duas passadas (vid.stab). O zoom adaptativo
+        # (optzoom=2) aproxima só o necessário em cada trecho para nenhuma borda aparecer; nunca estica a borda.
+        trf = Path(dst).with_suffix(".trf")
+        sh(["ffmpeg", "-y", "-i", str(src), "-vf", ",".join(vf + [f"vidstabdetect=shakiness=6:accuracy=12:result={trf}"]),
+            "-f", "null", "-"])
+        vf.append(f"vidstabtransform=input={trf}:smoothing=18:optzoom=2:zoomspeed=0.2:crop=black:interpol=bicubic")
     vf += [f"fps={FPS}", "scale='if(gt(iw,ih),min(1920,iw),-2)':'if(gt(iw,ih),-2,min(1920,ih))'", "format=yuv420p"]
     sh(["ffmpeg", "-y", "-fflags", "+genpts", "-i", str(src), "-vf", ",".join(vf),
         "-c:v", "libx264", "-preset", "fast", "-crf", "14", "-g", "30",
         "-af", "aresample=48000:async=1", "-ac", "1", "-c:a", "pcm_s16le",
         "-avoid_negative_ts", "make_zero", str(dst)])
 
+
+
+def conferir_estabilizado(cfr, passo=15):
+    """Depois de estabilizar, nenhum quadro pode ter faixa sem imagem na borda (a estabilização preenche com preto)."""
+    from .qa import borda_ruim
+    cap, i, ruins = cv2.VideoCapture(str(cfr)), 0, []
+    while True:
+        ok = cap.grab()
+        if not ok:
+            break
+        if i % passo == 0:
+            _, f = cap.retrieve()
+            if borda_ruim(f):
+                ruins.append(round(i / FPS, 1))
+        i += 1
+    if ruins:
+        print(f"  AVISO: borda sem imagem depois de estabilizar em {len(ruins)} ponto(s) (ex.: {ruins[:5]} s). "
+              "O render acusa \"borda esticada\"; não entregue assim.", flush=True)
+    return ruins
 
 def juntar_clipes(srcs, pasta, dst, estabilizar=False):
     """Vários vídeos do dia a dia em sequência: normaliza cada um e emenda num único arquivo no tamanho
@@ -132,15 +162,17 @@ def rascunho_edl(fonte_cfr, palavras, silencio_min=0.35, respiro=0.08, dur=None,
             out.append({"id": len(out), "ini": round(c["ini"], 3), "fim": round(c["fim"], 3),
                         "zoom": 1.0, "transicao": None, "texto": "(sem fala)"})
             continue
+        # silêncio no meio de uma palavra (motor/pausas.py): vira duas meias palavras para o corte pular a pausa
+        ws = [m for w in ws for m in ([dict(w, fim=w["pausa"][0]), dict(w, t="", ini=w["pausa"][1])] if w.get("pausa") else [w])]
         segs, cur = [], None
         for i, w in enumerate(ws):
             if cur and w["ini"] - ws[i - 1]["fim"] < silencio_min:
                 cur["fim"] = w["fim"]
-                cur["texto"] += " " + w["t"]
+                cur["texto"] += (" " + w["t"]) if w["t"] else ""
             else:
                 if cur:
                     segs.append(cur)
-                cur = {"ini": w["ini"], "fim": w["fim"], "texto": w["t"]}
+                cur = {"ini": w["ini"], "fim": w["fim"], "texto": w["t"] or "…"}
         segs.append(cur)
         for s in segs:
             ini = max(c["ini"], s["ini"] - respiro)
@@ -195,9 +227,11 @@ def cmd_analisar(a):
         else:
             clipes = juntar_clipes(srcs, pasta, cfr, a.estabilizar)
         json.dump(dict(receita, clipes=clipes), open(rp, "w"), ensure_ascii=False, indent=1)
+        if a.estabilizar:
+            conferir_estabilizado(cfr)
     _, dur = probe(cfr)
     clipes = clipes or [{"arquivo": src.name, "ini": 0.0, "fim": round(dur, 3)}]
-    cache = pasta / f"palavras_{a.modelo}.json"
+    cache = pasta / f"palavras_{Path(a.modelo).name}.json"  # --modelo pode ser uma pasta local com o modelo
     if a.sem_fala:  # vídeo só de imagem (ou fala que não deve virar legenda): pula o Whisper
         palavras = []
     elif cache.exists():
@@ -206,13 +240,46 @@ def cmd_analisar(a):
         print(f"2/3 transcrevendo com Whisper ({a.modelo})…", flush=True)
         palavras = transcrever(cfr, a.modelo)
         json.dump(palavras, open(cache, "w"), ensure_ascii=False)
+    aparadas = 0
+    if palavras and not getattr(a, "sem_aparar", False):  # o Whisper estica a palavra sobre a pausa: o áudio acerta
+        palavras, aparadas = aparar_palavras(palavras, volume_db(cfr))
     print("3/3 rastreando rosto…", flush=True)
     rosto = rastrear_rosto(cfr)
     if len(clipes) > 1:
         rosto = rosto_por_clipe(rosto, clipes)
-    json.dump({"marca": CFG["id"], "editor": __version__, "duracao": dur, "palavras": palavras, "rosto": rosto, "clipes": clipes},
-              open(pasta / "analise.json", "w"), ensure_ascii=False)
-    edl = rascunho_edl(cfr, palavras, dur=dur, clipes=clipes)
+    cor_clipes = igualar_clipes(cfr, clipes) if len(clipes) > 1 else None
+    json.dump({"marca": CFG["id"], "editor": __version__, "duracao": dur, "palavras": palavras, "rosto": rosto, "clipes": clipes,
+               "cor_clipes": cor_clipes}, open(pasta / "analise.json", "w"), ensure_ascii=False)
+    estilo = getattr(a, "estilo", None)
+    silencio = PRESETS[estilo]["edl"].get("corte_pausa_max", 0.35) if estilo else 0.35
+    edl = rascunho_edl(cfr, palavras, silencio_min=silencio, dur=dur, clipes=clipes)
+    if estilo:
+        edl["estilo"] = estilo
+        for k in ("legendas", "audio"):
+            if k in PRESETS[estilo]["edl"]:
+                edl[k] = dict(edl[k], **PRESETS[estilo]["edl"][k])
+    plano = None
+    if palavras and not getattr(a, "sem_diretor", False):
+        print("Diretor: vícios, tomadas repetidas, ênfases, zooms, gancho e elementos…", flush=True)
+        plano = dirigir(palavras, cfr, estilo)
+        edl = aplicar_diretor(edl, plano, palavras, rosto.get("clipes_ini", [0.0]) if isinstance(rosto, dict) else [0.0],
+                                 alternar=CFG.get("diretor", {}).get("alternar_zoom", True))
+        if CFG.get("diretor", {}).get("gancho_automatico", True):
+            edl = montar_gancho(edl, plano, palavras)
+        if not getattr(a, "sem_cena", False):
+            print("Cena: gestos, cabeça e câmera…", flush=True)
+            cena = ler_cena(cfr)
+            json.dump(cena, open(pasta / "cena.json", "w"), ensure_ascii=False)
+            tour, linhas_tour = tour_pela_casa(cena, dur), []
+            if tour:  # câmera andando pelo ambiente: capítulos por cômodo, rótulos presos ao que ele aponta, luz igualada
+                edl.setdefault("cor", {})["igualar_luz"] = True
+                edl, linhas_tour = dirigir_tour(cena, palavras, edl)
+            pc = dirigir_cena(cena, palavras, edl["segmentos"], calmo=CFG.get("diretor", {}).get("calmo", False))
+            edl = aplicar_cena(edl, pc, palavras)
+            plano["cena"] = resumo_cena(cena)
+            if tour:
+                plano["cena"] += "\n" + DICA_TOUR.format(p=round(tour * 100)) + ("\n" + "\n".join(linhas_tour) if linhas_tour else "")
+        json.dump(plano, open(pasta / "diretor.json", "w"), ensure_ascii=False, indent=1)
     json.dump(edl, open(pasta / "edl.json", "w"), ensure_ascii=False, indent=1)
     with open(pasta / "transcricao.txt", "w") as f:
         f.write(f"# {', '.join(s.name for s in srcs)} — {dur:.1f}s, {len(palavras)} palavras. "
@@ -223,8 +290,14 @@ def cmd_analisar(a):
             f.write("# Sem fala: legendas desligadas; cada clipe entra inteiro. Corte pelo ritmo da imagem e da música.\n")
         for s in edl["segmentos"]:
             f.write(f"[{s['id']:03d}] {s['ini']:7.2f}–{s['fim']:7.2f}  {s['texto']}\n")
+        if plano:
+            f.write("\n" + resumo_diretor(plano) + "\n")
         baixas = [w for w in palavras if w["p"] < 0.5]
         if baixas:
             f.write("\n# Baixa confiança: " + ", ".join(f"{w['t']}@{w['ini']:.1f}" for w in baixas) + "\n")
+    if aparadas:
+        print(f"Pausas: {aparadas} palavras esticadas sobre silêncio foram acertadas pelo áudio (--sem-aparar desliga)")
+    if plano:
+        print(resumo_diretor(plano))
     print(f"Pronto: {pasta}/transcricao.txt e edl.json ({len(edl['segmentos'])} segmentos)")
 

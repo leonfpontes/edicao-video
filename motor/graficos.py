@@ -170,7 +170,9 @@ class Cartao:
 
 def cobrir(f, W, H, z=1.0, cx=0.5, cy=0.5, flags=cv2.INTER_LINEAR):
     h, w = f.shape[:2]
-    s = max(W / w, H / h) * z
-    M = np.float32([[s, 0, W / 2 - cx * w * s], [0, s, H / 2 - cy * h * s]])
+    s = max(W / w, H / h) * max(z, 1.0)
+    tx = min(max(W / 2 - cx * w * s, W - w * s), 0)  # a imagem sempre cobre o quadro inteiro (sem borda espelhada)
+    ty = min(max(H / 2 - cy * h * s, H - h * s), 0)
+    M = np.float32([[s, 0, tx], [0, s, ty]])
     return cv2.warpAffine(f, M, (W, H), flags=flags, borderMode=cv2.BORDER_REFLECT)
 

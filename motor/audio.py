@@ -22,7 +22,10 @@ SONS_PADRAO = {
         "luz": ["whoosh-sopro", "whoosh-lento"],
     },
     "elementos": {"titulo": "whoosh-curto", "destaque": "pop-limpo", "objeto3d": "pop-bolha", "leo": "ui-sobe",
-                  "imagem": "deslizar"},
+                  "imagem": "deslizar", "passo": "ui-sobe", "digitacao": "teclado", "janela": "ui-sobe",
+                  "arvore": "pop-limpo", "mapa": "whoosh-suave", "comentario": "teclado", "icone": "pop-bolha",
+                  "carrossel": "deslizar", "texto_atras": "impacto-seco", "anotacao": "tique", "neon": "interruptor",
+                  "hud_rosto": "glitch", "bilhete": "pagina", "titulo_editorial": "whoosh-curto", "titulo_caixa": "clique"},
     "vinheta": {"abertura": "whoosh-suave", "ponto": "toque-vidro", "mergulho": "whoosh-profundo"},
     "cta": "whoosh-profundo",
 }

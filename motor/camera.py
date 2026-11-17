@@ -28,7 +28,10 @@ class Rosto:
 
 
 def matriz_enquadre(w0, h0, W, H, z, face, desloc=(0.0, 0.0)):
+    """Recorte da fonte que vira o quadro de saída. O recorte nunca sai da fonte: zoom abaixo de 1 (respiração) e o
+    tremor do punch são limitados para nenhuma borda aparecer esticada."""
     fx, fy, fh = face
+    z = max(z, 1.0)
     if w0 / h0 > W / H:
         ch = h0 / z
         cw = ch * W / H
@@ -40,11 +43,24 @@ def matriz_enquadre(w0, h0, W, H, z, face, desloc=(0.0, 0.0)):
     left = min(max(left, 0), w0 - cw)
     top = min(max(top, 0), h0 - ch)
     s = W / cw
-    return np.float32([[s, 0, -left * s + desloc[0]], [0, s, -top * s + desloc[1]]])
+    # o tremor desloca o recorte, mas só até a borda da fonte
+    left = min(max(left - desloc[0] / s, 0), w0 - cw)
+    top = min(max(top - desloc[1] / s, 0), h0 - ch)
+    return np.float32([[s, 0, -left * s], [0, s, -top * s]])
+
+
+def borda_exposta(M, w0, h0, W, H, tol=1.5):
+    """Pixels (na saída) em que o quadro mostra fora da fonte, o que vira borda esticada. 0 = tudo coberto."""
+    inv = cv2.invertAffineTransform(M)
+    cantos = np.float32([[0, 0], [W, 0], [0, H], [W, H]])
+    src = cantos @ inv[:, :2].T + inv[:, 2]
+    fora = max(0, -src[:, 0].min(), src[:, 0].max() - w0, -src[:, 1].min(), src[:, 1].max() - h0)
+    return fora * M[0, 0] if fora > tol / max(M[0, 0], 1e-6) else 0.0
 
 
 def zoom_em(t, zooms, fim_seg=1e9):
-    """Ênfases de zoom (fator multiplicador): punch = tranco curto e volta macia; suave = aproximação lenta.
+    """Ênfases de zoom (fator multiplicador): punch = tranco curto e volta macia; suave = aproximação lenta;
+    abre = entra fechado e abre devagar (quando a câmera se afasta).
     A volta sempre termina antes do fim do trecho, para o corte seguinte encontrar o mesmo enquadramento."""
     z, tremor = 1.0, (0.0, 0.0)
     for zz in zooms:
@@ -52,7 +68,10 @@ def zoom_em(t, zooms, fim_seg=1e9):
         b = min(zz["fim"], fim_seg - 0.4) if a < fim_seg else zz["fim"]
         b = max(b, a + 0.15)
         if a <= t < b + 0.35:
-            if zz.get("modo", "suave") == "punch":
+            modo = zz.get("modo", "suave")
+            if modo == "abre":  # a câmera se afasta: entra fechado e abre junto com o movimento (revela o ambiente)
+                p = ease_out((t - a) / 0.2) * (1 - ease_in_out((t - a - 0.2) / max(b + 0.35 - a - 0.2, 0.3)))
+            elif modo == "punch":
                 p = ease_out((t - a) / 0.1) * (1 - ease_in_out((t - b) / 0.35))
                 k = math.exp(-14 * (t - a))
                 tremor = (6 * k * math.sin(70 * (t - a)), 4 * k * math.cos(55 * (t - a)))

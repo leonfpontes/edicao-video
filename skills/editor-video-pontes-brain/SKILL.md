@@ -22,6 +22,9 @@ Tudo roda nesta pasta, com `.venv/bin/python editor.py`. Se `.venv` não existir
 | `editor.py renderizar <pasta>/edl.json --rapido` | Render para conferência (codificação rápida). Gera `final.mp4` e `previa.jpg` (12 quadros). |
 | `editor.py renderizar <pasta>/edl.json` | Render final de qualidade. |
 | `editor.py renderizar <pasta>/edl.json --so-audio` | Refaz só o áudio sobre o vídeo já renderizado (segundos). |
+| `editor.py renderizar <pasta>/edl.json --previa --de 3 --ate 9` | Prévia rápida de um trecho (10 quadros/s, com áudio) em `previa.mp4`, para conferir um ajuste em segundos. |
+| `editor.py linha-do-tempo <pasta>/edl.json` | Página `linha_do_tempo.html` com o vídeo e as trilhas do EDL (cortes, elementos, zooms, legenda, sons, avisos). |
+| `editor.py exportar <pasta>/edl.json [--quando 2026-11-20T19:00:00-03:00]` | Entrega: `legenda.srt`, `capa.jpg`, `post.txt` (rascunho), `reel.mp4` (até 20 MB) e a entrada da agenda do insta_report. |
 | `editor.py conferir <pasta>/final.mp4 --marca pontes_brain` | Lê o selo de marca gravado no vídeo. Só entregue se disser "confere". |
 | `editor.py biblioteca listar 3d\|efeitos\|sons [termo] --marca pontes_brain` | Busca na biblioteca 3D (215 objetos), de efeitos (29 layers) e de sons (38 efeitos sonoros). `--json` para filtrar. |
 | `editor.py testar` | Teste de regressão de todas as marcas (visual + isolamento + render de 4 s + áudio). Rode depois de qualquer mudança no código; precisa terminar em `TUDO OK`. |
@@ -86,6 +89,34 @@ Todos os tempos estão na linha do tempo do vídeo **original** (os mesmos da `t
 Poses do Leo em `marcas/pontes_brain/leo/`: `apontando`, `joinha`, `pensando`, `surpreso`, `talk-aberta`, `talk-fechada`, `talk-o`, `talk-piscada`.
 Opcionais: `x`/`y` (0 a 1) e `altura` (fração da tela) em qualquer elemento. As animações já vêm prontas: título abre em wipe com palavras subindo e leve giro 3D; destaque cresce do centro com mola; Leo entra deslizando com giro, flutua e sai; legenda surge palavra a palavra com a marcação champanhe deslizando; zoom `punch` dá um tranco curto; o fundo `marca` tem luz ambiente difusa e um ponto percorrendo o ciclo PDCA. Cada elemento ganha um som discreto na entrada (`"sfx_elementos": false` em `audio` desliga).
 
+**Estilos de edição** (`editor.py estilos`; guia em `docs/estilos-de-referencia.md`, campos em `docs/edl.md`): `"estilo": "tutorial_passos"` (rosto, tela dividida e só motion em corte seco, legenda limpa de 2 palavras, `passo`, `janela`, `arvore`, `mapa`, `comentario`), `"tela_perspectiva"` (gravação de tela num plano 3D com câmera e profundidade de campo: `broll` com `perspectiva`) e `"vitrine"` (um `look` por frase, `texto_atras`, `hud_rosto`, `som` com `rotulo`, `neon`). Em cada segmento: `"plano"` (`rosto`, `dividido`, `motion`) e `"look"` (`pb`, `pb_acento`, `duotom`, `quente`, `frio`, `limpo`, `noite`, `adesivo`). `analisar --estilo <estilo>` já corta as pausas no ritmo do estilo. O estilo nunca troca a identidade: cores e fontes de texto continuam as da marca.
+
+**Diretor, prévia, conferência e entrega** (guia em `docs/diretor-e-entrega.md`):
+
+- **O `analisar` já dirige o rascunho.** Ele corta vícios e tomadas repetidas, escolhe as ênfases da legenda, alterna o zoom nos jump cuts (`"salto": true`), põe punch nas ênfases mais fortes e sugere elementos ancorados na fala.
+  - Leia o resumo no fim de `transcricao.txt` e o `diretor.json` antes de mexer.
+  - Confira cada corte proposto: se um corte mudar o sentido, desfaça.
+  - A nota do gancho e a frase mais forte vêm junto. Para abrir com essa frase, use um segmento `"gancho": true`.
+  - `--sem-diretor` dá o rascunho cru.
+- **O `analisar` também lê a imagem** (`cena.json`): gestos (dedo para cima, apontar para a câmera, mão aberta, joinha), aceno de cabeça (sim e não) e câmera (giro pelo ambiente, câmera se afastando). Cada leitura vira um elemento que **acompanha o movimento** (`"seguir"`): brilho na ponta do dedo, ondas ao apontar para a câmera, círculo na mão aberta, check ao lado da cabeça no "sim", palavra grudada na parede no giro e zoom `abre` quando a câmera se afasta. O motivo do efeito é o gesto: confira na prévia e apague o que não fizer sentido. `--sem-cena` desliga.
+- **Tour pela casa sai pré-montado.** Quando a câmera anda pelo ambiente, o `analisar` já escreve até 3 capítulos por cômodo (`passo` "Parte" com título do lugar e transição `luz`) e até 8 rótulos editoriais presos ao objeto que o dedo aponta ("firmeza de/Caboclo", com `fixar` e `sem_legenda`). O relatório lista cada um com o motivo: confira os títulos e o ponto de cada rótulo na prévia.
+- **Pausas pelo áudio.** O Whisper estica a palavra sobre o silêncio seguinte; o `analisar` acerta os tempos pelo volume e a caminhada muda já sai cortada (`--sem-aparar` desliga).
+- **Ajuste por trechos.** `renderizar --previa --de S --ate S` mostra só o trecho alterado, em segundos.
+- **O render final faz a conferência visual.** Ele avisa sobre:
+  - área segura do Reels;
+  - elemento cobrindo o rosto;
+  - legenda sobre o rosto ou sem contraste;
+  - loudness fora do alvo;
+  - gancho fraco.
+
+  Resolva cada aviso de `conferencia.json` antes de entregar.
+- **Para revisar a edição inteira**, rode `linha-do-tempo` e abra a página.
+- **Na entrega**, rode `exportar` (com `--quando` se já houver data). Ele gera:
+  - `legenda.srt`, `capa.jpg` e `reel.mp4` (até 20 MB);
+  - `post.txt`, que é só rascunho: a legenda do post continua seguindo as regras desta skill.
+
+Para esta marca, `tutorial_passos` é o estilo natural quando o Leonardo ensina um método em etapas; a regra "sem música" continua valendo em qualquer estilo. `vitrine` só em peça de lançamento, nunca no conteúdo do dia a dia.
+
 ## 3. Identidade da marca (não negociável)
 
 A identidade abaixo já está em `marcas/pontes_brain/marca.json` (cores, fontes, logo, vinheta, fundo, CTA). Sempre rode `analisar` com `--marca pontes_brain` (não existe marca padrão) e confira que o `edl.json` tem `"marca": "pontes_brain"`. Vídeos do GiraHub e do @leopontesrp usam as skills deles, nunca esta. A guarda recusa o render se o EDL tiver algo de outra marca (termos como "GiraHub" ou "senha da gira", arquivos de `marcas/girahub/`, CTA de outro site); corrija o EDL, nunca a guarda.
@@ -119,11 +150,15 @@ A identidade abaixo já está em `marcas/pontes_brain/marca.json` (cores, fontes
     - **Timing**: o efeito entra na palavra que o justifica (ancore com `na`, ele entra 0,12 s antes) e sai quando aquela ideia termina (`ate`). Nunca entra no meio de uma palavra, nunca aparece antes do assunto ser mencionado e nunca fica depois que ele mudou de assunto. Deixe pelo menos 0,8 s de respiro entre um efeito e o próximo, e não coloque efeito novo nos 0,3 s de uma transição.
     - `titulo` quando ele anuncia o tema ("o que é…", "hoje vou mostrar…"), ou no gancho. Até 6 palavras. Enquanto o título estiver na tela, use zoom de no máximo 1.1 para ele não cobrir a testa.
     - `destaque` quando ele nomear uma pessoa, conceito, gate, número, @ ou site. Texto curto, de até 4 palavras. Quando ele listar itens ("mentoria, diagnóstico e experiência"), empilhe os destaques (`y` 0.08, 0.14, 0.20, `tam` 50): cada um entra na sua palavra e todos saem juntos no fim da lista.
-    - `objeto3d` quando ele citar uma ferramenta que tenha logo na biblioteca (ex.: **Claude e ChatGPT sempre que falar de IA**) ou um conceito concreto com objeto 3D (prazo → `despertador`, meta → `alvo`, lançamento → `foguete`). Dois objetos, um de cada lado da cabeça, entrando com 0,2 a 0,4 s de diferença. No máximo 2 ou 3 objetos no vídeo inteiro.
+    - `objeto3d` quando ele citar uma ferramenta que tenha logo na biblioteca (ex.: **Claude e ChatGPT sempre que falar de IA**) ou um conceito concreto com objeto 3D (prazo → `despertador`, meta → `alvo`, lançamento → `foguete`). Dois objetos, um de cada lado da cabeça, entrando com 0,2 a 0,4 s de diferença. No máximo 2 ou 3 objetos no vídeo inteiro. Se a fala pede um objeto que a biblioteca não tem, **crie** em vez de pular: `"fluent": "<nome em inglês do Fluent Emoji 3D>"` e/ou `"emoji": "<caractere>"` no próprio `objeto3d` (ou `editor.py biblioteca criar 3d <nome> --fluent X --emoji Y`); o objeto fica no catálogo para os próximos vídeos.
     - `efeito` para reforçar o que é dito: `sublinhado`/`circulo` numa palavra-chave, `check`/`xis` em "faça assim"/"erro comum", `contador` quando ele falar um número, `confete` numa conquista, `glitch`/`tremor` numa virada. No máximo 2 ou 3 por vídeo; textura (`grao`, `vinheta`) só se o vídeo pedir clima.
     - `leo` só quando houver contexto narrativo claro: o Leo reage a algo que foi dito (pergunta, dúvida, conclusão) e a pose combina com a fala. Na dúvida, não use. Nunca como enfeite solto.
     - No máximo 1 grupo de texto na tela ao mesmo tempo, além da legenda.
 11. **Legendas**: sempre ligadas. Revise a transcrição e preencha `correcoes` (nomes, termos em inglês, "por que" e "porque", números). Marque em `enfase` de 3 a 6 palavras-chave do vídeo.
+
+**Direção de arte (sempre):** antes de montar o EDL, leia "Direção de arte: o que o editor sempre considera" em `docs/diretor-e-entrega.md` e siga os 10 pontos: gancho primeiro sem repetir (o `analisar` já move a frase forte e põe a vinheta depois dela), 45 a 60 s em tour, capítulos, rótulo editorial preso ao objeto com `sem_legenda`, 3D só quando o tom pede, luz igualada entre ambientes, som sob a voz, nunca borda esticada e autocrítica com nota por critério antes de entregar (abaixo de 8 volta para o EDL).
+
+**Bordas:** nenhum quadro pode mostrar borda esticada, espelhada ou preta (pixel da beira repetido em faixa). Ao conferir os quadros, olhe as quatro bordas, principalmente em vídeo feito na mão; o render acusa "borda esticada" e esse aviso nunca vai para entrega. Nunca entregue com borda esticada.
 
 ### Fase 4: imagem e som
 12. **Fundo**: se o fundo gravado estiver bagunçado ou com pouca luz, use `marca` (marinho com o ciclo PDCA em traço fino) ou `desfoque`. O recorte usa Robust Video Matting (`modelos/rvm_mobilenetv3_fp32.onnx`), que limpa cabelo e bordas e remove o vazamento de cor do ambiente. Se estiver limpo e bonito, deixe `original`. Confira as bordas do recorte (cabelo, ombros, mãos) na prévia; se ficarem ruins, volte para `desfoque`.

@@ -29,7 +29,7 @@ edicao-video/
 | `bibliotecas.py` | Catálogos 3D e de músicas, busca, download verificado, política de música |
 | `efeitos.py` | Registro e implementação dos 20 layers de efeito |
 | `analisar.py` | Normaliza, transcreve, rastreia rosto, escreve `analise.json` e o rascunho do `edl.json` |
-| `renderizar.py` | Aplica o EDL: cortes, câmera, recorte, fundo, cor, elementos, legendas, vinheta, CTA, áudio, selo |
+| `renderizar.py` | Aplica o EDL: cortes, câmera, recorte, fundo, cor, elementos, legendas, vinheta, CTA, áudio, selo. `Contexto` monta tudo a partir do EDL e `Trecho` renderiza um grupo de segmentos, em paralelo, com cache do recorte; `--previa` desenha só uma janela |
 | `camera.py` | Rosto suavizado, câmera contínua entre cortes, zooms e transições |
 | `segmentacao.py` | Recorte da pessoa (RVM, com MediaPipe como reserva) |
 | `fundo.py` | Fundo da marca com luz difusa e o motivo dela (PDCA, ticket, anel) |
@@ -37,7 +37,15 @@ edicao-video/
 | `graficos.py` | Colagem com alfa, sombra, giro 3D, quebra de texto, cartão cinético |
 | `legendas.py` | Legenda palavra a palavra com marcação na cor de destaque |
 | `vinhetas.py` | Vinheta de abertura de cada marca e cartão de CTA |
-| `cor.py`, `audio.py`, `movimento.py`, `util.py` | LUT de cor, loudness e SFX, curvas de easing, ffmpeg |
+| `cor.py` | LUT de cor, LUT 3D `.cube`, proteção da pele e cor igual entre clipes |
+| `audio.py`, `movimento.py`, `util.py` | Loudness e SFX, curvas de easing, ffmpeg |
+| `diretor.py` | Diretor automático do `analisar`: vícios, tomadas repetidas, ênfases, zoom nos cortes, gancho, elementos |
+| `cena.py` | Leitura da imagem (gestos, aceno de cabeça, giro e afastamento da câmera) e os elementos que acompanham o movimento |
+| `qa.py` | Conferência visual do render (área segura, rosto, legenda, contraste, loudness, gancho) |
+| `linha_tempo.py` | Página HTML com o vídeo e a linha do tempo do EDL |
+| `exportar.py` | SRT, capa, legenda do post, reel até 20 MB, outros formatos e a entrada da agenda do insta_report |
+| `banco.py` | B-roll vertical do Pexels (com `PEXELS_API_KEY`) |
+| `estilos.py`, `planos.py`, `motion.py`, `perspectiva.py` | Estilos de edição, planos, looks, motion de interface, tela 3D |
 | `testar.py` | Regressão visual, isolamento e render ponta a ponta |
 | `comandos.py` | `marcas`, `biblioteca`, `conferir` |
 
@@ -69,7 +77,7 @@ Para cada quadro de saída, `renderizar` faz, nesta ordem:
 
 1. **Câmera**: posição do rosto suavizada, zoom-base contínuo entre cortes, zooms de ênfase, respiração lenta.
 2. **Fundo**: original, desfocado, da marca (com parallax) ou imagem; o recorte RVM separa a pessoa e a sombra é desenhada.
-3. **Cor**: LUT de contraste e calor, saturação e nitidez.
+3. **Cor**: cor igual entre clipes, LUT de contraste e calor, saturação, nitidez, LUT 3D e o look do segmento (com a pele protegida).
 4. **Transição** de entrada do segmento (push, zoom, slide, flash, dissolve, whip).
 5. **Elementos** da fase `elementos`: títulos, destaques, Leo, objetos 3D, efeitos, imagens, b-roll.
 6. **Legenda** palavra a palavra.
