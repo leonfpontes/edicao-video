@@ -73,6 +73,26 @@ catálogo inteiro (novos logos, por exemplo), edite `ferramentas/montar_3d.py` e
 > Logos de terceiros (Claude, ChatGPT, Notion…) são marcas registradas dos donos. Use só em contexto editorial, quando a
 > fala citar a ferramenta, nunca como se fosse parceria.
 
+### Criar objetos 3D
+
+Quando o roteiro pede um objeto que a biblioteca não tem, **o editor cria** (`motor/criar3d.py`), em vez de pular o
+elemento ou usar um genérico. Três caminhos, nesta ordem:
+
+1. **Fluent 3D** (`fluent`: nome da pasta no [Fluent Emoji](https://github.com/microsoft/fluentui-emoji), MIT, ex.:
+   `"House"`, `"Seedling"`, `"Speech balloon"`): baixa o render 3D pronto para `biblioteca/3d/renders/`.
+2. **Emoji extrudado** (`emoji`: o caractere): desenha o emoji colorido (Noto Color Emoji, OFL) em alta e grava em
+   `biblioteca/3d/criados/`; o motor extruda como os logos. Funciona sem rede.
+3. **Placa da marca** (`texto`): placa nas cores e na fonte da marca ativa, em `marcas/<id>/3d/` (identidade nunca vai
+   para a biblioteca).
+
+```bash
+.venv/bin/python editor.py biblioteca criar 3d casa --fluent House --emoji 🏠
+```
+
+No EDL basta `{"tipo": "objeto3d", "nome": "casa", "fluent": "House", "emoji": "🏠", "na": "pela casa"}`: se `casa`
+não existir, o render cria antes de desenhar. Tudo que é criado entra no catálogo e serve aos próximos vídeos.
+No GiraHub, nunca crie objeto que pareça sagrado.
+
 ## Músicas
 
 35 gravações reais com licença **CC BY 4.0** (uso comercial permitido com crédito):

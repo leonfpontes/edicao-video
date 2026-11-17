@@ -1,4 +1,6 @@
 """Recorte da pessoa (Robust Video Matting, com MediaPipe como reserva)."""
+import os
+
 import cv2
 import numpy as np
 
@@ -17,7 +19,12 @@ class Segmentador:
             import onnxruntime as ort
             self.ort, self.rvm_path = ort, str(rvm)
             pref = [p for p in ("CoreMLExecutionProvider", "CUDAExecutionProvider") if p in ort.get_available_providers()]
-            self.rvm = ort.InferenceSession(self.rvm_path, providers=pref + ["CPUExecutionProvider"])
+            self.opcoes = ort.SessionOptions()
+            n = int(os.environ.get("EDITOR_THREADS", "0"))
+            if n:  # render em vários processos: cada um usa só a sua parte dos núcleos
+                self.opcoes.intra_op_num_threads = n
+                self.opcoes.inter_op_num_threads = 1
+            self.rvm = ort.InferenceSession(self.rvm_path, self.opcoes, providers=pref + ["CPUExecutionProvider"])
             self.reset()
         else:
             import mediapipe as mp
@@ -43,7 +50,7 @@ class Segmentador:
             try:
                 fgr, pha, *self.rec = self.rvm.run(None, ent)
             except Exception:  # acelerador recusou o modelo: segue na CPU
-                self.rvm = self.ort.InferenceSession(self.rvm_path, providers=["CPUExecutionProvider"])
+                self.rvm = self.ort.InferenceSession(self.rvm_path, self.opcoes, providers=["CPUExecutionProvider"])
                 fgr, pha, *self.rec = self.rvm.run(None, ent)
             a = pha[0, 0]
             a = np.clip((a - 0.04) / 0.92, 0, 1)  # limpa resíduos quase transparentes do ambiente

@@ -71,7 +71,8 @@ def isolamento_ok(mid):
 
 def cmd_testar(a):
     """Teste de regressão de todas as marcas: (1) a folha visual tem de bater com testes/referencia/<marca>.png;
-    (2) um vídeo sintético de 4 s passa pelo render inteiro (cortes, fundo marca, título, legenda, CTA, áudio)
+    (2) um vídeo sintético de 4 s passa pelo render inteiro (cortes, fundo marca, título, legenda, plano dividido,
+    look, motion de estilo, CTA, áudio)
     e o áudio final precisa ficar entre -17 e -15 LUFS com pico abaixo de -1,5 dBFS; o arquivo leva o selo da marca."""
     ref_dir, tmp = TESTES / "referencia", TESTES / "_tmp"
     ref_dir.mkdir(parents=True, exist_ok=True)
@@ -112,13 +113,15 @@ def cmd_testar(a):
                    "amostras": [[0, 0.5, 0.35, 0.2]]}}, open(pasta / "analise.json", "w"))
         edl = rascunho_edl(src, pal, dur=4.0)
         edl["segmentos"] = [{"id": 0, "ini": 0.3, "fim": 1.8, "zoom": 1.0, "transicao": None},
-                            {"id": 1, "ini": 2.1, "fim": 3.9, "zoom": 1.0, "transicao": "push"}]
+                            {"id": 1, "ini": 2.1, "fim": 3.9, "zoom": 1.0, "transicao": "push", "plano": "dividido", "look": "quente"}]
         edl["fundo"] = {"tipo": "marca", "parallax": True, "sombra": True}
         edl["elementos"] = [{"tipo": "titulo", "texto": "Teste automático", "na": "teste", "segura": 0.8},
                             {"tipo": "objeto3d", "nome": "foguete", "na": "automático", "segura": 0.6, "x": 0.8, "y": 0.3},
                             {"tipo": "objeto3d", "nome": "claude", "na": "marca", "segura": 0.5, "x": 0.2, "y": 0.3},
                             {"tipo": "efeito", "nome": "confete", "na": "editor", "segura": 0.6},
-                            {"tipo": "efeito", "nome": "grao", "ini": 0.3, "fim": 3.9}]
+                            {"tipo": "efeito", "nome": "grao", "ini": 0.3, "fim": 3.9},
+                            {"tipo": "passo", "numero": 1, "texto": "Teste de estilo", "na": "de", "segura": 1.0},
+                            {"tipo": "neon", "texto": "Teste", "na": "editor", "segura": 0.5}]
         edl["cta"]["duracao"] = 1.5
         if politica_musica() == "obrigatoria":  # marca com trilha: o teste também passa pela música e pelo ducking
             edl["musica"] = dict(edl.get("musica") or {}, faixa="carefree")

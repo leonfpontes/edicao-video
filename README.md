@@ -48,10 +48,20 @@ flowchart LR
     G -->|confere a prévia| D
 ```
 
-1. `analisar` normaliza o vídeo, transcreve com tempo por palavra, rastreia o rosto e escreve um rascunho do EDL.
-2. O agente lê a transcrição e edita o `edl.json`: o que fica, onde entra cada efeito e com qual trilha.
-3. `renderizar` passa pela **guarda de marca**, gera o vídeo e uma folha de prévia que o próprio agente abre e confere.
-4. O vídeo sai com um selo da marca nos metadados, um `manifesto.json` com tudo o que foi usado e o crédito da música.
+1. `analisar` normaliza o vídeo, transcreve com tempo por palavra e rastreia o rosto.
+   - O **diretor automático** já propõe a edição: corta vícios e tomadas repetidas, escolhe as ênfases, alterna o zoom
+     nos cortes, dá nota ao gancho e sugere elementos ancorados na fala.
+2. O agente revisa o rascunho e o `diretor.json` e ajusta o `edl.json`.
+   - `renderizar --previa` mostra um trecho em segundos.
+3. `renderizar` passa pela **guarda de marca** e gera o vídeo em paralelo, com cache do recorte.
+   - A **conferência visual** aponta área segura, rosto coberto, legenda sem contraste e loudness.
+   - `linha-do-tempo` abre a edição numa página.
+4. `exportar` entrega o pacote do post:
+   - SRT, capa e rascunho da legenda;
+   - reel dentro de 20 MB e outros formatos;
+   - o post pronto para a agenda do insta_report.
+
+   O vídeo sai com um selo da marca nos metadados, um `manifesto.json` e o crédito da música.
 
 <p align="center"><img src="exemplos/previa-pontes_brain.jpg" alt="Folha de prévia de um vídeo real editado pelo agente" width="100%"></p>
 <p align="center"><sub>Folha de prévia de um vídeo real do @pontes_brain: gancho, legendas, Leo com contexto, destaques e CTA.</sub></p>
@@ -172,13 +182,16 @@ O agente usa a skill da marca (`skills/editor-video-<marca>/SKILL.md`), analisa,
 
 ```bash
 .venv/bin/python editor.py analisar ~/Movies/meu-video.mov --marca pontes_brain
-.venv/bin/python editor.py renderizar ~/Movies/meu-video_edicao/edl.json --rapido
+.venv/bin/python editor.py renderizar ~/Movies/meu-video_edicao/edl.json --previa --de 0 --ate 8
+.venv/bin/python editor.py renderizar ~/Movies/meu-video_edicao/edl.json
 .venv/bin/python editor.py conferir ~/Movies/meu-video_edicao/final.mp4 --marca pontes_brain
+.venv/bin/python editor.py linha-do-tempo ~/Movies/meu-video_edicao/edl.json
+.venv/bin/python editor.py exportar ~/Movies/meu-video_edicao/edl.json --quando 2026-11-20T19:00:00-03:00
 ```
 
 ## Qualidade
 
-- **114 testes de unidade** (`make testes`): validação das marcas, guarda, efeitos, catálogos.
+- **Testes de unidade** (`make testes`): marcas, guarda, efeitos, catálogos, estilos, diretor, render em trechos, cor e entrega.
 - **Regressão visual** (`make regressao`): a folha de cada marca é comparada pixel a pixel com a referência, a guarda é
   testada contra as outras marcas e um vídeo sintético é renderizado de ponta a ponta, com loudness medido.
 - **CI no GitHub Actions** em todo PR: lint (ruff), testes, bibliotecas e regressão.
@@ -189,6 +202,8 @@ O agente usa a skill da marca (`skills/editor-video-<marca>/SKILL.md`), analisa,
 |---|---|
 | [docs/arquitetura.md](docs/arquitetura.md) | Como o motor é organizado e o caminho de um quadro |
 | [docs/edl.md](docs/edl.md) | Referência completa do `edl.json` |
+| [docs/diretor-e-entrega.md](docs/diretor-e-entrega.md) | Diretor automático, prévia, conferência visual, linha do tempo e entrega |
+| [docs/estilos-de-referencia.md](docs/estilos-de-referencia.md) | Os três estilos de Reels estudados e como montar cada um |
 | [docs/marcas.md](docs/marcas.md) | Criar uma marca e como funciona o isolamento |
 | [docs/bibliotecas.md](docs/bibliotecas.md) | 3D, músicas e efeitos: usar, acrescentar e licenciar |
 | [docs/gravacao.md](docs/gravacao.md) | Dicas de gravação que fazem mais diferença que qualquer efeito |

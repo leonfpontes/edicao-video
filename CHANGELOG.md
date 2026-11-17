@@ -4,8 +4,113 @@
 
 ### Novo
 
+- **Tour pela casa no automático** (`motor/tour.py`): no vídeo em que a câmera anda pelo ambiente, o `analisar` escreve
+  até 3 capítulos por cômodo (fala de passagem, mudança de cor do ambiente, caminhada cortada; título do lugar citado)
+  com transição `luz` e sopro, e até 8 rótulos editoriais presos ao ponto para onde o dedo aponta (`cena.json` ganha
+  "apontar" e a assinatura de cor de cada segundo). No vídeo do GiraHub saiu a mesma estrutura da v4 feita à mão.
+- **Pausas pelo áudio** (`motor/pausas.py`): o `analisar` acerta o começo e o fim das palavras que o Whisper esticou
+  sobre o silêncio; o rascunho do vídeo do GiraHub caiu de 84 s para 66 s. `--sem-aparar` usa os tempos crus.
+- `legendas.correcoes` padrão do GiraHub para as entidades (echu → Exu, ochum → Oxum, xalá → Oxalá, fá → Ifá).
+
+### Corrigido
+
+- Render em vários processos com `fixar`: o cache de trilhas (`_cache/fixar.json`) agora é gravado de forma atômica
+  (antes, dois processos podiam ler o arquivo pela metade).
+
+- **Direção de arte no motor** (lições da edição do GiraHub):
+  - o `analisar` abre pela frase mais forte, tira o anúncio do começo e não repete o trecho (`montar_gancho`);
+  - `intro.apos_gancho`: a vinheta entra logo depois do gancho;
+  - tour detectado pela cena (câmera andando em mais de 25% do vídeo) liga `cor.igualar_luz` e põe o roteiro de
+    documentário no relatório;
+  - `anotacao` com `estilo: "editorial"` (sobrelinha em sans e nome em serifa itálica, ponto e fio) e `sem_legenda`
+    em qualquer elemento;
+  - legenda com `"marcacao": "enfase"` (padrão no GiraHub);
+  - regras de direção de arte em `docs/diretor-e-entrega.md` e nas três skills.
+- **Objetos 3D criados sob demanda** (`motor/criar3d.py`, `biblioteca criar 3d`, ou `fluent`/`emoji` no `objeto3d`):
+  Fluent Emoji 3D, emoji extrudado ou placa da marca. Primeiros criados: `casa`, `broto`, `balao-fala`.
+- **Rótulo preso a um objeto do ambiente**: `"fixar": [t, x, y]` rastreia o ponto pelo fluxo óptico, também com `na`/`ate`;
+  `anotacao` ganha `caixa` e põe a mira no objeto.
+- **Leitura da cena** no `analisar` (`motor/cena.py`, `cena.json`, `--sem-cena` desliga): gestos da mão (dedo para cima,
+  apontar para a câmera, mão aberta, joinha), aceno de cabeça (sim e não) e câmera (giro pelo ambiente, câmera se
+  afastando). Cada leitura vira brilho, ondas, círculo, check, xis, luz, `whip` ou zoom `abre`, que acompanham o
+  movimento.
+- **Elementos que acompanham o movimento**: campo `"seguir"` (trilha na fonte, projetada depois do enquadramento) e
+  `dx`/`dy`.
+- Zoom `"modo": "abre"` (entra fechado e abre).
+- `"diretor": {"calmo": true}` no `marca.json` (GiraHub): a cena não usa tranco de zoom nem marca a mão sem o rosto.
+- Intro e CTA ficam sempre ligados, também no GiraHub em fala de fé; só saem com pedido do Leonardo.
 - **Peças fixas no Pencil**: capa de Reel do @pontes_brain em `marcas/pontes_brain/pencil/capa-reel.pen` (fonte) e
   `capa-reel.png` (1080×1920); convenção documentada em `docs/marcas.md`.
+- **Diretor automático** no `analisar` (`motor/diretor.py`, `--sem-diretor` desliga):
+  - corta vícios e tomadas repetidas;
+  - escolhe as ênfases da legenda;
+  - alterna o zoom nos jump cuts (`"salto"`) e dá punch nas ênfases;
+  - dá nota ao gancho e aponta a frase mais forte;
+  - sugere elementos e termos de b-roll.
+
+  Relatório em `diretor.json` e no fim da `transcricao.txt`.
+- **Render mais rápido**:
+  - trechos em paralelo, cada um aquecendo câmera e recorte para sair igual ao render corrido (`--processos`);
+  - cache do recorte da pessoa em `_cache/`;
+  - looks e cor por LUT;
+  - tela em perspectiva otimizada.
+
+  No estilo vitrine, o re-render ficou 4x mais rápido.
+- **Prévia rápida**: `renderizar --previa --de S --ate S` gera `previa.mp4` a 10 quadros/s, só da janela pedida, com áudio.
+- **Conferência visual** (`motor/qa.py`) em todo render, com `conferencia.json`. Ela aponta:
+  - elemento ou legenda fora da área segura;
+  - elemento cobrindo o rosto, legenda sobre o rosto ou brigando com um elemento;
+  - legenda sem contraste;
+  - loudness, duração e gancho fraco.
+- **`linha-do-tempo`**: página HTML com o vídeo e as trilhas do EDL.
+- **`exportar`**: `legenda.srt`, capa limpa, rascunho do post (termina no CTA da marca), `reel.mp4` até 20 MB, outros formatos
+  (`--formatos`) e a entrada da agenda do insta_report (`--quando`, `--insta-report`).
+- **`renderizar --formato`**: o mesmo EDL em `feed` ou `horizontal`.
+- **`broll`**: b-roll vertical do Pexels com `PEXELS_API_KEY`, baixado para a pasta do vídeo com a licença ao lado.
+- **Cor**:
+  - LUT 3D `.cube` (`cor.lut`, `lut_intensidade`);
+  - pele protegida nos looks de cor;
+  - cor igual entre clipes gravados em momentos diferentes.
+- **Legendas**:
+  - quebra por sentido (o bloco não termina em "de", "o", "que");
+  - `emoji`: objeto 3D da biblioteca pula acima da legenda na palavra certa.
+
+- **Estilos de edição** (`"estilo"` no EDL, `analisar --estilo`, `editor.py estilos`): `tutorial_passos`,
+  `tela_perspectiva` e `vitrine`, presets que ajustam legenda, sons, corte de pausas e o aviso de ritmo.
+- **Planos por segmento** (`"plano"`): `rosto`, `dividido` (palco de motion em cima, rosto embaixo) e `motion`; a
+  legenda acompanha a linha do plano. `motor/planos.py`.
+- **Looks por segmento** (`"look"`): `pb`, `pb_acento`, `duotom`, `quente`, `frio`, `limpo`, `noite` e `adesivo`
+  (pessoa recortada com contorno sobre fundo chapado).
+- **Legenda `limpa`**: 1 ou 2 palavras, branco, sem caixa nem contorno, sombra macia.
+- **Motion de estilo** (`motor/motion.py`): `passo`, `digitacao`, `janela`, `arvore`, `mapa`, `comentario`, `icone`,
+  `carrossel`, `titulo_caixa`, `titulo_editorial`, `bilhete`, `anotacao`, `neon`, `texto_atras` (atrás da pessoa, com
+  recorte automático) e `hud_rosto` (segue o rosto). `som` com `rotulo` mostra o som na tela.
+- **Tela em perspectiva** (`broll` com `perspectiva`): plano 3D com câmera por pontos-chave, profundidade de campo e
+  luz quente. **Bolha de rosto** (`broll` com `bolha`).
+- **Aviso de ritmo**: com `parado_max`, o render mede o maior trecho sem mudança visual.
+- **Fontes de estilo** (OFL): DM Serif Display, Anton, Space Mono e Caveat, com licenças em `biblioteca/fontes/LICENCAS.md`.
+- **Estilos de referência** em `docs/estilos-de-referencia.md`: três estilos de Reels estudados (tela em perspectiva,
+  tutorial em passos, vitrine de estilos), com números medidos, receita para o motor atual e lista do que falta construir.
+
+### Mudou
+
+- **Nunca borda esticada**: a estabilização (`--estabilizar`) passou do `deshake` com borda esticada para o vid.stab
+  em duas passadas com zoom adaptativo (aproxima só o necessário, nunca estica a borda); o enquadramento não sai mais
+  da fonte (a respiração do zoom ficava abaixo de 1 e o tremor do punch passava da borda); o efeito `tremor` e os fundos
+  aproximam em vez de espelhar. O `analisar` confere o vídeo estabilizado e o render reprova "borda esticada".
+- Correções da legenda valem com pontuação colada ("echu," vira "Exu,").
+- Ajustes do primeiro teste com vídeos reais:
+  - "um" e "uma" não contam mais como número no diretor ("um vídeo" não é número concreto);
+  - o gancho da conferência é medido na abertura do vídeo editado, não na do bruto;
+  - a legenda quebra em duas linhas antes de chegar aos botões do Reels (`legendas.largura_max`, padrão 0,70);
+  - o rascunho do `post.txt` usa as `correcoes` da legenda, abre com maiúscula e não leva CTA quando o vídeo não tem;
+  - marcas com enquadramento contínuo (`"diretor": {"alternar_zoom": false}`, ligado no @pontes_brain e no GiraHub) não
+    recebem o zoom alternado nos jump cuts;
+  - `analisar --modelo` aceita a pasta de um modelo Whisper local.
+- Caminhos de arquivo no EDL são relativos à pasta do próprio `edl.json`, não à pasta de onde o comando roda.
+- O b-roll é lido pelo instante, na velocidade real do arquivo (gravação de tela a 60 fps não fica mais em câmera lenta).
+- Por causa da quebra por sentido, as folhas de referência de todas as marcas foram regeradas: a legenda de teste agora
+  fecha o bloco em "palavra", não em "por".
 
 ## 2.1.0 (2026-10-29)
 

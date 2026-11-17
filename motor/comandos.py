@@ -1,4 +1,4 @@
-"""Comandos de apoio: `marcas`, `biblioteca` e `conferir`."""
+"""Comandos de apoio: `marcas`, `estilos`, `biblioteca` e `conferir`."""
 import json
 import re
 import sys
@@ -25,6 +25,21 @@ def cmd_marcas(a):
         print(f"{'':14s} vinheta {c['intro']['tipo']} · fundo {c['fundo_motivo']} · Leo {'sim' if c.get('leo') else 'não'} · "
               f"música {politica_musica(c)} · CTA {cta}")
         print(f"{'':14s} termos exclusivos: {', '.join(c['exclusivo']['termos'])}")
+
+
+def cmd_estilos(a):
+    from .estilos import LOOKS, PRESETS
+    from .planos import PLANOS
+    print("Estilos (\"estilo\" no EDL ou analisar --estilo):")
+    for k, v in PRESETS.items():
+        print(f"  {k:18s} {v['descricao']}")
+    print("\nPlanos (\"plano\" em cada segmento):")
+    for k, v in PLANOS.items():
+        print(f"  {k:18s} {v}")
+    print("\nLooks de cor (\"look\" em cada segmento):")
+    for k, v in LOOKS.items():
+        print(f"  {k:18s} {v}")
+    print("\nGuia completo: docs/estilos-de-referencia.md")
 
 
 def _linha(qual, it):
@@ -68,6 +83,13 @@ def cmd_biblioteca(a):
         if a.qual == "3d":
             for nome in a.termo:
                 baixar_fluent(nome)
+    elif a.acao == "criar":
+        if a.qual != "3d":
+            sys.exit("só a biblioteca 3d cria objetos: editor.py biblioteca criar 3d <nome> [--fluent N] [--emoji E] [--texto T --marca X]")
+        from .criar3d import criar_3d
+        nome = " ".join(a.termo)
+        iid, como = criar_3d(nome, a.fluent, a.emoji, a.texto)
+        sys.exit(f"não criei {nome}: {como}") if not iid else print(f"criado: {iid} ({como})")
     elif a.acao == "verificar":
         sys.exit(0 if verificar_bibliotecas() else 1)
     elif a.acao == "catalogo":

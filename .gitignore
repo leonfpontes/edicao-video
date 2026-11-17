@@ -11,3 +11,4 @@ exemplo-teste.mp4
 # bibliotecas: arquivos baixados (o catálogo fica no Git)
 biblioteca/musicas/arquivos/
 *.part
+modelos/gesture_recognizer.task

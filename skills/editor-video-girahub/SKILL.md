@@ -27,7 +27,7 @@ Querem ouvir: gira organizada e sem confusão no portão, mensalidade sem constr
 
 Tom: caloroso, respeitoso e simples, como alguém da comunidade explicando para outra casa ("a casa", "a gira", "os filhos da casa", "a corrente", "o consulente"). Nada de jargão de software nem visual "de IA".
 
-Respeito religioso (não negociável): nada de exotismo, estereótipo ou elemento sagrado como enfeite (orixás, guias, pontos riscados, atabaques, velas). Sem piada com a fé, sem inventar regra de fundamento. Cada casa tem seu jeito; o GiraHub só organiza. Data religiosa (Iemanjá, Preto Velho, Cosme e Damião…): vídeo sóbrio, sem CTA comercial (`"cta": {"ativo": false}`), sem preço, sem "comece grátis".
+Respeito religioso (não negociável): nada de exotismo, estereótipo ou elemento sagrado como enfeite (orixás, guias, pontos riscados, atabaques, velas). Sem piada com a fé, sem inventar regra de fundamento. Cada casa tem seu jeito; o GiraHub só organiza. Data religiosa ou fala de fé (Iemanjá, Preto Velho, Cosme e Damião…): vídeo sóbrio, sem preço e sem "comece grátis" na tela. Vinheta e CTA continuam ligados: **todo vídeo leva intro e CTA**, e só saem quando o Leonardo pedir.
 
 ## 2. Identidade visual (não negociável)
 
@@ -57,6 +57,34 @@ Fonte: `/mnt/project-files/girahub-instagram/conhecimento/identidade-visual.md` 
 **Fontes:** Fraunces 600/700 nos títulos e na chamada do CTA; Inter nas legendas, destaques e rótulos. Nome "GiraHub" sempre sans extra-bold. Cantos de 8 a 12 px nas caixas.
 
 **Telas do produto:** só prints e gravações reais do GiraHub, de preferência do "Terreiro Modelo" com dados fictícios (catálogo em `/mnt/project-files/girahub-instagram/assets/telas-reels/CATALOGO.md`). A imagem mostra o que a fala diz. Nunca dados reais de casa, nome de consulente ou valor de mensalidade de verdade. Nada de rosto gerado por IA. Emojis só na legenda do post, nunca nos gráficos.
+
+**Estilos de edição** (`editor.py estilos`; guia em `docs/estilos-de-referencia.md`, campos em `docs/edl.md`): `"estilo": "tutorial_passos"` (rosto, tela dividida e só motion em corte seco, legenda limpa de 2 palavras, `passo`, `janela`, `arvore`, `mapa`, `comentario`), `"tela_perspectiva"` (gravação de tela num plano 3D com câmera e profundidade de campo: `broll` com `perspectiva`) e `"vitrine"` (um `look` por frase, `texto_atras`, `hud_rosto`, `som` com `rotulo`, `neon`). Em cada segmento: `"plano"` (`rosto`, `dividido`, `motion`) e `"look"` (`pb`, `pb_acento`, `duotom`, `quente`, `frio`, `limpo`, `noite`, `adesivo`). `analisar --estilo <estilo>` já corta as pausas no ritmo do estilo. O estilo nunca troca a identidade: cores e fontes de texto continuam as da marca.
+
+**Diretor, prévia, conferência e entrega** (guia em `docs/diretor-e-entrega.md`):
+
+- **O `analisar` já dirige o rascunho.** Ele corta vícios e tomadas repetidas, escolhe as ênfases da legenda, alterna o zoom nos jump cuts (`"salto": true`), põe punch nas ênfases mais fortes e sugere elementos ancorados na fala.
+  - Leia o resumo no fim de `transcricao.txt` e o `diretor.json` antes de mexer.
+  - Confira cada corte proposto: se um corte mudar o sentido, desfaça.
+  - A nota do gancho e a frase mais forte vêm junto. Para abrir com essa frase, use um segmento `"gancho": true`.
+  - `--sem-diretor` dá o rascunho cru.
+- **O `analisar` também lê a imagem** (`cena.json`): gestos (dedo para cima, apontar para a câmera, mão aberta, joinha), aceno de cabeça (sim e não) e câmera (giro pelo ambiente, câmera se afastando). Cada leitura vira um elemento que **acompanha o movimento** (`"seguir"`): brilho na ponta do dedo, ondas ao apontar para a câmera, círculo na mão aberta, check ao lado da cabeça no "sim", palavra grudada na parede no giro e zoom `abre` quando a câmera se afasta. O motivo do efeito é o gesto: confira na prévia e apague o que não fizer sentido. `--sem-cena` desliga.
+- **Tour pela casa sai pré-montado.** Quando a câmera anda pelo ambiente, o `analisar` já escreve até 3 capítulos por cômodo (`passo` "Parte" com título do lugar e transição `luz`) e até 8 rótulos editoriais presos ao objeto que o dedo aponta ("firmeza de/Caboclo", com `fixar` e `sem_legenda`). O relatório lista cada um com o motivo: confira os títulos e o ponto de cada rótulo na prévia.
+- **Pausas pelo áudio.** O Whisper estica a palavra sobre o silêncio seguinte; o `analisar` acerta os tempos pelo volume e a caminhada muda já sai cortada (`--sem-aparar` desliga).
+- **Ajuste por trechos.** `renderizar --previa --de S --ate S` mostra só o trecho alterado, em segundos.
+- **O render final faz a conferência visual.** Ele avisa sobre:
+  - área segura do Reels;
+  - elemento cobrindo o rosto;
+  - legenda sobre o rosto ou sem contraste;
+  - loudness fora do alvo;
+  - gancho fraco.
+
+  Resolva cada aviso de `conferencia.json` antes de entregar.
+- **Para revisar a edição inteira**, rode `linha-do-tempo` e abra a página.
+- **Na entrega**, rode `exportar` (com `--quando` se já houver data). Ele gera:
+  - `legenda.srt`, `capa.jpg` e `reel.mp4` (até 20 MB);
+  - `post.txt`, que é só rascunho: a legenda do post continua seguindo as regras desta skill.
+
+Para esta marca, prefira `tutorial_passos` (explicar um recurso do app em passos) e looks discretos (`limpo`, `quente`). `vitrine`, `neon`, `bilhete` e `hud_rosto` não combinam com conteúdo religioso: só com o ok do Leonardo e nunca em fala sobre fé.
 
 ## 3. Publicidade: o que pode prometer
 
@@ -107,7 +135,7 @@ Base: `/mnt/project-files/girahub-instagram/conhecimento/algoritmo-e-trends.md` 
   - titulo: a dor ou o tema, até 6 palavras, com a palavra-chave ("Senha da gira pelo WhatsApp").
   - destaque: recurso (Porta, Modo TV, Mensalidades), número, preço do site ou girahub.com.br; até 4 palavras; texto café-950 na caixa ouro. Em lista, empilhe (y 0.18, 0.24, 0.30; `tam` 50).
   - imagem / broll: tela real quando a fala descreve uma tela. Sem print adequado, peça ao Leonardo; nunca invente tela.
-  - objeto3d: o ticket em 3D (`ticket`, só desta marca) ou um objeto da biblioteca quando a fala citar algo concreto (`whatsapp`, `pix`, `calendario`, `dinheiro`, `grafico-subindo`). Busque com `editor.py biblioteca listar 3d <termo> --marca girahub`. Nada de objeto que pareça elemento sagrado. No máximo 2 por vídeo.
+  - objeto3d: o ticket em 3D (`ticket`, só desta marca) ou um objeto da biblioteca quando a fala citar algo concreto (`whatsapp`, `pix`, `calendario`, `dinheiro`, `grafico-subindo`). Busque com `editor.py biblioteca listar 3d <termo> --marca girahub`. Nada de objeto que pareça elemento sagrado (nem criado). Em fala de fé ou tour pela casa, nenhum 3D (emoji 3D fica infantil); nos vídeos do produto, no máximo 3, um de cada vez. Se a fala pede um objeto que a biblioteca não tem, **crie** em vez de pular: `"fluent": "<nome em inglês do Fluent Emoji 3D>"` e/ou `"emoji": "<caractere>"` no próprio `objeto3d` (ou `editor.py biblioteca criar 3d <nome> --fluent X --emoji Y`); o objeto fica no catálogo para os próximos vídeos. Para rotular o que a câmera mostra (tour pela casa, objeto na mesa), use `anotacao` com `"fixar": [t, x, y]` e `"caixa": true`: o rótulo fica preso ao objeto enquanto a câmera anda.
   - efeito: `check` num recurso que resolve a dor, `contador` num número falado, `sublinhado` na palavra-chave, `ondas` em "olha aqui" sobre uma tela. Cor só por papel (`champanhe` = ouro, `bronze` = barro). Nada de `glitch`, `vhs` ou `tremor`: o ritmo é calmo. No máximo 2 por vídeo.
 - **Área segura:** nada importante nos 15% de cima e de baixo. Títulos em y ≥ 0.18; legenda com `posicao_y` até 0.70.
 - **Legendas sempre ligadas** (muita gente assiste sem som). Preencha `correcoes` (GiraHub, Umbanda, Candomblé, cambone, consulente, nomes de recursos e entidades com maiúscula) e marque 3 a 5 palavras em `enfase`.
@@ -118,6 +146,10 @@ Base: `/mnt/project-files/girahub-instagram/conhecimento/algoritmo-e-trends.md` 
 - Áudio: use o padrão conservador do editor (ver Referência). Gravou dentro do terreiro com eco ou atabaque ao fundo: `denoise_db` 6 a 8 e avise; não tente "limpar" o som da gira.
 
 ### Fase 5: conferência (obrigatória)
+**Direção de arte (sempre):** antes de montar o EDL, leia "Direção de arte: o que o editor sempre considera" em `docs/diretor-e-entrega.md` e siga os 10 pontos: gancho primeiro sem repetir (o `analisar` já move a frase forte e põe a vinheta depois dela), 45 a 60 s em tour, capítulos, rótulo editorial preso ao objeto com `sem_legenda`, 3D só quando o tom pede, luz igualada entre ambientes, som sob a voz, nunca borda esticada e autocrítica com nota por critério antes de entregar (abaixo de 8 volta para o EDL).
+
+**Bordas:** nenhum quadro pode mostrar borda esticada, espelhada ou preta (pixel da beira repetido em faixa). Ao conferir os quadros, olhe as quatro bordas, principalmente em vídeo feito na mão; o render acusa "borda esticada" e esse aviso nunca vai para entrega. Nunca entregue com borda esticada.
+
 `renderizar --rapido`, abra previa.jpg e extraia quadros em cada transição e elemento (`ffmpeg -ss <seg> -i <saida>.mp4 -frames:v 1 q.jpg`). Confira:
 - primeiro quadro já com texto do gancho; vinheta do ticket GiraHub (não a do @pontes_brain), ticket âmbar;
 - só cores da paleta terra e só pares de contraste aprovados; nada de indigo fora dos prints;

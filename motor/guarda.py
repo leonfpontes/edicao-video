@@ -47,9 +47,14 @@ def textos_do_edl(edl):
     """[(onde, texto)] de tudo que vira texto na tela ou no áudio."""
     out = []
     for i, e in enumerate(edl.get("elementos", [])):
-        for k in ("texto", "rotulo", "prefixo", "sufixo"):
+        for k in ("texto", "rotulo", "prefixo", "sufixo", "titulo", "raiz", "centro", "dica"):
             if isinstance(e.get(k), str):
                 out.append((f"elementos[{i}].{k}", e[k]))
+        for k in ("linhas", "filhos", "itens"):
+            for j, v in enumerate(e.get(k) or []):
+                out.append((f"elementos[{i}].{k}[{j}]", str(v)))
+        for j, v in enumerate(e.get("partes") or []):
+            out.append((f"elementos[{i}].partes[{j}]", str(v.get("t", "")) if isinstance(v, dict) else str(v)))
     cta = edl.get("cta") or {}
     for k in ("chamada", "url", "apoio"):
         if isinstance(cta.get(k), str):
@@ -71,6 +76,8 @@ def arquivos_do_edl(edl):
         for k in CAMPOS_ARQUIVO:
             if e.get(k):
                 out.append((f"elementos[{i}].{k}", e[k]))
+        for j, v in enumerate(e.get("arquivos") or []):
+            out.append((f"elementos[{i}].arquivos[{j}]", v))
     for sec in ("fundo", "musica"):
         for k in CAMPOS_ARQUIVO:
             v = (edl.get(sec) or {}).get(k)
@@ -127,8 +134,25 @@ def conferir_edl(edl, analise=None, pasta=None):
                 som(sid)
             except ErroDeMarca as err:
                 pr.append(f"{onde}: {err}")
+    from .estilos import LOOKS, PRESETS
+    from .motion import TIPOS
+    from .planos import PLANOS
+    if edl.get("estilo") and edl["estilo"] not in PRESETS:
+        pr.append(f"estilo desconhecido: {edl['estilo']} (opções: {', '.join(PRESETS)})")
+    for i, sg in enumerate(edl.get("segmentos", [])):
+        if sg.get("plano") and sg["plano"] not in PLANOS:
+            pr.append(f"segmentos[{i}].plano desconhecido: {sg['plano']} (opções: {', '.join(PLANOS)})")
+        if sg.get("look") and sg["look"] not in LOOKS:
+            pr.append(f"segmentos[{i}].look desconhecido: {sg['look']} (opções: {', '.join(LOOKS)})")
+    papeis = ("marinho", "marinho_2", "champanhe", "bronze", "papel", "papel_2", "nevoa")
     for i, e in enumerate(edl.get("elementos", [])):
         tp = e.get("tipo")
+        if tp in TIPOS or (tp == "som" and e.get("rotulo")):
+            cores = [("cor", e.get("cor"))] + [(f"partes[{j}].cor", pt.get("cor")) for j, pt in enumerate(e.get("partes") or [])
+                                               if isinstance(pt, dict)]
+            for onde, c in cores:
+                if c is not None and c not in papeis:
+                    pr.append(f"elementos[{i}].{onde}: use um papel da paleta da marca, não {c!r}")
         if tp == "leo" and not tem_leo():
             pr.append(f"elementos[{i}]: o Leo é personagem do @pontes_brain; a marca {mid} não o usa")
         elif tp == "objeto3d":

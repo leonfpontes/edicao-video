@@ -23,8 +23,8 @@ Editor de vídeo automático e multimarca. Você grava falando para a câmera; o
 1. **Uma marca por vídeo.** `analisar --marca <marca>` numa pasta própria. O `edl.json` leva `"marca"`. Nada de uma marca
    (cores, logo, vinheta, Leo, termos, CTA, arquivos de `marcas/<outra>/`) entra no vídeo de outra. A guarda recusa; não
    tente contorná-la.
-2. **Confira antes de entregar**: abra `previa.jpg`, extraia quadros de cada corte e elemento, meça o áudio e rode
-   `editor.py conferir final.mp4 --marca <marca>`. Só entregue com "confere".
+2. **Confira antes de entregar**: abra `previa.jpg`, extraia quadros de cada corte e elemento, resolva os avisos da
+   conferência visual (`conferencia.json`) e rode `editor.py conferir final.mp4 --marca <marca>`. Só entregue com "confere".
 3. **Efeito só com motivo na fala**, entrando na palavra exata (`na`) e saindo quando a ideia termina (`ate`).
 4. **Música só da biblioteca** (ou com licença livre e crédito no EDL), respeitando a política da marca. Nunca sintetize
    música. Mande o crédito de `creditos.txt` junto com a legenda do post.
@@ -35,8 +35,11 @@ Editor de vídeo automático e multimarca. Você grava falando para a câmera; o
 ## Comandos
 
 ```bash
-.venv/bin/python editor.py analisar VIDEO [VIDEO2 …] --marca <marca> [--pasta P] [--sem-fala] [--estabilizar]
-.venv/bin/python editor.py renderizar P/edl.json [--rapido] [--so-audio]
+.venv/bin/python editor.py analisar VIDEO [VIDEO2 …] --marca <marca> [--pasta P] [--sem-fala] [--estabilizar] [--estilo E] [--sem-diretor] [--sem-cena] [--sem-aparar]
+.venv/bin/python editor.py renderizar P/edl.json [--rapido] [--so-audio] [--previa --de S --ate S] [--formato feed] [--processos N]
+.venv/bin/python editor.py linha-do-tempo P/edl.json
+.venv/bin/python editor.py exportar P/edl.json [--quando 2026-11-20T19:00:00-03:00] [--formatos feed] [--insta-report CLONE]
+.venv/bin/python editor.py broll "termo" P/edl.json [--baixar N]       # precisa de PEXELS_API_KEY
 .venv/bin/python editor.py conferir P/final.mp4 --marca <marca>
 .venv/bin/python editor.py marcas
 .venv/bin/python editor.py biblioteca listar 3d|musicas|efeitos [termo] [--marca X] [--clima …] [--json]

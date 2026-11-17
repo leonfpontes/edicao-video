@@ -1,4 +1,5 @@
-"""Elementos sobre o vídeo: títulos, destaques, Leo, objetos 3D, efeitos, imagens e b-roll."""
+"""Elementos sobre o vídeo: títulos, destaques, Leo, objetos 3D, efeitos, imagens, b-roll e o motion de estilo
+(motor/motion.py: passo, janela, árvore, neon, texto atrás da pessoa, HUD…)."""
 import math
 import sys
 
@@ -8,10 +9,13 @@ from PIL import Image
 
 from .audio import som_padrao
 from .bibliotecas import objeto_3d
+from .config import FPS
 from .efeitos import criar_efeito
 from .graficos import Cartao, alpha_over, blend, cobrir, girar3d, pil2np, sombra, transformar
 from .marca import ErroDeMarca, arquivo_marca, marca_ativa, registrar, tem_arquivo_marca, tem_leo
+from .motion import AREA_PALCO, TIPOS, Y_PADRAO, HudRosto, RotuloSom, criar
 from .movimento import clamp01, ease_in, ease_out, ease_out_back, mola
+from .perspectiva import TelaPerspectiva
 
 
 class Leo:
@@ -151,6 +155,10 @@ class Elementos:
 
     def __init__(self, lst, W, H, map_out, palavras=()):
         self.W, self.H, self.items = W, H, []
+        self.plano = "rosto"  # plano do quadro atual (o render atualiza): define a área do palco
+        self.rosto = None  # (cx, cy, altura) do rosto no quadro de saída, para o HUD
+        self.caixas = None  # lista ligada pelo render nos quadros conferidos: caixas dos elementos desenhados
+        self.M, self.t_src, self.fonte = None, 0.0, (W, H)  # enquadramento do quadro atual (o render atualiza)
         norm = lambda t: t.lower().strip(".,!?;:\"'")
 
         def achar(txt, n=1, depois=0.0):
@@ -176,13 +184,15 @@ class Elementos:
                 if "ate" in e:
                     e["fim"] = achar(e["ate"], 1, a)[1] + e.get("segura", 0.25)
             if e["tipo"] == "som":  # só áudio: o ápice do som cai no início do elemento (ex.: riser chegando na palavra)
-                e.setdefault("fim", e["ini"] + 0.5)
+                e.setdefault("fim", e["ini"] + (0.9 if e.get("rotulo") else 0.5))
             if "saida" in e:  # tempos já na linha do tempo final (ex.: título sobre o gancho)
                 e["o_ini"], e["o_fim"] = e["saida"]
             else:
                 e["o_ini"], e["o_fim"] = map_out(e["ini"]), map_out(e["fim"])
             if e["o_fim"] <= e["o_ini"]:
                 continue
+            if e.get("seguir"):  # [[t da fonte, x, y], …] em fração da fonte: o elemento acompanha esse ponto
+                e["seguir"] = np.array(e["seguir"], np.float64).reshape(-1, 3)
             tp = e["tipo"]
             if tp in ("titulo", "destaque"):
                 e["obj"] = Cartao(e["texto"], W * (0.86 if tp == "titulo" else 0.8), tp, e.get("tam"))
@@ -190,7 +200,17 @@ class Elementos:
             elif tp == "leo":
                 e["obj"] = Leo(e, W, H)
             elif tp == "objeto3d":
-                caminho, it = objeto_3d(e["nome"])
+                try:
+                    caminho, it = objeto_3d(e["nome"])
+                except ErroDeMarca as erro:  # o roteiro pediu um objeto que não existe: o editor cria (criar3d.py)
+                    if "desconhecido" not in str(erro) or not any(e.get(k) for k in ("fluent", "emoji", "texto_3d")):
+                        raise
+                    from .criar3d import criar_3d
+                    iid, como = criar_3d(e["nome"], e.get("fluent"), e.get("emoji"), e.get("texto_3d"))
+                    if not iid:
+                        raise ErroDeMarca(f"não consegui criar o objeto 3D {e['nome']}: {como}") from erro
+                    print(f"  objeto 3D criado: {iid} ({como})", flush=True)
+                    caminho, it = objeto_3d(iid)
                 e["obj"] = (Sprite3D if it.get("tipo") == "render" else Objeto3D)(e, W, H, caminho)
             elif tp == "efeito":
                 e["obj"] = criar_efeito(e, W, H, len(self.items))
@@ -200,7 +220,18 @@ class Elementos:
                 im = im.resize((lw, int(im.height * lw / im.width)), Image.LANCZOS)
                 e["img"], _ = sombra(pil2np(im), 20, 0.4)
                 e.setdefault("y", 0.3)
+            elif tp in TIPOS:
+                e["obj"] = criar(e, W, H, len(self.items))
+                e.setdefault("y", Y_PADRAO.get(tp, 0.5))
+                if tp in AREA_PALCO:
+                    e.setdefault("area", "palco")
+            elif tp == "som" and e.get("rotulo"):
+                e["obj"] = RotuloSom(e, W, H)
+                e.setdefault("y", 0.3)
             elif tp == "broll":
+                e.pop("seguir", None)
+                if e.get("perspectiva"):
+                    e["persp"] = TelaPerspectiva(e["perspectiva"] if isinstance(e["perspectiva"], dict) else {}, W, H)
                 p = registrar(e["arquivo"])
                 if p.suffix.lower() in (".mp4", ".mov", ".m4v"):
                     e["cap"] = cv2.VideoCapture(str(p))
@@ -227,39 +258,103 @@ class Elementos:
                     out.append((e["o_ini"], sid, g))
                     batidas = getattr(e["obj"], "batidas", None) if tp == "efeito" else None
                     out += [(e["o_ini"] + b, sid, g) for b in (batidas() if batidas else []) if e["o_ini"] + b < e["o_fim"]]
-            elif tp in ("titulo", "destaque", "leo", "imagem", "objeto3d") or (tp == "efeito" and e["obj"].pop):
+            elif tp in ("titulo", "destaque", "leo", "imagem", "objeto3d") or tp in TIPOS or (tp == "efeito" and e["obj"].pop):
                 out.append((e["o_ini"], "pop", g))
         return out
 
     def ativo(self, t, tipo):
         return any(e["tipo"] == tipo and e["o_ini"] <= t < e["o_fim"] for e in self.items)
 
+    def ativos(self, t, tipo):
+        return [e for e in self.items if e["tipo"] == tipo and e["o_ini"] <= t < e["o_fim"]]
+
+    def broll_ativo(self, t):
+        return next((e for e in self.items if e["tipo"] == "broll" and e["o_ini"] <= t < e["o_fim"]), None)
+
     def broll(self, t):
         for e in self.items:
             if e["tipo"] == "broll" and e["o_ini"] <= t < e["o_fim"]:
-                if "cap" in e:
-                    ok, f = e["cap"].read()
+                if "cap" in e:  # quadro pelo instante (não pela ordem de leitura): o render em trechos paralelos dá o mesmo
+                    cap = e["cap"]
+                    n = int(cap.get(cv2.CAP_PROP_FRAME_COUNT)) or 1
+                    fps = cap.get(cv2.CAP_PROP_FPS) or FPS  # na velocidade real do b-roll (gravação de tela a 60 fps não fica lenta)
+                    k = int(round((t - e["o_ini"]) * fps)) % n
+                    if e.get("pos") != k:
+                        cap.set(cv2.CAP_PROP_POS_FRAMES, k)
+                    ok, f = cap.read()
                     if not ok:
-                        e["cap"].set(cv2.CAP_PROP_POS_FRAMES, 0)
-                        ok, f = e["cap"].read()
+                        cap.set(cv2.CAP_PROP_POS_FRAMES, 0)
+                        ok, f = cap.read()
+                    e["pos"] = k + 1
                 else:
                     f = e["still"]
                 p = (t - e["o_ini"]) / max(e["o_fim"] - e["o_ini"], 0.01)
+                if "persp" in e:
+                    return e["persp"].quadro(f, p)
                 return cobrir(f, self.W, self.H, 1.0 + 0.08 * p)
         return None
 
+    def alvo(self, e):
+        """Ponto da trilha "seguir" no quadro de saída (px), com o deslocamento "dx"/"dy" (fração da tela) e preso à
+        área segura. A trilha está na fonte; o enquadramento (zoom, rosto, punch) é aplicado aqui."""
+        tr = e["seguir"]
+        xs = float(np.interp(self.t_src, tr[:, 0], tr[:, 1])) * self.fonte[0]
+        ys = float(np.interp(self.t_src, tr[:, 0], tr[:, 2])) * self.fonte[1]
+        M = self.M if self.M is not None else np.float32([[self.W / self.fonte[0], 0, 0], [0, self.H / self.fonte[1], 0]])
+        X = M[0, 0] * xs + M[0, 1] * ys + M[0, 2] + e.get("dx", 0) * self.W
+        Y = M[1, 0] * xs + M[1, 1] * ys + M[1, 2] + e.get("dy", 0) * self.H
+        return min(max(X, 0.08 * self.W), 0.86 * self.W), min(max(Y, 0.1 * self.H), 0.8 * self.H)
+
+    def seguir(self, e):
+        X, Y = self.alvo(e)
+        ob = e.get("obj")
+        if e["tipo"] == "efeito":
+            if not hasattr(ob, "_x0"):
+                ob._x0, ob._y0, ob._pts0 = ob.x, ob.y, getattr(ob, "pts", None)
+            ob.x, ob.y = X, Y
+            if isinstance(ob._pts0, np.ndarray) and ob._pts0.ndim == 2 and ob._pts0.shape[1] == 2:
+                ob.pts = ob._pts0 + np.array([X - ob._x0, Y - ob._y0])  # traços já desenhados (círculo, seta) andam juntos
+        elif hasattr(ob, "cx") and hasattr(ob, "cy"):
+            ob.cx, ob.cy = X, Y
+        elif e["tipo"] in ("titulo", "destaque", "titulo_caixa"):  # cartão grande: centro longe das bordas e acima da legenda
+            e["x"], e["y"] = min(max(X / self.W, 0.3), 0.66), min(max(Y / self.H, 0.14), 0.55)
+        else:  # rótulo pequeno (anotação): a mira cai no objeto e o texto sai para a direita, sem deixar a área segura
+            meia = getattr(ob, "W", 0) / 2 / self.W
+            x = X / self.W + (meia if e["tipo"] == "anotacao" else 0)
+            meia_h = getattr(ob, "H", 0) / 2 / self.H
+            y = min(max(Y / self.H, 0.1 + meia_h), 0.62)
+            e["x"], e["y"] = min(max(x, 0.06 + meia), (0.85 if y > 0.5 else 0.94) - meia), y  # longe dos botões do Reels
+
+    def posicao(self, e, w, h):
+        """Canto superior esquerdo do sprite: x/y são o centro, na tela ou dentro do palco ("area": "palco")."""
+        y0, alt = 0, self.H
+        if e.get("area") == "palco" and self.plano == "dividido":
+            alt = self.H // 2
+        return self.W * e.get("x", 0.5) - w / 2, y0 + alt * e["y"] - h / 2
+
     def desenhar(self, frame, t, fase="elementos"):
-        """fase "elementos": tudo que fica sob a legenda; fase "pos": efeitos de quadro inteiro (grão, vinheta,
+        """fase "atras": o que fica atrás da pessoa (texto_atras; o render cola a pessoa por cima);
+        fase "elementos": tudo que fica sob a legenda; fase "pos": efeitos de quadro inteiro (grão, vinheta,
         glitch…), aplicados por último, por cima de tudo."""
         for e in self.items:
-            if e["tipo"] in ("broll", "som") or not (e["o_ini"] <= t < e["o_fim"]):
+            if e["tipo"] == "broll" or (e["tipo"] == "som" and "obj" not in e) or not (e["o_ini"] <= t < e["o_fim"]):
                 continue
+            if (e["tipo"] == "texto_atras") != (fase == "atras"):
+                continue
+            if e.get("area") == "palco" and self.plano == "rosto" and not e.get("sempre"):
+                continue  # motion de palco só aparece nos planos dividido e motion
             dt, rest = t - e["o_ini"], e["o_fim"] - t
+            if isinstance(e.get("seguir"), np.ndarray):
+                self.seguir(e)
+            if isinstance(e.get("obj"), HudRosto):
+                if fase == "elementos":
+                    e["obj"].desenhar(frame, dt, rest, self.rosto)
+                continue
             if e["tipo"] == "efeito":
                 if e["obj"].fase == fase:
                     e["obj"].desenhar(frame, dt, rest)
                 continue
-            if fase != "elementos":
+            if fase not in ("elementos", "atras"):
                 continue
             if e["tipo"] in ("leo", "objeto3d"):
                 e["obj"].desenhar(frame, dt, rest)
@@ -272,5 +367,11 @@ class Elementos:
             else:
                 img, alpha = e["obj"].render(dt, rest), 1.0
             h, w = img.shape[:2]
-            blend(frame, img, self.W * e.get("x", 0.5) - w / 2, self.H * e["y"] - h / 2, alpha)
+            x, y = self.posicao(e, w, h)
+            blend(frame, img, x, y, alpha)
+            if self.caixas is not None and alpha > 0.5:  # para a conferência visual: onde o elemento ficou
+                ys, xs = (img[..., 3] > 40).nonzero() if img.shape[2] == 4 else ([0, h - 1], [0, w - 1])
+                if len(xs):
+                    rot = e.get("texto") or e.get("nome") or e["tipo"]
+                    self.caixas.append((f"{e['tipo']} \"{str(rot)[:30]}\"", e["tipo"], x + min(xs), y + min(ys), x + max(xs), y + max(ys)))
 

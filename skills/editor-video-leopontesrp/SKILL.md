@@ -26,7 +26,10 @@ Tudo roda nesta pasta, com `.venv/bin/python editor.py`.
 | `editor.py renderizar <pasta>/edl.json` | Render final de qualidade. |
 | `editor.py renderizar <pasta>/edl.json --so-audio` | Refaz só o áudio (música, volume) sobre o vídeo já renderizado, em segundos. |
 | `editor.py biblioteca listar musicas [termo] --clima <clima>` | Biblioteca de 35 faixas reais (CC BY 4.0) com clima, energia, BPM, gênero e crédito. `--json` para filtrar. |
-| `editor.py biblioteca listar 3d\|efeitos\|sons [termo] --marca leopontesrp` | Objetos 3D, layers de efeito e efeitos sonoros, se o vídeo pedir (raramente nesta conta). |
+| `editor.py biblioteca listar 3d\|efeitos\|sons [termo] --marca leopontesrp` | Objetos 3D, layers de efeito e efeitos sonoros, se o vídeo pedir (raramente nesta conta). Objeto 3D que falta é criado: `biblioteca criar 3d <nome> --fluent X --emoji Y` ou `fluent`/`emoji` no `objeto3d`. |
+| `editor.py renderizar <pasta>/edl.json --previa --de 3 --ate 9` | Prévia rápida de um trecho (10 quadros/s, com áudio) em `previa.mp4`, para conferir um ajuste em segundos. |
+| `editor.py linha-do-tempo <pasta>/edl.json` | Página `linha_do_tempo.html` com o vídeo e as trilhas do EDL (cortes, elementos, zooms, legenda, sons, avisos). |
+| `editor.py exportar <pasta>/edl.json [--quando 2026-11-20T19:00:00-03:00]` | Entrega: `legenda.srt`, `capa.jpg`, `post.txt` (rascunho), `reel.mp4` (até 20 MB) e a entrada da agenda do insta_report. |
 | `editor.py conferir <pasta>/final.mp4 --marca leopontesrp` | Lê o selo de marca gravado no vídeo. Só entregue se disser "confere". |
 | `editor.py testar` | Teste de regressão de todas as marcas. Rode depois de qualquer mudança no código; precisa terminar em `TUDO OK`. |
 
@@ -79,6 +82,34 @@ O rascunho do `analisar` já vem com esses padrões (estão em `marcas/leopontes
 
 Âncoras dos elementos: `na` (texto exato da transcrição; `ocorrencia` se repetir), `ate` (sai no fim dessa fala), `antecipa` (padrão 0,12 s antes da palavra), `segura` (quanto fica depois). Sem fala para ancorar, use `ini`/`fim`. Opcionais: `x`/`y` (0 a 1) e `tam`.
 
+**Estilos de edição** (`editor.py estilos`; guia em `docs/estilos-de-referencia.md`, campos em `docs/edl.md`): `"estilo": "tutorial_passos"` (rosto, tela dividida e só motion em corte seco, legenda limpa de 2 palavras, `passo`, `janela`, `arvore`, `mapa`, `comentario`), `"tela_perspectiva"` (gravação de tela num plano 3D com câmera e profundidade de campo: `broll` com `perspectiva`) e `"vitrine"` (um `look` por frase, `texto_atras`, `hud_rosto`, `som` com `rotulo`, `neon`). Em cada segmento: `"plano"` (`rosto`, `dividido`, `motion`) e `"look"` (`pb`, `pb_acento`, `duotom`, `quente`, `frio`, `limpo`, `noite`, `adesivo`). `analisar --estilo <estilo>` já corta as pausas no ritmo do estilo. O estilo nunca troca a identidade: cores e fontes de texto continuam as da marca.
+
+**Diretor, prévia, conferência e entrega** (guia em `docs/diretor-e-entrega.md`):
+
+- **O `analisar` já dirige o rascunho.** Ele corta vícios e tomadas repetidas, escolhe as ênfases da legenda, alterna o zoom nos jump cuts (`"salto": true`), põe punch nas ênfases mais fortes e sugere elementos ancorados na fala.
+  - Leia o resumo no fim de `transcricao.txt` e o `diretor.json` antes de mexer.
+  - Confira cada corte proposto: se um corte mudar o sentido, desfaça.
+  - A nota do gancho e a frase mais forte vêm junto. Para abrir com essa frase, use um segmento `"gancho": true`.
+  - `--sem-diretor` dá o rascunho cru.
+- **O `analisar` também lê a imagem** (`cena.json`): gestos (dedo para cima, apontar para a câmera, mão aberta, joinha), aceno de cabeça (sim e não) e câmera (giro pelo ambiente, câmera se afastando). Cada leitura vira um elemento que **acompanha o movimento** (`"seguir"`): brilho na ponta do dedo, ondas ao apontar para a câmera, círculo na mão aberta, check ao lado da cabeça no "sim", palavra grudada na parede no giro e zoom `abre` quando a câmera se afasta. O motivo do efeito é o gesto: confira na prévia e apague o que não fizer sentido. `--sem-cena` desliga.
+- **Tour pela casa sai pré-montado.** Quando a câmera anda pelo ambiente, o `analisar` já escreve até 3 capítulos por cômodo (`passo` "Parte" com título do lugar e transição `luz`) e até 8 rótulos editoriais presos ao objeto que o dedo aponta ("firmeza de/Caboclo", com `fixar` e `sem_legenda`). O relatório lista cada um com o motivo: confira os títulos e o ponto de cada rótulo na prévia.
+- **Pausas pelo áudio.** O Whisper estica a palavra sobre o silêncio seguinte; o `analisar` acerta os tempos pelo volume e a caminhada muda já sai cortada (`--sem-aparar` desliga).
+- **Ajuste por trechos.** `renderizar --previa --de S --ate S` mostra só o trecho alterado, em segundos.
+- **O render final faz a conferência visual.** Ele avisa sobre:
+  - área segura do Reels;
+  - elemento cobrindo o rosto;
+  - legenda sobre o rosto ou sem contraste;
+  - loudness fora do alvo;
+  - gancho fraco.
+
+  Resolva cada aviso de `conferencia.json` antes de entregar.
+- **Para revisar a edição inteira**, rode `linha-do-tempo` e abra a página.
+- **Na entrega**, rode `exportar` (com `--quando` se já houver data). Ele gera:
+  - `legenda.srt`, `capa.jpg` e `reel.mp4` (até 20 MB);
+  - `post.txt`, que é só rascunho: a legenda do post continua seguindo as regras desta skill.
+
+Para esta conta pessoal, os looks (`quente`, `limpo`, `noite`) dão clima aos clipes do dia a dia; legenda `limpa` combina com a música. Sem `comentario` nem `neon` de CTA: a conta não tem CTA.
+
 ## 3. Identidade da conta (não negociável)
 
 A identidade já está em `marcas/leopontesrp/marca.json`. Sempre rode `analisar` com `--marca leopontesrp` (não existe marca padrão) e confira `"marca": "leopontesrp"` no `edl.json`. Vídeos do @pontes_brain e do GiraHub usam as skills deles, nunca esta. **Não use nem adapte elementos das outras marcas** (personagem Leo, ciclo PDCA, monograma LP, ticket do GiraHub, "mentoria de produto", links de outra conta): a guarda de marca recusa o render, e o certo é corrigir o EDL.
@@ -114,6 +145,10 @@ A identidade já está em `marcas/leopontesrp/marca.json`. Sempre rode `analisar
     - `destaque` quando ele nomear uma pessoa (só se ele mesmo disse o nome), lugar ou data importante. Até 4 palavras.
     - Entra na palavra que justifica (`na`) e sai quando a ideia acaba (`ate`). No máximo 1 texto na tela além da legenda.
 13. **Legendas**: ligadas quando há fala. Revise a transcrição e preencha `correcoes` (nomes de pessoas e lugares, "por que" e "porque"). Marque em `enfase` de 2 a 4 palavras que carregam o sentimento do vídeo. Sem fala, ficam desligadas.
+
+**Direção de arte (sempre):** antes de montar o EDL, leia "Direção de arte: o que o editor sempre considera" em `docs/diretor-e-entrega.md` e siga os 10 pontos: gancho primeiro sem repetir (o `analisar` já move a frase forte e põe a vinheta depois dela), 45 a 60 s em tour, capítulos, rótulo editorial preso ao objeto com `sem_legenda`, 3D só quando o tom pede, luz igualada entre ambientes, som sob a voz, nunca borda esticada e autocrítica com nota por critério antes de entregar (abaixo de 8 volta para o EDL).
+
+**Bordas:** nenhum quadro pode mostrar borda esticada, espelhada ou preta (pixel da beira repetido em faixa). Ao conferir os quadros, olhe as quatro bordas, principalmente em vídeo feito na mão; o render acusa "borda esticada" e esse aviso nunca vai para entrega. Nunca entregue com borda esticada.
 
 ### Fase 4: imagem e som
 14. **Fundo**: sempre `original`. É vida real; não troque o fundo nem recorte a pessoa.

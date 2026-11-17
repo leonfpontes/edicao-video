@@ -34,6 +34,10 @@
   },
   "fundo_motivo": "ticket",
   "leo": false,
+  "diretor": {
+    "alternar_zoom": false,
+    "calmo": true
+  },
   "musica": {
     "politica": "opcional"
   },
@@ -51,5 +55,24 @@
       "senha da gira"
     ]
   },
-  "vocabulario": "GiraHub, girahub.com.br, terreiro, terreiros, Umbanda, Candomblé, casa de axé, gira, senha da gira, médium, médiuns, cambone, cambones, consulente, pai de santo, mãe de santo, zelador, corrente, Preto Velho, Caboclo, Iemanjá, Oxalá, Ogum, Exu, axé, mensalidade, Porta, Modo TV, WhatsApp"
+  "vocabulario": "GiraHub, girahub.com.br, terreiro, terreiros, Umbanda, Candomblé, casa de axé, gira, senha da gira, médium, médiuns, cambone, cambones, consulente, pai de santo, mãe de santo, zelador, corrente, Preto Velho, Caboclo, Iemanjá, Oxalá, Ogum, Exu, axé, mensalidade, Porta, Modo TV, WhatsApp",
+  "padroes_edl": {
+    "legendas": {
+      "marcacao": "enfase",
+      "correcoes": {
+        "echu": "Exu",
+        "exu": "Exu",
+        "ochum": "Oxum",
+        "oxum": "Oxum",
+        "xalá": "Oxalá",
+        "oxalá": "Oxalá",
+        "fá": "Ifá",
+        "ifá": "Ifá",
+        "mario": "mariô",
+        "caboclo": "Caboclo",
+        "iemanjá": "Iemanjá",
+        "ogum": "Ogum"
+      }
+    }
+  }
 }

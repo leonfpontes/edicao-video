@@ -19,6 +19,7 @@ mkdir -p modelos
 baixa() { [ -s "modelos/$2" ] || curl -fsSL "$1" -o "modelos/$2"; }
 baixa https://storage.googleapis.com/mediapipe-models/image_segmenter/selfie_segmenter/float16/latest/selfie_segmenter.tflite selfie_segmenter.tflite
 baixa https://storage.googleapis.com/mediapipe-models/face_detector/blaze_face_short_range/float16/latest/blaze_face_short_range.tflite blaze_face_short_range.tflite
+baixa https://storage.googleapis.com/mediapipe-models/gesture_recognizer/gesture_recognizer/float16/latest/gesture_recognizer.task gesture_recognizer.task
 baixa https://github.com/PeterL1n/RobustVideoMatting/releases/download/v1.0.0/rvm_mobilenetv3_fp32.onnx rvm_mobilenetv3_fp32.onnx
 baixa https://raw.githubusercontent.com/GregorR/rnnoise-models/master/somnolent-hogwash-2018-09-01/sh.rnnn sh.rnnn
 

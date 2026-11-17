@@ -33,6 +33,9 @@
   },
   "fundo_motivo": "pdca",
   "leo": true,
+  "diretor": {
+    "alternar_zoom": false
+  },
   "musica": {
     "politica": "proibida"
   },
